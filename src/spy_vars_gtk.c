@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -647,15 +647,14 @@ static gint EntryVarSpy_activate_event(GtkWidget *widget, int NumSpy)
 {
 	int NewVarType,NewVarOffset;
 //	int * NumVarSpy = &InfosGUI->VarSpy[NumSpy].VarType;
-	char BufferVar[30];
-	strcpy(BufferVar, gtk_entry_get_text((GtkEntry *)widget) );
-	if (TextParserForAVar(BufferVar , &NewVarType, &NewVarOffset, NULL, FALSE/*PartialNames*/))
+	char * pVarName = (char *)gtk_entry_get_text(GTK_ENTRY(widget));
+	if (TextParserForAVar(pVarName , &NewVarType, &NewVarOffset, NULL, FALSE/*PartialNames*/))
 	{
 //		*NumVarSpy++ = NewVarType;
 //		*NumVarSpy = NewVarOffset;
 		InfosGUI->FreeVarSpy[NumSpy].VarType = NewVarType;
 		InfosGUI->FreeVarSpy[NumSpy].VarNum = NewVarOffset;
-		UpdateAllLabelsFreeVars( NumSpy, BufferVar );
+		UpdateAllLabelsFreeVars( NumSpy, pVarName );
 	}
 	else
 	{
@@ -728,7 +727,6 @@ void DisplayFreeVarSpy()
 {
 	int NumVarSpy;
 	char BufferValue[50];
-	char * Days[] = { _("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday") };
 	int Time = ReadVar( VAR_WORD_SYSTEM, 0 );
 	int Date = ReadVar( VAR_WORD_SYSTEM, 1 );
 	if ( Date==0 )
@@ -737,6 +735,7 @@ void DisplayFreeVarSpy()
 	}
 	else
 	{
+		char * Days[] = { _("Sunday"), _("Monday"), _("Tuesday"), _("Wednesday"), _("Thursday"), _("Friday"), _("Saturday") };
 		int DayVarValue = ReadVar( VAR_WORD_SYSTEM,2 );
 		char * StringDayValue = "---";
 		if( DayVarValue>=0 && DayVarValue<=6 )
@@ -1026,11 +1025,11 @@ GtkWidget * CreateTargetInfosPage( )
 {
 	GtkWidget * hbox[ NBR_TARGET_INFOS ], *vboxMain;
 	int NumLine;
-	GtkWidget * pLabel;
 	char * Text[ NBR_TARGET_INFOS ] = { N_("ClassicLadder Soft.Version"), N_("Kernel Version"), N_("Xenomai version"), N_("Linux Distribution"), N_("Disk statistics") };
 	vboxMain = gtk_vbox_new (FALSE, 0);
 	for(NumLine=0; NumLine<NBR_TARGET_INFOS; NumLine++)
 	{
+		GtkWidget * pLabel;
 		hbox[ NumLine ] = gtk_hbox_new (FALSE, 0);
 		gtk_container_add (GTK_CONTAINER (vboxMain), hbox[ NumLine ]);
 

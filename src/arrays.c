@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -528,7 +528,8 @@ printf("[[[ In %s(), will alloc '%d' Sections... ]]]\n", __FUNCTION__, NBR_SECTI
 
 void ClassicLadder_FreeAllInfos( char CleanAndRemoveTmpDir )
 {
-	InfosGene->LadderState = STATE_LOADING;
+	if (InfosGene)
+		InfosGene->LadderState = STATE_LOADING;
 //////	ClassicLadder_FreeProjectDatas( );
 #ifdef GTK_INTERFACE
 	if ( InfosGUI )

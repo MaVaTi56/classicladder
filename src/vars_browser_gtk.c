@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* December 2019 */
@@ -36,6 +36,10 @@ static GtkWidget *VarsBrowserDialogBox;
 static GtkWidget  *VarsBrowserScrolledWin;
 static GtkListStore *ListStore;
 static GtkWidget * pComboTypeVar;
+static GtkWidget *ListViewVariables;
+static int TypeVarForPreselectionInCombo = -1; // no variable already entered
+static int OffsetVarForPreselectionInList = -1; // no variable already entered
+static int IndexTypeVarForPreselectionInCombo = 0; // index in the combo for type selection
 
 enum
 {
@@ -47,12 +51,11 @@ enum
 	NBR_INFOS
 };
 
-void RefreshVarsListForCurrentType( int TypeVar )
+void RefreshVarsListForCurrentType( int IndexInTypeVar )
 {
 	GtkTreeIter   iter;
 	int ScanVar;
 	char BuffVarName[ 100 ];
-	StrSymbol * pSymbol;
 	
 	// put (back) vertical lift at the top position...
 	GtkAdjustment * pGtkAdjust = gtk_scrolled_window_get_vadjustment( GTK_SCROLLED_WINDOW(VarsBrowserScrolledWin) );
@@ -61,13 +64,14 @@ void RefreshVarsListForCurrentType( int TypeVar )
 
 	gtk_list_store_clear( ListStore );
 
-	for ( ScanVar=0; ScanVar<TableConvIdVarName[TypeVar].iSize1; ScanVar++ )
+	for ( ScanVar=0; ScanVar<TableConvIdVarName[IndexInTypeVar].iSize1; ScanVar++ )
 	{
+		StrSymbol * pSymbol;
 		// Acquire an iterator
 		gtk_list_store_append( ListStore, &iter );
 
 		BuffVarName[0] = '%';
-		sprintf( &BuffVarName[1], TableConvIdVarName[TypeVar].StringBaseVarName, ScanVar );
+		sprintf( &BuffVarName[1], TableConvIdVarName[IndexInTypeVar].StringBaseVarName, ScanVar );
 		pSymbol = ConvVarNameInSymbolPtr( BuffVarName );
 		
 		// fill the element
@@ -79,6 +83,23 @@ void RefreshVarsListForCurrentType( int TypeVar )
                     COMMENT, pSymbol?pSymbol->Comment:"",
                     -1);
 	}
+
+	//if any current variable, select it per-default in the variables list
+	if( IndexTypeVarForPreselectionInCombo==IndexInTypeVar && OffsetVarForPreselectionInList!=-1 )
+	{
+		GtkTreePath * PathToSelect;
+		char BuffLine[ 20 ];
+		sprintf( BuffLine, "%d", OffsetVarForPreselectionInList );
+		PathToSelect = gtk_tree_path_new_from_string(BuffLine);
+		if( PathToSelect )
+		{
+			printf("path to select var per-default '%s'...\n",BuffLine);
+			GtkTreeSelection * selection = gtk_tree_view_get_selection( GTK_TREE_VIEW( ListViewVariables ) );
+			gtk_tree_selection_select_path(selection,PathToSelect);
+			gtk_tree_view_scroll_to_cell(GTK_TREE_VIEW( ListViewVariables ), PathToSelect, NULL, TRUE/*use_align*/, 0.3, 0 );
+			gtk_tree_path_free(PathToSelect);
+		}
+	}
 }
 
 static gint ComboBox_changed_event(GtkWidget *widget, int NotUsed)
@@ -86,13 +107,22 @@ static gint ComboBox_changed_event(GtkWidget *widget, int NotUsed)
 	RefreshVarsListForCurrentType( gtk_combo_box_get_active( GTK_COMBO_BOX( pComboTypeVar ) ) );
 	return TRUE;
 }	
-
+static gboolean ListViewVariables_button_press_event( GtkWidget *widget, GdkEventButton *event )
+{
+//	printf("clicked on list\n");
+	if( event->type==GDK_2BUTTON_PRESS )
+	{
+		printf("double-clicked on list, will now simulate 'OK' response !\n");
+		gtk_dialog_response( GTK_DIALOG(VarsBrowserDialogBox), GTK_RESPONSE_OK );
+	}
+	return FALSE; // to let gtk do the normal selection on its side...
+}
 
 void OpenBrowserVarsToReplace( GtkWidget *widget, GtkWidget * pEntryWidget )
 {
 	if( OpenBrowserVars( pEntryWidget, FALSE/*AddMode*/ ) )
 	{
-		// for free vars display, signal required to be taken into account (simulate as an "enter" key a)...
+		// for free vars display, signal required to be taken into account (simulate as an "enter" key)...
 		g_signal_emit_by_name( pEntryWidget, "activate" );
 	}
 }
@@ -106,8 +136,6 @@ char OpenBrowserVars( GtkWidget * pEntryWidget, char AddMode )
 {
 	GtkWidget *DialogContentAreaVBox;
 	GtkWidget * pLabel;
-	GtkWidget *ListView;
-	GtkCellRenderer   *renderer;
 	long ScanCol;
 	char * ColName[] = { "HiddenColTypeVar!", "HiddenColOffsetVar!", N_("Variable"), N_("Symbol name"), N_("Comment") };
 	char BuffVarType[ 100 ];
@@ -115,6 +143,9 @@ char OpenBrowserVars( GtkWidget * pEntryWidget, char AddMode )
 //////	char GrabEntryWidgetFocus = FALSE;
 
 	char VarSelectionDone = FALSE;
+	TypeVarForPreselectionInCombo = -1; // no variable already entered
+	OffsetVarForPreselectionInList = -1; // no variable already entered
+	IndexTypeVarForPreselectionInCombo = 0; // index in the combo for type selection
 	
 	VarsBrowserDialogBox = gtk_dialog_new_with_buttons( _("Variables browser"),
 		GTK_WINDOW( MainSectionWindow ),
@@ -129,6 +160,20 @@ char OpenBrowserVars( GtkWidget * pEntryWidget, char AddMode )
 	pLabel = gtk_label_new( _("Vars type selection :") );
 	gtk_box_pack_start(GTK_BOX(DialogContentAreaVBox), pLabel, FALSE, FALSE, 0);
 
+	// for replace mode, get current type/offset of the variable in the widget, to select per-default the current variable in the list !
+	if( !AddMode )
+	{
+		int VarTypeConvert,VarOffsetConvert;
+		char * pVarName = (char *)gtk_entry_get_text(GTK_ENTRY(pEntryWidget));
+		if (TextParserForAVar(pVarName , &VarTypeConvert, &VarOffsetConvert, NULL, FALSE/*PartialNames*/))
+		{
+			TypeVarForPreselectionInCombo = VarTypeConvert;
+			OffsetVarForPreselectionInList = VarOffsetConvert;
+printf("converted var %d/%d for preselection combo / list\n",TypeVarForPreselectionInCombo,OffsetVarForPreselectionInList);
+		}
+	}
+
+	/* Create a combo for type of vars list */
 	pComboTypeVar = gtk_combo_box_new_text();
 	do
 	{
@@ -150,42 +195,52 @@ char OpenBrowserVars( GtkWidget * pEntryWidget, char AddMode )
 		}
 		while( !PercentFound && *pScanPercent!='\0');
 		gtk_combo_box_append_text( MY_GTK_COMBO_BOX(pComboTypeVar), BuffVarType );
+		if( TypeVarForPreselectionInCombo!=-1 && TableConvIdVarName[ScanVarTypeLine].iTypeVar==TypeVarForPreselectionInCombo )
+		{
+			IndexTypeVarForPreselectionInCombo = ScanVarTypeLine;
+			printf("found index types combo for preselection = %d\n",ScanVarTypeLine);
+		}
 		ScanVarTypeLine++;
 	}
 	while( TableConvIdVarName[ScanVarTypeLine].StringBaseVarName );
-	gtk_combo_box_set_active( GTK_COMBO_BOX( pComboTypeVar ), 0 );
+	gtk_combo_box_set_active( GTK_COMBO_BOX( pComboTypeVar ), IndexTypeVarForPreselectionInCombo );
 	gtk_box_pack_start (GTK_BOX(DialogContentAreaVBox), pComboTypeVar, FALSE, FALSE, 0);
 	gtk_signal_connect(GTK_OBJECT( pComboTypeVar ), "changed", 
 							GTK_SIGNAL_FUNC(ComboBox_changed_event), (void *)NULL );
 
 	/* Create a list-model and the view. */
 	ListStore = gtk_list_store_new( NBR_INFOS, G_TYPE_INT, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING );
-	ListView = gtk_tree_view_new_with_model ( GTK_TREE_MODEL(ListStore) );
+	ListViewVariables = gtk_tree_view_new_with_model ( GTK_TREE_MODEL(ListStore) );
 
 	/* Add the columns to the view. */
 	for (ScanCol=2; ScanCol<NBR_INFOS; ScanCol++)
 	{
 		GtkTreeViewColumn *column;
-		renderer = gtk_cell_renderer_text_new();
+		GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
 //		g_object_set(renderer, "editable", TRUE, NULL);
 //TODO? gtk_entry_set_max_length(GTK_ENTRY(  ),9);
 //		g_signal_connect( G_OBJECT(renderer), "edited", G_CALLBACK(Callback_TextEdited), (gpointer)ScanCol );
 		column = gtk_tree_view_column_new_with_attributes( gettext(ColName[ ScanCol ]), renderer, "text", ScanCol, NULL );
-		gtk_tree_view_append_column( GTK_TREE_VIEW(ListView), column );
+		gtk_tree_view_append_column( GTK_TREE_VIEW(ListViewVariables), column );
 		gtk_tree_view_column_set_resizable( column, TRUE );
 //////		gtk_tree_view_column_set_sort_column_id( column, ScanCol );
 	}
 //	avail since gtk v2.10...?
-	gtk_tree_view_set_grid_lines( GTK_TREE_VIEW(ListView), GTK_TREE_VIEW_GRID_LINES_BOTH );
+	gtk_tree_view_set_grid_lines( GTK_TREE_VIEW(ListViewVariables), GTK_TREE_VIEW_GRID_LINES_BOTH );
 
 	VarsBrowserScrolledWin = gtk_scrolled_window_new(NULL, NULL);
 	gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW (VarsBrowserScrolledWin),
                                     GTK_POLICY_NEVER, GTK_POLICY_ALWAYS);
 	// here we add the view to the scrolled !
-	gtk_container_add(GTK_CONTAINER(VarsBrowserScrolledWin), ListView);
+	gtk_container_add(GTK_CONTAINER(VarsBrowserScrolledWin), ListViewVariables);
 	gtk_box_pack_start(GTK_BOX(DialogContentAreaVBox), VarsBrowserScrolledWin, TRUE, TRUE, 0);
 
-	RefreshVarsListForCurrentType( 0/*TypeVar*/ );
+	// connect to double-click event in the list to directly validate as a click on "OK" button...
+	gtk_signal_connect( GTK_OBJECT(ListViewVariables), "button_press_event",
+						GTK_SIGNAL_FUNC(ListViewVariables_button_press_event), NULL );
+
+	RefreshVarsListForCurrentType( IndexTypeVarForPreselectionInCombo/*TypeVar*/ );
+
 
 gtk_window_set_default_size (GTK_WINDOW (VarsBrowserDialogBox), -1, 600);
 //gtk_window_resize (GTK_WINDOW (VarsBrowserDialogBox), 300, 450);
@@ -198,7 +253,7 @@ gtk_window_set_default_size (GTK_WINDOW (VarsBrowserDialogBox), -1, 600);
 			GtkTreeSelection * selection;
 			GtkTreeModel * model;
 			GtkTreeIter iter;
-			selection = gtk_tree_view_get_selection( GTK_TREE_VIEW( ListView ) );
+			selection = gtk_tree_view_get_selection( GTK_TREE_VIEW( ListViewVariables ) );
 			if ( gtk_tree_selection_get_selected( selection, &model, &iter) )
 			{
 				int Selected0,Selected1;

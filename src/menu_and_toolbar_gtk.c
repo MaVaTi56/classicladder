@@ -542,13 +542,12 @@ printf("*** HERE SET REMOTE_FILE_TRANSFER ---SOFT_UPDATE--- TO SEND!\n");
 
 void MenuViewRegisterBlockContent( void )
 {
-	int RegisterSelect = -1;
 	char RegisterString[ 10 ];
 	RegisterString[ 0 ] = '\0';
 	if ( ShowEnterMessageBox( _("Register content"),_("Select register number to view"), RegisterString, 10 ) )
 	{
 printf("SELECTION STRING = %s\n", RegisterString);
-		RegisterSelect= atoi( RegisterString );
+		int RegisterSelect = atoi( RegisterString );
 		if ( RegisterSelect>=0 && RegisterSelect<NBR_REGISTERS )
 		{
 			if ( InfosGUI->TargetMonitor.RemoteConnected )

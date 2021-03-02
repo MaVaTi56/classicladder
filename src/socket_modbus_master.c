@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2015 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* August 2005 */
@@ -224,11 +224,11 @@ printf("VerifyConnection slave%d, after sockok=%d ; cnx=%d\n", SlaveIndex, Clien
 int SendSocketModbusMaster( int SlaveIndex, char * Frame, int LgtFrame )
 {
 	int Status = -1;
-	int LgtSend;
 //TODO: for UDP, get port value from this struct...
 //	StrModbusSlave * pSlave = &ModbusSlaveList[ SlaveIndex ];
 	if ( VerifyConnection( SlaveIndex ) )
 	{
+		int LgtSend;
 		if( ModbusConfig.ModbusDebugLevel>=2 )
 		{
 			debug_printf(DBG_HEADER_INFO "Modbus I/O module master - Sending frame to slave %d...\n",SlaveIndex);

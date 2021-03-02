@@ -1,5 +1,5 @@
 CLASSIC LADDER PROJECT
-Copyright (C) 2001-2020 Marc Le Douarain
+Copyright (C) 2001-2021 Marc Le Douarain
 marc . le - douarain /AT\ laposte \DOT/ net
 http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder
@@ -1082,3 +1082,10 @@ v0.9.113 (4 January 2020)
      typing. Used for free vars window, and in properties window for variables and arithmetic expressions.
    - If editor window closed, and "modifying" from popup menu, was opening editor window without checking menu "View / Editor window". fixed.
      + now also open editor window when adding or inserting a rung.
+
+v0.9.114 (..... 2021)
+   - When opening the variables browser, if already a var is present in the edit widget, display the corresponding combo type
+     and select it per default in the list.
+     + can double-click on a var in the list to validate variable selected (instead of clicking "OK" button, faster!).
+
+

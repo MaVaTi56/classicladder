@@ -46,7 +46,6 @@ char OpenNetworkConfigDialog( void )
 {
 	char * NameParams[] = {N_("IP Ad."), N_("Mask"), N_("Route"), N_("Server DNS 1"), N_("Server DNS 2"), N_("HostName")};
 	GtkWidget * hbox[ NBR_NET_PARAMS ];
-	GtkWidget * pLabel;
 	int ScanLine;
 	GtkWidget *DialogContentArea;
 
@@ -71,6 +70,7 @@ char OpenNetworkConfigDialog( void )
 
 	for( ScanLine=0; ScanLine<NBR_NET_PARAMS; ScanLine++ )
 	{
+		GtkWidget * pLabel;
 		hbox[ScanLine] = gtk_hbox_new (FALSE, 0);
 //ForGTK3		gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[ScanLine]);
 		gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[ScanLine]);

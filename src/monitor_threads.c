@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2011 */
@@ -535,13 +535,12 @@ MonitorWindowAddText( FRAMES_LOG_MONITOR_MASTER, DebugMsgMaster );
 		
 		if ( ( InfosGUI->TargetMonitor.RemoteConnected || InfosGUI->TargetMonitor.RemoteFileTransfer ) && !ErrorToConnect )
 		{
-			int ReqReceivedLgt;
-			char * RequestToSend = NULL;
 			int ReplyTimeOutValueInMs = InfosGUI->TargetMonitor.TimeOutWaitReply; //300; //250;
-			RequestToSend = MonitorMasterSchedulerRequestToAsk( &ReplyTimeOutValueInMs );
+			char * RequestToSend = RequestToSend = MonitorMasterSchedulerRequestToAsk( &ReplyTimeOutValueInMs );
 //MonitorWindowAddText( "monmaster: target to ask.\n" );
 			if ( RequestToSend!=NULL )
 			{
+				int ReqReceivedLgt;
 				int PureLength = strlen(RequestToSend);
 				if ( InfosGUI->TargetMonitor.RemoteWithSerialPort[ 0 ]!='\0' )
 				{

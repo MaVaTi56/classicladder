@@ -1,5 +1,5 @@
 CLASSIC LADDER PROJECT
-Copyright (C) 2001-2020 Marc Le Douarain
+Copyright (C) 2001-2021 Marc Le Douarain
 marc . le - douarain /AT\ laposte \DOT/ net
 http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder
@@ -82,9 +82,9 @@ real variable name.
 Partial symbol or complete symbol are possible.
 A complete symbol corresponds directly to a real variable name:
 ex: "InputK4" => %I17
-A partial symbol is a part of a variable name without an attribute:
+A partial symbol is a part of a variable name without any attribute:
 ex: "MyTimer" => %TM0 (that can not be used directly, but by adding
-the attribute wanted: MyTimer.Q (= %TM0.Q)
+the attribute wanted: "MyTimer.Q" => %TM0.Q
 
 
 INDEXED VARIABLES :
@@ -92,15 +92,19 @@ INDEXED VARIABLES :
 
 In the arithmetic expressions and contacts/coils, variables indexed with another
 one can be used.
-Examples: %W0[%W4] => if %W4 equals 23 it corresponds to %W23 !
+Examples:
+%W0[%W4] => if %W4 equals 23 it corresponds to %W23 !
 %I0[%W20] => if %W20 equals 5 it corresponds to %I5 !
+%B100[%W6] => if %W6 equals 56 it corresponds to %B156 !
 
 
 CONSTANTS :
 ===========
 
 Examples of constants usable in the arithmetic expressions:
-45 (decimal) , $10 (hexadecimal), 'G' (character).
+=> 45 (decimal, per default)
+=> $10 (hexadecimal, starting with $ character)
+=> 'G' (character), between '').
 
 
 LIST OF KNOWN OPERATORS IN ARITHMETIC EXPRESSIONS STRINGS :

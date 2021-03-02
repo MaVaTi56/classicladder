@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2017 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* July 2003 */
@@ -1638,7 +1638,9 @@ void GetRemoteAlarmsConfigSettings( void )
 
 void GetSettings( void )
 {
+#ifdef MODBUS_IO_MASTER
 	int Scan;
+#endif
 	GetGeneralParameters( );
 	GetIOSettings( 1/*ForInputs*/ );
 	GetIOSettings( 0/*ForInputs*/ );

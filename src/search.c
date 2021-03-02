@@ -319,10 +319,9 @@ printf("Searching, end of this ladder section\n");
 StrTransition * SearchTransiForCoord( int SearchPageNbr, int SearchCoordX, int SearchCoordY )
 {
 	int ScanTransi;
-	StrTransition * pTransi;
 	for( ScanTransi=0; ScanTransi<NBR_TRANSITIONS; ScanTransi++ )
 	{
-		pTransi = &Sequential->Transition[ ScanTransi ];
+		StrTransition * pTransi = &Sequential->Transition[ ScanTransi ];
 		if ( pTransi->NumPage==SearchPageNbr )
 		{
 			if ( pTransi->PosiX==SearchCoordX &&  pTransi->PosiY==SearchCoordY )
@@ -370,14 +369,13 @@ printf("Searching in sequential Section=%d SeqPage=%d Direction=%d\n",SearchData
 
 void SearchAndGoToNextOrPrevElement( int Direction )
 {
-	StrSection * pScanSection;
 	PassCurrentOne = !SearchDatas.NewSearchStarting;
 	if ( SearchDatas.CurSearchSection==-1 )
 		return;
 	SearchDatas.NewSearchStarting = FALSE;
 	do							// Sections loop ScanSection
 	{
-		pScanSection = &SectionArray[ SearchDatas.CurSearchSection ];
+		StrSection * pScanSection = &SectionArray[ SearchDatas.CurSearchSection ];
 
 		if ( pScanSection->Language==SECTION_IN_LADDER )
 		{

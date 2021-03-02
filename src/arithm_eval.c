@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* October 2001 */
@@ -59,7 +59,6 @@ int atoi(const char *p)
 #endif
 int pow_int(int a,int b)
 {
-	int x;
 	int res;
 	if ( b==0 )
 	{
@@ -67,6 +66,7 @@ int pow_int(int a,int b)
 	}
 	else
 	{
+		int x;
 		res = a;
 		for (x=1;x<b;x++)
 		{
@@ -145,7 +145,6 @@ arithmtype Constant(void)
 /* pointer of pointer is advanced to the first character after last y  : @ or [ */
 int IdentifyVarContent( char **PtrStartExpr, int * ResType,int * ResOffset )
 {
-	int VarType,VarOffset;
 	char * StartExpr = *PtrStartExpr;
 	char * SearchSep = StartExpr;
 //printf("IndentifyVar=%s\n", StartExpr);
@@ -158,7 +157,7 @@ int IdentifyVarContent( char **PtrStartExpr, int * ResType,int * ResOffset )
 
 	if (*SearchSep=='/')
 	{
-		VarType = atoi(StartExpr);
+		int VarType = atoi(StartExpr);
 		SearchSep++;
 		StartExpr = SearchSep;
 		do
@@ -168,7 +167,7 @@ int IdentifyVarContent( char **PtrStartExpr, int * ResType,int * ResOffset )
 		while( (*StartExpr!='@') && (*StartExpr!='[') && (*StartExpr!='\0') );
 		if (*StartExpr=='@' || *StartExpr=='[')
 		{
-			VarOffset = atoi(SearchSep);
+			int VarOffset = atoi(SearchSep);
 			*ResType = VarType;
 			*ResOffset = VarOffset;
 
@@ -794,7 +793,6 @@ char StrCopyMakeCalc[ARITHM_EXPR_SIZE+1]; /* used for putting null char after fi
 void MakeCalc(char * CalcString,int VerifyMode)
 {
 	int TargetVarType,TargetVarOffset;
-	int  Found = FALSE;
 
 	/* null expression ? */
 	if (*CalcString=='\0' || *CalcString=='#')
@@ -805,6 +803,7 @@ void MakeCalc(char * CalcString,int VerifyMode)
 	Expr = StrCopyMakeCalc;
 	if (IdentifyFinalVar(Expr,&TargetVarType,&TargetVarOffset))
 	{
+		int Found = FALSE;
 		/* flush var found */
 		Expr++;
 		do

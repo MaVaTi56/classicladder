@@ -135,11 +135,11 @@ void CopyFunctionBlockPropertiesOrExpr( int NumTypeEle, int NumBlockSrc, int Num
 
 void CopyRungPartSrcToDest( StrRung *RungSrc, StrRung *pRungDest, int PosiDestX, int PosiDestY, char JustRungCopyInBuffer )
 {
-	int x,srcx,srcy;
+	int srcx,srcy;
 	int y = PosiDestY;
 	for (srcy=PartSelectionPosiY;srcy<PartSelectionPosiY+PartSelectionSizeY;srcy++)
 	{
-		x = PosiDestX;
+		int x = PosiDestX;
 		for (srcx=PartSelectionPosiX;srcx<PartSelectionPosiX+PartSelectionSizeX;srcx++)
 		{
 			char GoOn = TRUE;

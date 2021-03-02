@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* October 2006 */
@@ -203,7 +203,6 @@ void SymbolsInitGtk()
 {
 	GtkWidget *vbox;
 	GtkWidget *ListView;
-	GtkCellRenderer   *renderer;
 	long ScanCol;
 	char * ColName[] = { "HiddenColNbr!", N_("Variable"), N_("Symbol name"), N_("Comment") };
 
@@ -222,7 +221,7 @@ void SymbolsInitGtk()
 	for (ScanCol=1; ScanCol<NBR_INFOS; ScanCol++)
 	{
 		GtkTreeViewColumn *column;
-		renderer = gtk_cell_renderer_text_new();
+		GtkCellRenderer *renderer = gtk_cell_renderer_text_new();
 		g_object_set(renderer, "editable", TRUE, NULL);
 //TODO? gtk_entry_set_max_length(GTK_ENTRY(  ),9);
 		g_signal_connect( G_OBJECT(renderer), "edited", G_CALLBACK(Callback_TextEdited), (gpointer)ScanCol );
@@ -232,7 +231,7 @@ void SymbolsInitGtk()
 		gtk_tree_view_column_set_sort_column_id( column, ScanCol );
 	}
 //	avail since gtk v2.10...?
-//	gtk_tree_view_set_grid_lines( GTK_TREE_VIEW(ListView), GTK_TREE_VIEW_GRID_LINES_BOTH );
+	gtk_tree_view_set_grid_lines( GTK_TREE_VIEW(ListView), GTK_TREE_VIEW_GRID_LINES_BOTH );
 
 	//v0.9.101, now init blank lines here directly, instead of calling DisplaySymbols()
 	//at startup if menu "View symbols window" checked... was crashing because undefined NBR_SYMBOLS

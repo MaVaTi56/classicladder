@@ -71,7 +71,6 @@ int SocketRunning = 0;
 void InitSocketServer( int UseUdpMode, int PortNbr )
 {
 
-	int Error = 0;
 #ifdef __WIN32__
 	WORD wVersionRequested = MAKEWORD(1,1);       // Stuff for WSA functions
 	WSADATA wsaData;                              // Stuff for WSA functions
@@ -92,6 +91,7 @@ void InitSocketServer( int UseUdpMode, int PortNbr )
 	}
 	else
 	{
+		int Error = 0;
 		SocketOpened = 1;
 		// Fill-in my socket's address information and bind the socket
 		server_addr.sin_family = AF_INET;

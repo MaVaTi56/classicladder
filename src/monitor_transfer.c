@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2017 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* May 2012 */
@@ -461,7 +461,6 @@ printf("%s() Datas added to file\n", __FUNCTION__);
 char * MonitorCreateRequestFileTransfer( void )
 {
 	//create request...
-	cJSON *JsonRoot;
 	char * TextReq = NULL;
 	StrFileTransfer * pFileTransMaster = &FileTransfer[ MONITOR_SERIAL_MASTER ];
 	
@@ -474,7 +473,7 @@ char * MonitorCreateRequestFileTransfer( void )
 	}
 	else
 	{
-		JsonRoot = cJSON_CreateObject();
+		cJSON *JsonRoot = cJSON_CreateObject();
 	
 		cJSON_AddStringToObject( JsonRoot, "ReqCL", "Transfer" );
 	

@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -312,7 +312,7 @@ void ChoiceOfTheCurrentRung( int NbrOfRungsAfterTopRung )
 void CalcOffsetCurrentRungDisplayed( void )
 {
 	int ScanRung = InfosGene->TopRungDisplayed;
-	int NbrOfRungsFnd = 0;
+////	int NbrOfRungsFnd = 0;
 	// if OffsetHiddenTopRungDisplayed==0, vertical shift of the current rung is 0,
 	// else this is the y value to substract to have the vertical shift... (we will add many full rungs heights after!)
 	InfosGene->OffsetCurrentRungDisplayed = -1*InfosGene->OffsetHiddenTopRungDisplayed;
@@ -321,7 +321,7 @@ void CalcOffsetCurrentRungDisplayed( void )
 	{
 		ScanRung = RungArray[ ScanRung ].NextRung;
 		InfosGene->OffsetCurrentRungDisplayed += TOTAL_PX_RUNG_HEIGHT;
-		NbrOfRungsFnd++;
+////		NbrOfRungsFnd++;
 	}
 //printf("=> In %s, CurrentRung=%d , NbrOfRungsAfterTopRung=%d, OffsetCurrentRungDisplayed=%d\n", __FUNCTION__, InfosGene->CurrentRung, NbrOfRungsFnd, InfosGene->OffsetCurrentRungDisplayed);
 //////test	if ( InfosGene->OffsetCurrentRungDisplayed<0 )
@@ -531,13 +531,13 @@ static gboolean button_press_event( GtkWidget *widget, GdkEventButton *event )
 		// the current rung is the one that will be modified...
 		if ( iCurrentLanguage==SECTION_IN_LADDER )
 		{
-			char DoSelection = TRUE;
+/*CppCheck			char DoSelection = TRUE;
 			if ( InfosGene->OffsetHiddenTopRungDisplayed>0 )
 			{
 //////test					if ( event->y<TOTAL_PX_RUNG_HEIGHT-InfosGene->OffsetHiddenTopRungDisplayed )
 //////test						DoSelection = FALSE;
 			}
-			if ( DoSelection )
+			if ( DoSelection )*/
 			{
 				int NbrRungsShift =  (event->y+InfosGene->OffsetHiddenTopRungDisplayed)/TOTAL_PX_RUNG_HEIGHT;
 //printf("=> Select the current rung clicked, with a shift of rungs=%d\n", NbrRungsShift );

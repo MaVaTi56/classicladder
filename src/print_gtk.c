@@ -71,7 +71,6 @@ static void begin_print(GtkPrintOperation *operation, GtkPrintContext   *context
 	ScanRungToPrint = -1;
 	ScanSectionToPrint = -1;
 	ScanSymbolToPrint = 0;
-	int NumSec;
 	int PageWidth = gtk_print_context_get_width(context);
 	int PageHeight = gtk_print_context_get_height(context);
 
@@ -107,6 +106,7 @@ printf("print NbrSymbols=%d, NbrPagesForSymbol=%d\n", NbrSymbolsDefined, NbrPage
 	if ( OptionPrintSection )
 	{
 
+		int NumSec;
 printf("<<<< CALC %s SECTION(S) >>>\n", OptionPrintAllSections?"ALL":"CURRENT");
 printf("print general infos: width=%d, height=%d, ladder_width_used=%d\n", PageWidth, PageHeight, FinalLadderPageWidth );
 		for ( NumSec=0; NumSec<NBR_SECTIONS; NumSec++ )
@@ -182,8 +182,6 @@ static void DrawSymbolsListPage( GtkPrintContext   *context, int page_nr )
 
 static void draw_page( GtkPrintOperation *operation, GtkPrintContext   *context, int page_nr)
 {
-	cairo_t *cr;
-	char Buffer[ 80 ];
 //	int the_width = RUNG_WIDTH*bl_width;
 //	int the_height = RUNG_HEIGHT*bl_height;
 
@@ -195,6 +193,8 @@ static void draw_page( GtkPrintOperation *operation, GtkPrintContext   *context,
 	else
 	{
 
+		cairo_t *cr;
+		char Buffer[ 80 ];
 		if ( ScanSectionToPrint==-1 )
 		{
 			printf("ERROR print page without section index !!!\n");

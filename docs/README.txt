@@ -1,5 +1,5 @@
 CLASSIC LADDER PROJECT
-Copyright (C) 2001-2020 Marc Le Douarain
+Copyright (C) 2001-2021 Marc Le Douarain
 marc . le - douarain /AT\ laposte \DOT/ net
 http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder

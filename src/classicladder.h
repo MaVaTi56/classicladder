@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -27,9 +27,9 @@
 #endif
 
 #define CL_PRODUCT_NAME "ClassicLadder"
-#define CL_RELEASE_VER_STRING "0.9.113"
-#define CL_RELEASE_DATE_STRING "4 January 2020"
-#define CL_RELEASE_COPYRIGHT_YEARS "2001-2020"
+#define CL_RELEASE_VER_STRING "0.9.113+"
+#define CL_RELEASE_DATE_STRING "2 February 2021"
+#define CL_RELEASE_COPYRIGHT_YEARS "2001-2021"
 
 
 //to debug "monitor": usefull if PLC running... and connecting to ifself (same executable) only for tests purposes at the start, and after also!

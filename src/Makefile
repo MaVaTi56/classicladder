@@ -1,10 +1,10 @@
 #
 # ClassicLadder project - Makefile
-# Copyright (C) 2001-2020 Marc Le Douarain
+# Copyright (C) 2001-2021 Marc Le Douarain
 # http://www.sourceforge.net/projects/classicladder
 # http://sites.google.com/site/classicladder
 #
-# Last update : January 2020
+# Last update : December 2020
 #
 
 # Comment if you do not want the GTK interface (for an embedded version)
@@ -533,6 +533,8 @@ clean:
 	$(RM) -f classicladder_rtl_support
 	$(RM) -f classicladder-mat
 #	$(RM) -f classicladder
+	$(RM) -f ../build_for_embedded/classicladder
+	$(RM) -f ../build_for_embedded/classiclauncher
 	$(RM) -f ladderlib.h
 	$(RM) -f libladder.a
 	$(RM) -f ../classicladder.exe
@@ -549,5 +551,5 @@ dist_zip: clean
 
 dist_embedded:
 	rm -f ../classicladder_embedded.tar.gz
-	(cd ..;tar -cf classicladder_embedded.tar classicladder classiclauncher classicladder_run.script classicladder_update.script classicladder_update_next.script)
+	(cd ../build_for_embedded/;tar -cf ../classicladder_embedded.tar classicladder classiclauncher classicladder_run.script classicladder_update.script classicladder_update_next.script)
 	gzip ../classicladder_embedded.tar

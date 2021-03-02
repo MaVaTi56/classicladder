@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2021 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* May 2001 */
@@ -1459,7 +1459,7 @@ void EditElementInRung(double x,double y)
 		if (EditDatas.NumElementSelectedInToolBar==EDIT_LONG_CONNECTION)
 		{
 			int ScanX = RungX;
-			while(EditDatas.Rung.Element[ScanX][RungY].Type==ELE_FREE && ScanX<RUNG_WIDTH-1 )
+			while( ScanX<RUNG_WIDTH-1 && EditDatas.Rung.Element[ScanX][RungY].Type==ELE_FREE )
 			{
 				EditDatas.Rung.Element[ScanX++][RungY].Type = ELE_CONNECTION;
 				InfosGene->AskConfirmationToCancel = TRUE;
