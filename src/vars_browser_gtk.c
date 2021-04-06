@@ -131,6 +131,27 @@ void OpenBrowserVarsToAdd( GtkWidget *widget, GtkWidget * pEntryWidget )
 {
 	OpenBrowserVars( pEntryWidget, TRUE/*AddMode*/ );
 }
+//used in properties, to replace or add if entry actually ending with '[' character...
+void OpenBrowserVarsToReplaceOrAddIndex( GtkWidget *widget, GtkWidget * pEntryWidget )
+{
+	char cDoAnAdd = FALSE;
+	char * pVarName = (char *)gtk_entry_get_text(GTK_ENTRY(pEntryWidget));
+	if( pVarName[0]!='\0' )
+	{
+		if( pVarName[strlen( pVarName )-1]=='[' )
+		{
+			printf("-->Detect currently ending with '[', so doing an adding in vars browser\n");
+			cDoAnAdd = TRUE;
+		}
+	}
+	if( OpenBrowserVars( pEntryWidget, cDoAnAdd/*AddMode*/ ) )
+	{
+		if( cDoAnAdd )
+			// for free vars display, signal required to be taken into account (simulate as an "enter" key)...
+			g_signal_emit_by_name( pEntryWidget, "activate" );
+	}
+}
+
 //if AddMode=TRUE => add variable selected, else at FALSE => replace with variable selected
 char OpenBrowserVars( GtkWidget * pEntryWidget, char AddMode )
 {

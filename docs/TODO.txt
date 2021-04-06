@@ -28,11 +28,12 @@ FUTURE / TODO LIST...
 
 - Fixing library broken when compiled for that...
 
+- Directly in rungs for contacts (extract a bit of a word) & coils (set a bit of a word) with var format "v[i]:Xz".
+  Example "%W20:X4" => bit 4 of %W20 ; "%W10[%W30]:X9" => bit 9 of %W10[%W30].
+  => will require new rung file format VER4.0 (if used in project) with var "t/o[ti/oi]" => "t/o[ti/oi]:Xb"
 - Easy possibilities in eval block to be able to copy some bits list in a word and extract a bit of a word...
   New functions %Wx:=CONV_TO_WORD(First%By,QuantityZ) Parameters constants or vars. and also %Bx:=CONV_TO_BIT(%Wy,NumBitZ)
-  -Or- new character after first %B with bits quantity %Bx\z that return a word...??? (can also be indexed!!! %Bx[y]\z
-  -Or- BETTER -And- => directly in contacts (extract a bit of a word) / coils (set a bit of a word) => new rung file format VER4.0 (if used in project)
-   with var "t/o[ti/oi]" => "t/o[ti/oi].b"
+  -OR- new character after first %B with bits quantity %Bx:z that "equals" a word (to read or write it)...??? (can also be indexed!!! %Bx[y]:z)
 
 - Add new analog physical local inputs/outputs sub-tabs in the config ("Analog Physical Inputs %IW"/"Analog Physical Outputs %QW").
   to be used with analogRead(pin) & analogWrite(pin,value) functions of WiringPi library with RaspberryPi

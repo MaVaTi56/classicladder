@@ -135,7 +135,7 @@ void SetProperty(int NumParam,char * LblParam,char * ValParam, char ReadOnlyProp
 		if ( strcmp(LblParam,_("Expression"))==0 )
 			IdSignalConnectButVarSpyBrowser[ NumParam ] = gtk_signal_connect( GTK_OBJECT(PropButVarSpyBrowser[ NumParam ]), "clicked", GTK_SIGNAL_FUNC(OpenBrowserVarsToAdd), PropEntryParam[NumParam] );
 		else
-			IdSignalConnectButVarSpyBrowser[ NumParam ] = gtk_signal_connect( GTK_OBJECT(PropButVarSpyBrowser[ NumParam ]), "clicked", GTK_SIGNAL_FUNC(OpenBrowserVarsToReplace), PropEntryParam[NumParam] );
+			IdSignalConnectButVarSpyBrowser[ NumParam ] = gtk_signal_connect( GTK_OBJECT(PropButVarSpyBrowser[ NumParam ]), "clicked", GTK_SIGNAL_FUNC(OpenBrowserVarsToReplaceOrAddIndex/*OpenBrowserVarsToReplace*/), PropEntryParam[NumParam] );
 		gtk_widget_show(PropButVarSpyBrowser[NumParam]);
 	}
 	else

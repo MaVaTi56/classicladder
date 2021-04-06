@@ -28,7 +28,7 @@
 
 #define CL_PRODUCT_NAME "ClassicLadder"
 #define CL_RELEASE_VER_STRING "0.9.113+"
-#define CL_RELEASE_DATE_STRING "2 February 2021"
+#define CL_RELEASE_DATE_STRING "5 April 2021"
 #define CL_RELEASE_COPYRIGHT_YEARS "2001-2021"
 
 

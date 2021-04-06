@@ -1087,5 +1087,7 @@ v0.9.114 (..... 2021)
    - When opening the variables browser, if already a var is present in the edit widget, display the corresponding combo type
      and select it per default in the list.
      + can double-click on a var in the list to validate variable selected (instead of clicking "OK" button, faster!).
-
+   - When opening the variables browser for "variable" properties, if string actually ending with '[' character, add variable selected
+     instead of replacing it (usefull to add a second index variable between [ ]).
+   
 
