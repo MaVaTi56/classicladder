@@ -32,7 +32,7 @@
 #define CL_RELEASE_COPYRIGHT_YEARS "2001-2021"
 
 
-//to debug "monitor": usefull if PLC running... and connecting to ifself (same executable) only for tests purposes at the start, and after also!
+//to debug "monitor": useful if PLC running... and connecting to itself (same executable) only for tests purposes at the start, and after also!
 //////#define MONITOR_TEST_ONLY_NO_RESPONSES_USE
 
 // also available under Gtk, to allow to see "%QLEDx" variables !
@@ -51,7 +51,7 @@
 #endif
 
 
-// where to save the project file transfered with the monitor...
+// where to save the project file transferred with the monitor...
 #define FILEPROJECT_TRANSFERED_TO_SAVE "/usr/local/classicladder/classicladder_project.clprjz"
 
 //#define CL_ICON_FILE "/usr/share/pixmaps/gnome-gmush.png"
@@ -215,7 +215,7 @@ typedef struct plc_sizeinfo_s {
 
 
 // for link with another project where all variables IDs are only an offset in
-// a giant array (absolutely no type part existance)...
+// a giant array (absolutely no type part existence)...
 #define IDVAR_IS_TYPE_AND_OFFSET
 
 
@@ -454,7 +454,7 @@ typedef struct StrInfosGene
 	int UnderCalculationPleaseWait;
 	int LadderStoppedToRunBack;
 	char CmdRefreshVarsBits;
-	int RungInError; //divide per O occured... -1=none.
+	int RungInError; //divide per O occurred... -1=none.
 	
 	//TODO: put all this in another structure, or in the new StrInfosGUI?
 	int BlockWidth;
@@ -482,7 +482,7 @@ typedef struct StrInfosGene
 	char ErrorTitleStringToDisplay[ 60 ];
 //	char DisplaySymbols;
 	char CurrentProjectFileName[ 400 ];
-	// splitted, because now two differents threads (inputs read, and outputs write done in logic)
+	// splitted, because now two different threads (inputs read, and outputs write done in logic)
 	char AskToConfHardInputs;
 	char AskToConfHardOutputs;
 
@@ -514,7 +514,7 @@ typedef struct StrInputFilterAndState
 {
 	unsigned int FilterMask;
 	unsigned int BuffRawInput;
-	int InputStateForLogic; // = -1 if "inputs" task never stored any thing for this input (to avoid battle with gtk window simul)
+	int InputStateForLogic; // = -1 if "inputs" task never stored anything for this input (to avoid battle with gtk window simul)
 }StrInputFilterAndState;
 
 typedef struct StrTargetMonitor
@@ -531,7 +531,7 @@ typedef struct StrTargetMonitor
 	// under file transfer (exclusively) with target
 	char RemoteFileTransfer;
 	char PreviousRemoteFileTransfer;
-	// file tranfer to/from target (-1 if none)
+	// file transfer to/from target (-1 if none)
 	// possibility to be connected, and transfer a file at the same time...
 	int TransferFileNum;
 	int TransferFileSubNum;
@@ -695,7 +695,7 @@ typedef struct StrEventLog
 	int ConfigArrayNum;
 	int Parameter;
 	char OldEventThatCouldNotBeDestroyed; //very old, but still not finished...
-	unsigned char StartTransmitAlarmsFlags; // bits flags for each link to transmit on (app.event)
+	unsigned char StartTransmitAlarmsFlags; // bit flags for each link to transmit on (app.event)
 	unsigned char EndTransmitAlarmsFlags; // idem (disap.event)
 }StrEventLog;
 typedef struct StrLog

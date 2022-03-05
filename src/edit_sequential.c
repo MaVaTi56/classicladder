@@ -96,7 +96,7 @@ void ConvertUserStepsList( int * UserStepsList, short int * StepsList )
 		ScanStep++;
 	}
 }
-// usefull when a step is deleted in the middle of the list (calc stop list scan when seen -1)
+// useful when a step is deleted in the middle of the list (calc stop list scan when seen -1)
 void PackStepsList( short int * StepsList )
 {
 	int ScanList;
@@ -813,7 +813,7 @@ printf("->storing num transi linked=%d for transi=%d\n", NumOtherTransi, TheCurr
 						}
 					}
 				}
-				// step to activate / deativate for each transition
+				// step to activate / deactivate for each transition
 printf("=>step to activ=%d, step to deactiv=%d\n", StepToAct, StepToDesact );
 				if ( StepToAct!=-1 )
 					pTheCurrentTransi->NumStepToActiv[ 0 ] = StepToAct;

@@ -335,7 +335,7 @@ void WritePhysicalOutputs( char OnlyForLifeLed )
 						{
 							unsigned char MaskValue = HardLifeUsersLedsBits[ScanLed];
 							LifeUserLedAlreadyDoneWithOutputs[ ScanLed ] = TRUE;
-							// mask off life/user led bit (usefull if flag "inverted" before... so bit already at "1"!)
+							// mask off life/user led bit (useful if flag "inverted" before... so bit already at "1"!)
 							DatasToWrite = DatasToWrite & (~(MaskValue));
 							if ( GetLifeOrUserLedState(ScanLed) )
 								DatasToWrite = DatasToWrite | (MaskValue);
@@ -400,7 +400,7 @@ void WritePhysicalOutputs( char OnlyForLifeLed )
 #if defined(NBR_HARD_LIFE_USERS_LEDS) 
 	for( ScanLed=0; ScanLed<NBR_HARD_LIFE_USERS_LEDS; ScanLed++ )
 	{
-		/* usefull, if life led shared on a i/o port, and logic "stopped", so outputs not refreshed ! */
+		/* useful, if life led shared on a i/o port, and logic "stopped", so outputs not refreshed ! */
 		if ( ( OnlyForLifeLed && ScanLed==0 ) || (!OnlyForLifeLed && !LifeUserLedAlreadyDoneWithOutputs[ScanLed]) )
 		{
 #ifdef X86_IO_ACCESS
@@ -535,7 +535,7 @@ void OpenHardware( int ComediToOpenMask )
 #endif
 }
 
-/* Under Linux, call ioperm( ) for the necessary adresses ports to access. */
+/* Under Linux, call ioperm( ) for the necessary address ports to access. */
 /* For Comedi, configure the direction of bidirectional lines. */
 void ConfigHardware( char ForOutputs )
 {

@@ -167,7 +167,7 @@ void HandlerSignalInterrupt( int signal_id )
 	else
 		debug_printf("Already under quit...!!!???\n");
 //////v0.9.10	exit( 0 );
-//v0.9.11, in fact seems to be usefull for ctrl-c with gtk+ interface...?
+//v0.9.11, in fact seems to be useful for ctrl-c with gtk+ interface...?
 	exit( 0 );
 }
 void HandlerSignalSegfault( int signal_id )
@@ -846,7 +846,7 @@ debug_printf("Asked to save log events data...\n");
 #endif
 
 
-// usefull under Linux to create a new process listening on a pipe external commands to launch...
+// useful under Linux to create a new process listening on a pipe external commands to launch...
 // trouble with Xeno3 (when fork to launch execv), so now done an external 'ClassicLauncher' application to do the work!
 int main( int argc, char *argv[] )
 {

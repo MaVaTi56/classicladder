@@ -877,8 +877,8 @@ void RefreshASection( StrSection * pSection )
 	do
 	{
 		RefreshRung(&RungArray[NumRung], &Goto);
-		//v0.9.113, memorize the rung were the first divide per zero error occured
-		//(rung drawn with a red backgroud!)
+		//v0.9.113, memorize the rung were the first divide per zero error occurred
+		//(rung drawn with a red background!)
 		if ( !ErrorDivPerZeroBak && ReadVar( VAR_SYSTEM, 7 ) )
 		{
 			ErrorDivPerZeroBak = TRUE;

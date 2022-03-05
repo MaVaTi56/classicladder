@@ -125,7 +125,7 @@ void FrameLogString( int NumFrameLogBuff, unsigned char Type, char * String )
 {
 	if ( NumFrameLogBuff>=0 )
 	{
-		// if not stored here (no buffer for it), directly send to correspondant frame window...
+		// if not stored here (no buffer for it), directly send to correspondent frame window...
 		if ( NumFrameLogBuff>=NBR_FRAMES_LOG_BUFFERS )
 		{
 #ifdef GTK_INTERFACE

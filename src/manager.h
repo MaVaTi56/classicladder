@@ -2,7 +2,7 @@ void InitSections( void );
 int SearchSubRoutineWithItsNumber( int SubRoutineNbrToFind );
 int SearchSectionWithName( char * SectionNameToFind );
 void SetSectionSelected( int NumSec /*char * SectionName*/ );
-int AddSection( char * NewSectionName, int TypeLangageSection, int SubRoutineNbr );
+int AddSection( char * NewSectionName, int TypeLanguageSection, int SubRoutineNbr );
 void ModifySectionProperties( int NumSec /*char * OriginalSectionName*/, char * NewSectionName );
 int NbrSectionsDefined( void );
 int VerifyIfSectionNameAlreadyExist( char * Name );

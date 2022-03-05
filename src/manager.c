@@ -4,7 +4,7 @@
 /* http://sites.google.com/site/classicladder */
 /* August 2002 */
 /* ---------------------------- */
-/* Sections fonctions utilities */
+/* Sections functions utilities */
 /* ---------------------------- */
 /* This library is free software; you can redistribute it and/or */
 /* modify it under the terms of the GNU Lesser General Public */

@@ -168,11 +168,11 @@ void TransferFileCompletedForMaster( StrFileTransfer * pFileTrans )
 //v0.9.20 moved in LoadProjectFiles()		StopRunIfRunning( );
 //v0.9.20 moved in LoadProjectFiles()		InfosGene->LadderState = STATE_LOADING;
 		InfosGene->CurrentProjectFileName[0] = '\0'; // no current project name
-		MonitorWindowAddText(FRAMES_LOG_MONITOR_MASTER, "Loading project transfered from target...\n");
+		MonitorWindowAddText(FRAMES_LOG_MONITOR_MASTER, "Loading project transferred from target...\n");
 		char ProjectLoadedOk = LoadProjectFiles( pFileTrans->FileName );
 		g_idle_add( (GSourceFunc)UpdateAllGtkWindows, NULL );
 		g_idle_add( (GSourceFunc)UpdateWindowTitleWithProjectName, NULL );
-		g_idle_add( (GSourceFunc)MessageInStatusBar, ProjectLoadedOk?( _("Loaded project transfered from target.") ):( _("Failed to load project transfered from target...") ) );
+		g_idle_add( (GSourceFunc)MessageInStatusBar, ProjectLoadedOk?( _("Loaded project transferred from target.") ):( _("Failed to load project transferred from target...") ) );
 	}
 	else if ( pFileTrans->NumFile==10 )
 	{
@@ -284,7 +284,7 @@ void TransferFileCompletedForSlave( StrFileTransfer * pFileTrans, char SlaveMode
 		strcpy( InfosGene->CurrentProjectFileName, FileTransfer[ MONITOR_SERIAL_SLAVE ].FileName );
 #ifndef __WIN32__
 		if ( Preferences.UseSysLog )
-			syslog( LOG_USER|LOG_DEBUG, "Loading new project transfered to slave...\n" );
+			syslog( LOG_USER|LOG_DEBUG, "Loading new project transferred to slave...\n" );
 #endif
 		char ProjectLoadedOk = LoadProjectFiles( InfosGene->CurrentProjectFileName );
 		if ( ProjectLoadedOk )
@@ -349,7 +349,7 @@ void DoNextRead( StrFileTransfer * pFileTrans )
 	CurrentDatasFile[ NbrBytesRead ] = '\0';
 //printf("%s() string=%s, len=%d\n", __FUNCTION__, CurrentDatasFile, strlen( CurrentDatasFile ) );
 printf("%s() len=%d\n", __FUNCTION__, strlen( CurrentDatasFile ) );
-	// inc block number for theses new datas read
+	// inc block number for these new datas read
 	pFileTrans->NumBlock++;
 	if ( NbrBytesRead==0 )
 	{
@@ -429,7 +429,7 @@ char AddDatasToFileToReceive( StrFileTransfer * pFileTrans, char * DatasToAdd )
 	{
 printf("%s() Datas to add to the file = %s (len=%d)\n", __FUNCTION__, DatasToAdd,strlen( DatasToAdd ) );
 		int NbrBytesDecoded = decode64( DatasToAdd );
-		// open file to add datas to it then close (usefull if master abort during transfer...)
+		// open file to add datas to it then close (useful if master abort during transfer...)
 		pFileTrans->pFileTransferDesc = fopen( pFileTrans->FileName, "ab+" );
 		if ( pFileTrans->pFileTransferDesc )
 		{
@@ -448,7 +448,7 @@ printf("%s() Datas added to file\n", __FUNCTION__);
 	}
 	else
 	{
-		pFileTrans->NumBlock = -1; //end of transfer succesfull here !
+		pFileTrans->NumBlock = -1; //end of transfer successful here !
 		printf("%s() file transfer completely received (no more datas to add) !\n", __FUNCTION__);
 		return TRUE;
 	}
@@ -729,7 +729,7 @@ printf("DEBUG SLAVE TEST ACK RECEIVED...\n");
 					printf("Transfer: not received 'ack' from the master!\n");
 				}
 			}
-			// destroy the "NumBlock" acq of the master, we will add the new one for theses datas!
+			// destroy the "NumBlock" acq of the master, we will add the new one for these datas!
 			if ( JsonNumBlock )
 				cJSON_DeleteItemFromObject( JsonRoot, "NumBlock" );
 			// adds values responses for the response to the master !

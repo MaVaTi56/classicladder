@@ -102,7 +102,7 @@ int RefreshTransi( StrTransition * pTransi )
 	{
 		int AllStepsOn = TRUE;
 		int ScanStep = 0;
-		/* Steps to desactivate are activated ? */
+		/* Steps to deactivate are activated ? */
 		while( ScanStep<NBR_SWITCHS_MAX && pTransi->NumStepToDesactiv[ ScanStep ]!=-1 && AllStepsOn )
 		{
 			if ( !Sequential->Step[ pTransi->NumStepToDesactiv[ ScanStep ] ].Activated )
@@ -114,7 +114,7 @@ int RefreshTransi( StrTransition * pTransi )
 		if ( AllStepsOn )
 		{
 			HasChanged = TRUE;
-			/* Reset all the steps to desactivate */
+			/* Reset all the steps to deactivate */
 			ScanStep = 0;
 			while( ScanStep<NBR_SWITCHS_MAX && pTransi->NumStepToDesactiv[ ScanStep ]!=-1 )
 			{

@@ -382,7 +382,7 @@ DoPauseMilliSecs( 10 );
 				{
 					if ( ModbusConfig.ModbusTimeAfterTransmit>0 )
 					{
-						// usefull for USB-RS485 dongle...
+						// useful for USB-RS485 dongle...
 						if( ModbusConfig.ModbusDebugLevel>=3 )
 						{
 							debug_printf(DBG_HEADER_INFO "Modbus I/O module master - Delay after transmit now...\n");

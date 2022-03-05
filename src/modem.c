@@ -164,7 +164,7 @@ printf( "modem: CommandToSend='%s' - Timeout=%d\n", StrCommand, TimeOutSeconds )
 			while( *CurrentPos!='\0' && *CurrentPos!=';' )
 				CurrentPos++;
 			EndOfList = *CurrentPos!=';';
-			// usefull not to write, if StrCommand is a const char array...
+			// useful not to write, if StrCommand is a const char array...
 			if ( *CurrentPos!='\0' )
 				*CurrentPos++ = '\0';
 			do

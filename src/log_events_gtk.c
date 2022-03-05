@@ -192,7 +192,7 @@ gboolean DisplayLogBookEventsFromCsvFile( char * LogBookFileCsv )
 		gtk_list_store_set( ListStore, &iter,
 		TEXT_EVENT, _("No file to load..."),
 		-1);
-		return FALSE; //usefull when called with g_idle_add (just one time)
+		return FALSE; //useful when called with g_idle_add (just one time)
 	}
 	else
 	{
@@ -219,7 +219,7 @@ gboolean DisplayLogBookEventsFromCsvFile( char * LogBookFileCsv )
 		}
 		gzclose( pLogFile ); 
 	}
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }
 
 

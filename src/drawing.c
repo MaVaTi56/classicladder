@@ -211,7 +211,7 @@ int DrawPangoText( cairo_t * cr, int BaseX, int BaseY, int Width, int Height, ch
 	return DrawPangoTextOptions( cr, BaseX, BaseY, Width, Height, Text, /*CenterAlignment*/Width>0?TRUE:FALSE );
 }
 
-// if expr not drawed entirely, draw it complete in the right margin
+// if expr not drawn entirely, draw it complete in the right margin
 // return report number full expression for margin (added after word OPERATE/COMPARE)
 char * DrawExprForCompareOperate( cairo_t * cr, int BaseX, int BaseY, int Width, int Height, char * Text,char DrawingOption )
 {
@@ -629,7 +629,7 @@ cairo_stroke( cr );
 	}
 	else
 	{
-		// only usefull to see abnormal elements in a rung (eraser bug in versions < 0.7.124)
+		// only useful to see abnormal elements in a rung (eraser bug in versions < 0.7.124)
 		if ( pTheElement->Type>=EDIT_CNX_WITH_TOP )
 		{
 			sprintf( BufTxt, "(%d)", pTheElement->Type );

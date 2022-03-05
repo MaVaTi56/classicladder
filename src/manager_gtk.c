@@ -437,15 +437,15 @@ void AddSectionWindowInit( )
 	GtkWidget * ButtonOk;
 	GtkWidget * hbox[ 3 ];
 	GtkWidget * Lbl[ 3 ];
-//	GList *LangageItems = NULL;
+//	GList *LanguageItems = NULL;
 //	GList *SubRoutinesNbrItems = NULL;
 	int NumSub;
 	char BuffNumSub[ 10 ];
 //	char * ArrayNumSub[ ] = { "SR0", "SR1", "SR2", "SR3", "SR4", "SR5", "SR6", "SR7", "SR8", "SR9" };
 	int Line;
-//	LangageItems = g_list_append( LangageItems, "Ladder" );
+//	LanguageItems = g_list_append( LanguageItems, "Ladder" );
 //#ifdef SEQUENTIAL_SUPPORT
-//	LangageItems = g_list_append( LangageItems, "Sequential" );
+//	LanguageItems = g_list_append( LanguageItems, "Sequential" );
 //#endif
 
 //	SubRoutinesNbrItems = g_list_append( SubRoutinesNbrItems, "Main" );

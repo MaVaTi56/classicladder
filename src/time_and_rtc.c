@@ -82,7 +82,7 @@ void GetTimeDatasInThread( char DoUseRtcDevice )
 	}
 }
 
-// usefull to avoid mode switch in Xenomai !
+// useful to avoid mode switch in Xenomai !
 time_t GetCopyCurrentIntTime( void )
 {
 	return CurrentIntTimeCopy;
@@ -240,7 +240,7 @@ void GetCurrentAscTimeUTC( char * Buff )
 	time_t CurrIntTime = GetCurrentIntTime( );
 	ConvertIntTimeToAsc( CurrIntTime, Buff, TRUE/*WithDate*/, TRUE/*InUTC*/ );
 }
-//Dec.2016, seen with MSYS2/Win32, timegm() not available... but only usefull for Linux embedded targets ! ;-)
+//Dec.2016, seen with MSYS2/Win32, timegm() not available... but only useful for Linux embedded targets ! ;-)
 #ifndef __WIN32__
 // used for monitor protocol "set time" (string in UTC)
 time_t ConvertAscUtcToIntTime( char * Buff )

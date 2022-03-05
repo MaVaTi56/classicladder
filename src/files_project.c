@@ -53,7 +53,7 @@ static inline int dbg_printf(char *f, ...) {return 0;}
 
 
 //v0.9.5, replace scan temp dir, with file list to always have same order of little file
-//(usefull in diff between 2 projects files...)
+//(useful in diff between 2 projects files...)
 #define NBR_PROJECT_FILES_LIST 2000
 char * pFilesProjectList[ NBR_PROJECT_FILES_LIST ];
 int NbrFilesProjectList = 0;

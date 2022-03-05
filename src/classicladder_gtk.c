@@ -314,7 +314,7 @@ void CalcOffsetCurrentRungDisplayed( void )
 	int ScanRung = InfosGene->TopRungDisplayed;
 ////	int NbrOfRungsFnd = 0;
 	// if OffsetHiddenTopRungDisplayed==0, vertical shift of the current rung is 0,
-	// else this is the y value to substract to have the vertical shift... (we will add many full rungs heights after!)
+	// else this is the y value to subtract to have the vertical shift... (we will add many full rungs heights after!)
 	InfosGene->OffsetCurrentRungDisplayed = -1*InfosGene->OffsetHiddenTopRungDisplayed;
 //	InfosGene->OffsetCurrentRungDisplayed += NbrOfRungsAfterTopRung*TOTAL_PX_RUNG_HEIGHT;
 	while( ScanRung!=InfosGene->CurrentRung )
@@ -1237,7 +1237,7 @@ gboolean MessageInStatusBar( char * msg )
 		gtk_statusbar_push(GTK_STATUSBAR(StatusBar), StatusBarContextId, msg);
 	else
 		gtk_statusbar_push(GTK_STATUSBAR(StatusBar), StatusBarContextId, "---");
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }
 
 /* =========================================================================*/
@@ -1353,7 +1353,7 @@ printf("calc progress bar (file transfer), num=%d, nbr=%d, calc=%f\n", pFileTran
 printf("ask to hide progress bar...\n");
 		gtk_widget_hide( hBoxFileTransfer );
 	}
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }
 void FileTransferInitGtk(GtkBox *vbox)
 {
@@ -1534,7 +1534,7 @@ RestoreWindowPosiPrefs( "Main", MainSectionWindow );
 	gtk_widget_show (MainSectionWindow);
 
 	GetTheSizesForRung();
-	// added in v0.9.10, usefull if no project loaded to have label/comment entries disabled...
+	// added in v0.9.10, useful if no project loaded to have label/comment entries disabled...
 	AdjustLabelCommentEntriesToSection( -1/*SectionLanguage*/ );
 }
 
@@ -1774,7 +1774,7 @@ gboolean UpdateAllGtkWindows( void )
 	DisplayProjectProperties( );
 	DisplayLogBookEvents( FALSE/*OnLogContentModified*/ );
 	UpdateMonitorModbusSlaveListStats( );
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }
 
 gboolean UpdateWindowTitleWithProjectName( void )
@@ -1808,5 +1808,5 @@ gboolean UpdateWindowTitleWithProjectName( void )
 		}
 	}
 	gtk_window_set_title( GTK_WINDOW(MainSectionWindow), Buff );
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }

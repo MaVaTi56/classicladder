@@ -185,7 +185,7 @@ void CreateEventLog( int ConfigArrayNumber, int ParameterValue, char StartNewOne
 			do
 			{
 			    pEvent = &Log.Event[ ScanEvent ];
-				// the same ? and not already disapeared ?
+				// the same ? and not already disappeared ?
 				if ( pEvent->ConfigArrayNum==ConfigArrayNumber && pEvent->Parameter==ParameterValue && pEvent->EndTime==0 )
 					FoundIt = TRUE;
 				NbrEventsRemaining--;
@@ -430,7 +430,7 @@ int FindCurrentDefaults( void )
 			{
 				pEvent = &pLogLocalCopy->Event[ ScanEvent ];
 				pCfgEvtLog = &ConfigEventLog[ pEvent->ConfigArrayNum ];
-				// not disapeared ? -and- is a default type ?
+				// not disappeared ? -and- is a default type ?
 				if ( pEvent->EndTime==0 && pCfgEvtLog->EventLevel>0 )
 				{
 					ListCurrentDefType[ NbrDefsFound ] = pEvent->ConfigArrayNum;
