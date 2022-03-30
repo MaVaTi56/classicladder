@@ -33,7 +33,7 @@
 // @ address char not used for now. for multi drop lines in the future, you never know ?!
 // CRC include @ char. 
 
-// for serial (both slave & master, to permit to have master/slave running at both time with one same executable ! very usefull for debug...)
+// for serial (both slave & master, to permit to have master/slave running at both time with one same executable ! very useful for debug...)
 StrMonitorSerialBuffer MonitorSerialBuffer[ NBR_MONITOR_SERIALS_BUFFERS ];
 
 // Frame pointer given here has first char available (to store first "STX" of the frame)...

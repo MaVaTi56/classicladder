@@ -33,7 +33,7 @@ COMPLETE_PLC = 1
 
 # Comment if you do not want to support this language
 export SEQUENTIAL_SUPPORT = 1
-# Comment if you do not want to have the old timers/monostables blocks (usefull for compatibility with old projects before IEC timers)
+# Comment if you do not want to have the old timers/monostables blocks (useful for compatibility with old projects before IEC timers)
 OLD_TIMERS_MONOS = 1
 # for EMC usage, compatibility with old versions without this input
 ###FORCE_INP_CONTROL_OLD_TIMERS_FLAG = 1

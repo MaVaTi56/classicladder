@@ -620,7 +620,7 @@ void SaveElementProperties()
 
 /* For editing, we do not touch directly the current arithm
 expressions. We work on the edit ones. It is only when the
-edited rung is applyed that we copy the expressions edited */
+edited rung is applied that we copy the expressions edited */
 void CopyCurrentArithmExpr()
 {
 	int NumExpr;
@@ -1251,14 +1251,14 @@ int SetDefaultVariableForElement(int NumElement)
 void VerticalCleanupWhenErasingElement( StrRung * pRung, int PosiX, int PosiY )
 {
 	char CleanUp = TRUE;
-	// do not delete if there is a connexion at x & y+1
+	// do not delete if there is a connection at x & y+1
 	if ( PosiY<RUNG_HEIGHT-1 )
 	{
 		if ( pRung->Element[PosiX][PosiY+1].ConnectedWithTop )
 			CleanUp = FALSE;
 	}
 	// do not delete if there is an element at x & y
-	// (usefull when trying to erase second right vertical)
+	// (useful when trying to erase second right vertical)
 	if ( PosiX<RUNG_WIDTH-1 )
 	{
 		if ( pRung->Element[PosiX][PosiY].Type!=ELE_FREE )
@@ -1392,7 +1392,7 @@ void EditElementInRung(double x,double y)
 				}
 				else
 				{
-					// if free, perhaps user just whants to delete a vertical cnx...
+					// if free, perhaps user just wants to delete a vertical cnx...
 					EditDatas.Rung.Element[RungX][RungY].ConnectedWithTop = 0;
 				}
 			}

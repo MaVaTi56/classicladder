@@ -303,11 +303,11 @@ void SignalStatisticsModbusSlaveSelect( GtkComboBox * pCombo, gpointer user_data
 gboolean StatisticsModbusSlaveSelectedRefreshInfosGtk( void )
 {
 	SignalStatisticsModbusSlaveSelect( NULL, NULL );
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }
 
 // called when window opened or when refresh button clicked
-// usefull for a target connected,
+// useful for a target connected,
 // and for now also for Gtk application... TODO: perhaps frames should be directly displayed permanently in the window !?
 void RefreshMonitorWindowSignal( GtkWidget *widget, gpointer data )
 {

@@ -55,7 +55,7 @@ void SerialGeneralInit( void )
 	}
 }
 
-/* a litle doc...
+/* a little doc...
 c_cc[VTIME] sets the character timer, and c_cc[VMIN] sets the minimum number of characters to receive before satisfying the read.
 
 If MIN > 0 and TIME = 0, MIN sets the number of characters to receive before the read is satisfied. As TIME is zero, the timer is not used.
@@ -72,13 +72,13 @@ char SerialOpen( int PortIndex, const char * SerialPortName, int SerialSpeed, in
 	if ( PortIsOpened[ PortIndex ] )
 		SerialClose( PortIndex );
 
-	/* open the device to be non-blocking (read will return immediatly) */
+	/* open the device to be non-blocking (read will return immediately) */
 	fd[PortIndex] = open( SerialPortName, O_RDWR | O_NOCTTY | O_NDELAY/*don't wait DTR*/ );
 	if (fd[PortIndex] >=0)
 	{
 		int BaudRate = -1;
 		int ScanBaudRate = 0;
-		// EMC addon, usefull ?
+		// EMC addon, useful ?
 		fcntl(fd[PortIndex], F_SETFL, O_RDWR | O_NOCTTY ); /* perform blocking reads */
 		while( BaudRate==-1 && SerialSpeedList[ ScanBaudRate ]>=0 )
 		{

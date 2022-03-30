@@ -523,7 +523,7 @@ GtkWidget * CreateIOConfPage( char ForInputs )
 	return scrolled_win;
 }
 
-// no more usefull with new widgets gtk_combo_box_new_text( )...
+// no more useful with new widgets gtk_combo_box_new_text( )...
 /*int ConvComboToNum( char * text, char ** list )
 {
 	int Value = 0;
@@ -870,7 +870,7 @@ void GetModbusModulesIOSettings( void )
 }
 GtkWidget * CreateModbusSlavesPage( void )
 {
-	static char * Labels[] = { N_("Slave No"), N_("Slave Address"), N_("TCP/UDP mode"), N_("Module Informations") };
+	static char * Labels[] = { N_("Slave No"), N_("Slave Address"), N_("TCP/UDP mode"), N_("Module Information") };
 //	GtkWidget *vbox;
 //	GtkWidget *hbox[ 1+NBR_MODBUS_SLAVES ];
 	GtkWidget *table;
@@ -1667,7 +1667,7 @@ void GetSettings( void )
 	AdjustPeriodicValuesForTasks( );
 }
 
-/* To update slave adress list of the widgets (perhaps modified) when we go on the requests page */
+/* To update slave address list of the widgets (perhaps modified) when we go on the requests page */
 //ForGTK3 void SignalPageSelected( GtkNotebook * notebook, GtkNotebookPage * page, guint page_num, gpointer user_data )
 void SignalPageSelected( GtkNotebook * notebook, GtkWidget * page, guint page_num, gpointer user_data )
 {

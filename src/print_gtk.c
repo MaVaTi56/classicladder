@@ -67,7 +67,7 @@ char OptionPrintSymbolsList = FALSE;
 static void begin_print(GtkPrintOperation *operation, GtkPrintContext   *context, gpointer           user_data)
 {
 	NbrPagesToPrint = 0;
-	// reset variables used between each page drawed...
+	// reset variables used between each page drawn...
 	ScanRungToPrint = -1;
 	ScanSectionToPrint = -1;
 	ScanSymbolToPrint = 0;

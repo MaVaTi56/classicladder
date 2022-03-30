@@ -964,7 +964,7 @@ void SignalTargetInfosPageSelected( GtkNotebook * notebook, GtkWidget * page, gu
 		InfosGUI->TargetMonitor.AskTargetToGetTargetInfos = 1;
 	}
 }
-// Translated words not directly done in protocol to avoid i18n dependancy for an embedded target...
+// Translated words not directly done in protocol to avoid i18n dependency for an embedded target...
 // So here a little less easier of course!
 void ConvertInfoDiskStats( char * BuffConv )
 {

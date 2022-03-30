@@ -127,7 +127,7 @@ int CalcLastSundayDayInAMonth( int MonthSearch, int YearSearch )
 	tm_val.tm_min = 0;
 	tm_val.tm_sec = 0;
 	tm_val.tm_isdst = -1;
-	// this call correctly set usefull tm_wday field for us
+	// this call correctly set useful tm_wday field for us
 	mktime( &tm_val );
 	// now find first sunday day starting from end of month
 	while ( tm_val.tm_wday!=0/*sunday*/ )

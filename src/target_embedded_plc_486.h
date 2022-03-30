@@ -17,7 +17,7 @@
 
 //for a 'ro' embedded filesystem, requiring 'rw' remount before files write on it...
 //("/tmp" directory independently should be always writable)
-//comment if not usefull on your embedded target..., or adjust parameters!
+//comment if not useful on your embedded target..., or adjust parameters!
 #define EMBEDDED_MOUNT_START_PARAMS_CMD EMBEDDED_DISK_DEVICE,"/","",MS_REMOUNT,""
 #define EMBEDDED_MOUNT_END_PARAMS_CMD EMBEDDED_DISK_DEVICE,"/","",MS_REMOUNT|MS_RDONLY,""
 

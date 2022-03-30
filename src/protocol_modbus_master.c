@@ -409,7 +409,7 @@ char TreatPureModbusResponse( unsigned char * RespFrame, int SizeFrame )
 	return cError;
 }
 
-/* Give number of bytes of the response we should receive for the current request (usefull in serial) */
+/* Give number of bytes of the response we should receive for the current request (useful in serial) */
 int GetModbusResponseLenghtToReceive( void )
 {
 	int LgtResp = 0, NbrRealBytes;
@@ -516,7 +516,7 @@ const static unsigned char auchCRCLo[] = {
 0x44, 0x84, 0x85, 0x45, 0x87, 0x47, 0x46, 0x86, 0x82, 0x42,
 0x43, 0x83, 0x41, 0x81, 0x80, 0x40
 } ;
-/* CRC16 calc on frame pointed by puchMsg and usDataLen lenght */
+/* CRC16 calc on frame pointed by puchMsg and usDataLen length */
 /* Pre-calc routine taken from http://www.modicon.com/techpubs/crc7.html site */
 unsigned short int CRC16(unsigned char *puchMsg, unsigned short usDataLen)
 {
@@ -543,7 +543,7 @@ int ModbusMasterAsk( int * pCurrentSlaveIndex, unsigned char * Question )
 		FindNextReqFromTable( FALSE/*FindAnotherSlaveIfPossible*/ );
 	if ( CurrentReq!=-1 )
 	{
-		// start of the usefull frame depend if serial or IP
+		// start of the useful frame depend if serial or IP
 		int OffsetHeader = LGT_MODBUS_IP_HEADER;
 		// Modbus/RTU on serial used ?
 		if ( ModbusConfig.ModbusSerialPortNameUsed[ 0 ]!='\0' )
@@ -681,7 +681,7 @@ char TreatModbusMasterResponse( unsigned char * Response, int LgtResponse )
 	if ( CurrentReq!=-1 )
 	{
 		char FrameOk = FALSE;
-		// start of the usefull frame depend if serial or IP
+		// start of the useful frame depend if serial or IP
 		int OffsetHeader = LGT_MODBUS_IP_HEADER;
 		int SlaveNumber = ModbusMasterReq[ CurrentReq ].SlaveListNum;
 

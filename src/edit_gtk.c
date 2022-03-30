@@ -384,7 +384,7 @@ void ButtonAddRung()
 		if ( AddRung() )
 		{
 			ButtonsForStart();
-			// added in 0.9.113, can be usefull when popup menu on main window used... and also using toggle menu here !
+			// added in 0.9.113, can be useful when popup menu on main window used... and also using toggle menu here !
 			SetToggleMenuForEditorWindow( TRUE );
 		}
 		else
@@ -405,7 +405,7 @@ void ButtonInsertRung()
 		if ( InsertRung() )
 		{
 			ButtonsForStart();
-			// added in 0.9.113, can be usefull when popup menu on main window used... and also using toggle menu here !
+			// added in 0.9.113, can be useful when popup menu on main window used... and also using toggle menu here !
 			SetToggleMenuForEditorWindow( TRUE );
 		}
 		else
@@ -447,7 +447,7 @@ void ButtonModifyCurrentRung()
 			ButtonsForStart();
 		}
 #endif
-		// added in 0.9.100, can be usefull when popup menu on main window used...
+		// added in 0.9.100, can be useful when popup menu on main window used...
 //v0.9.113, will do show() ih hidden, so use toggle menu instead !		gtk_window_present( GTK_WINDOW(EditWindow) );
 		SetToggleMenuForEditorWindow( TRUE );
 	}

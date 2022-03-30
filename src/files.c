@@ -1132,7 +1132,7 @@ char LoadIOConfParams(char * FileName)
 			{
 				if (Line[0]!=';' && Line[0]!='#')
 				{
-					/* input/output depending of the first caracter */
+					/* input/output depending of the first character */
 					if ( Line[0]=='0' && ScanLineInput<NBR_INPUTS_CONF )
 					{
 						StrIOConf * pConfInput = &InfosGene->InputsConf[ ScanLineInput++ ];
@@ -2113,7 +2113,7 @@ void LoadAllLadderDatas(char * DatasDirectory)
 		printf("Rungs with old format found (no sections)\n");
 		sprintf(FileName,"%s/"FILE_PREFIX"rung_",DatasDirectory);
 		LoadAllRungs_V1(FileName,RungArray,&InfosGene->FirstRung,&InfosGene->LastRung,&InfosGene->CurrentRung);
-		// if we load old format files, sections wasn't created, so we must write theses infos...
+		// if we load old format files, sections wasn't created, so we must write these infos...
 		SectionArray[ 0 ].FirstRung = InfosGene->FirstRung;
 		SectionArray[ 0 ].LastRung = InfosGene->LastRung;
 	}

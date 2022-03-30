@@ -6,7 +6,7 @@
 /* ------------------------------------------------------ */
 /* Preferences:                                           */
 /* - Project to load per default at startup               */
-/* - Others parameters (usefull on embedded or else)      */
+/* - Others parameters (useful on embedded or else)       */
 /* - Windows positions / open-close states                */
 /* - Network config                                       */
 /* ------------------------------------------------------ */

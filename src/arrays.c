@@ -223,7 +223,7 @@ void InitInfosGene( void )
 	InitInfosGeneRungDisplayGUI( );
 	InfosGene->HeaderLabelCommentHeight = BLOCK_HEIGHT_DEF*65/100;
 
-	InfosGene->DurationOfLastScan = -1; // unknow value, to do not display!
+	InfosGene->DurationOfLastScan = -1; // unknown value, to do not display!
 	InfosGene->MaxScanDuration = -1;
 	InfosGene->NbrTicksMissed = -1; // the same...
 	InfosGene->CurrentSection = 0;
