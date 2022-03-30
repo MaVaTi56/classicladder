@@ -1,6 +1,6 @@
 
 // first serial for modbus master, second/third for monitor
-// to have easier debug, it is possible to connect to the same "one" sofware also in serial...
+// to have easier debug, it is possible to connect to the same "one" software also in serial...
 #define IDX_SERIAL_MODBUS 0
 #define IDX_SERIAL_MON_SLAVE 1
 #define IDX_SERIAL_MON_MASTER 2

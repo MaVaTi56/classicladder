@@ -74,7 +74,7 @@ pthread_t ThreadMonitorMaster;
 char MonitorSlaveRunning[ 2 ]; // 0=IP, 1=Serial
 char MonitorMasterRunning = TRUE;
 
-// for serial (both slave & master, to permit to have master/slave running at both time with one same executable ! very usefull for debug...)
+// for serial (both slave & master, to permit to have master/slave running at both time with one same executable ! very useful for debug...)
 extern StrMonitorSerialBuffer MonitorSerialBuffer[ NBR_MONITOR_SERIALS_BUFFERS ];
 
 
@@ -422,7 +422,7 @@ char * MonitorMasterSchedulerRequestToAsk( int * pReplyTimeOutWanted )
 
 void EndMasterCnxOnError( void )
 {
-	//added in v9.0.100 to avoid for example a waiting reboot at next connexion ! :-(
+	//added in v9.0.100 to avoid for example a waiting reboot at next connection ! :-(
 	InitTargetMonitorAsks( );
 	if ( InfosGUI->TargetMonitor.RemoteConnected )
 	{
@@ -574,7 +574,7 @@ MonitorWindowAddText( FRAMES_LOG_MONITOR_MASTER, DebugMsgMaster );
 
 				if ( InfosGUI->TargetMonitor.RemoteWithSerialPort[ 0 ]!='\0' )
 				{
-					// in serial we can/will receive the reply in many differents blocks
+					// in serial we can/will receive the reply in many different blocks
 					int iNbrSerialBlockWait = ReplyTimeOutValueInMs/50;
 					do
 					{
@@ -623,7 +623,7 @@ MonitorWindowAddText( FRAMES_LOG_MONITOR_MASTER, DebugMsgMaster );
 				}
 			}
 #ifndef MONITOR_TEST_ONLY_NO_RESPONSES_USE
-			// little pause for faster transfer with big files... (usefull for soft archives...)
+			// little pause for faster transfer with big files... (useful for soft archives...)
 			StrFileTransfer * pFileTrans = GetPtrFileTransForMaster( );
 			if ( InfosGUI->TargetMonitor.RemoteFileTransfer && pFileTrans->NbrTotalBlocks>50 )
 				DoPauseMilliSecs( 20 );
@@ -660,7 +660,7 @@ MonitorWindowAddText( FRAMES_LOG_MONITOR_MASTER, DebugMsgMaster );
 //////gdk_threads_enter();
 //////	DoFlipFlopConnectDisconnectTargetInGtk( );
 //////gdk_threads_leave();
-//////	return FALSE; //usefull when called with g_idle_add (just one time)
+//////	return FALSE; //useful when called with g_idle_add (just one time)
 //////}
 
 gboolean StateForGtk;
@@ -708,6 +708,6 @@ DisplayFreeVarSpy();
 		}
 	}
 printf("flipflop cnx/decnx target = %d\n", InfosGUI->TargetMonitor.RemoteConnected );
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }
 #endif

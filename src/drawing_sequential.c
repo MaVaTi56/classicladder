@@ -207,7 +207,7 @@ void DrawSeqTransition( cairo_t * cr,int PageNumber, int x,int y,int Size,int Nu
 		}
 	}
 
-	// multiple steps desactivation (more than 1 defined) ?
+	// multiple steps deactivation (more than 1 defined) ?
 	if ( pTransi->NumStepToDesactiv[ 1 ]!=-1 )
 	{
 		char MultiStepsFound = FALSE;
@@ -261,7 +261,7 @@ void DrawSeqTransition( cairo_t * cr,int PageNumber, int x,int y,int Size,int Nu
 					x+SizeDiv2, y+SizeDiv3, TransiX+SizeDiv2, y+SizeDiv3);
 			}
 		}
-		// | (little on top, under bottom-step desactivated, if no direct top step)
+		// | (little on top, under bottom-step deactivated, if no direct top step)
 		if ( NumDirectStepOnTop==-1 )
 		{
 			int NumStep;
@@ -328,7 +328,7 @@ void DrawSeqTransition( cairo_t * cr,int PageNumber, int x,int y,int Size,int Nu
 				DrawPangoText( cr, x,y+Size+SizeDiv2, Size, -1, BufTxt );
 
 
-				// draw desactiv step number with v (above the cross activ step)
+				// draw deactivated step number with v (above the cross active step)
 				StepPosiX = StepPosiX*Size - ShiftX;
 				StepPosiY = StepPosiY*Size - ShiftY;
 				// for first one, verify if not already a transition under it...

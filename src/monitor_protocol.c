@@ -315,7 +315,7 @@ void MonitorParseResponseReadVars( cJSON *JsonRoot, char SlaveMode )
 			{
 				int BoolVal = BoolsValues[ ScanVar ];
 //printf("write bool var %d/%d with %d\n", VarBoolType[ColumnVar],FirstBoolVar[ ColumnVar ]+ScanVar,BoolVal);
-				// should not be usefull, as only inputs & outputs can be set...
+				// should not be useful, as only inputs & outputs can be set...
 				if ( ColumnVar==0 )
 					BoolVal = BoolVal & 1;
 				if ( BoolVal&2 )
@@ -664,7 +664,7 @@ printf("EXEC ORDER FLIP RUN_ONE_CYCLE/FREEZE\n");
 
 		// adds values responses for the response to the master !
 		// ------------------------------------------------------
-		// nothing usefull for the master...
+		// nothing useful for the master...
 	}
 }
 
@@ -701,7 +701,7 @@ printf("RECV/EXEC ORDER Reset Target\n");
 		DoReset( );
 		// adds values responses for the response to the master !
 		// ------------------------------------------------------
-		// nothing usefull for the master...
+		// nothing useful for the master...
 	}
 }
 
@@ -1084,7 +1084,7 @@ printf("RECV/EXEC ORDER Reboot/Halt (%d) of the system\n", RebootType);
 #endif
 		// adds values responses for the response to the master !
 		// ------------------------------------------------------
-		// nothing usefull for the master...
+		// nothing useful for the master...
 	}
 }
 
@@ -1132,7 +1132,7 @@ void MonitorParseResponseWriteVarValue( cJSON *JsonRoot, char SlaveMode )
 #endif
 		// adds values responses for the response to the master !
 		// ------------------------------------------------------
-		// nothing usefull for the master...
+		// nothing useful for the master...
 	}
 }
 
@@ -1185,7 +1185,7 @@ void MonitorParseResponseSetOrUnsetVar( cJSON *JsonRoot, char SlaveMode )
 #endif
 		// adds values responses for the response to the master !
 		// ------------------------------------------------------
-		// nothing usefull for the master...
+		// nothing useful for the master...
 	}
 }
 
@@ -1515,6 +1515,6 @@ void MonitorParseResponseCleanUp( cJSON *JsonRoot, char SlaveMode )
 			FrameLogCleanupAsked( What-20 );
 		// adds values responses for the response to the master !
 		// ------------------------------------------------------
-		// nothing usefull for the master...
+		// nothing useful for the master...
 	}
 }

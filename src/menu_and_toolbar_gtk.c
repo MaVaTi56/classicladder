@@ -467,7 +467,7 @@ gboolean SetGtkMenuStateForRunStopSwitch( gboolean * Running )
 	gtk_tool_button_set_stock_id(GTK_TOOL_BUTTON(Element), (*Running)?GTK_STOCK_STOP:GTK_STOCK_EXECUTE );
 	gtk_tool_button_set_label( GTK_TOOL_BUTTON(Element), (*Running)?(_("Stop")):(_("Run")) );
 	gtk_tool_item_set_tooltip_text( GTK_TOOL_ITEM(Element), (*Running)?(_("Stop logic")):(_("Run logic")) );
-	return FALSE; //usefull when called with g_idle_add (just one time)
+	return FALSE; //useful when called with g_idle_add (just one time)
 }
 
 #ifdef COMPLETE_PLC

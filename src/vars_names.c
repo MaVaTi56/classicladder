@@ -508,7 +508,7 @@ printf( "TextParserForAVar:start...\n" );
 	// pass the start '%' before parsing
 	pVarCherch++;
 
-printf( "TextParserForAVar:identifing var...%s\n", pVarCherch );
+printf( "TextParserForAVar:identifying var...%s\n", pVarCherch );
 	// scanning the base name variables table
 	do
 	{
