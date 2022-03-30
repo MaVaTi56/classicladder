@@ -681,7 +681,7 @@ msgid "TCP/UDP mode"
 msgstr "mode TCP/UDP"
 
 #: config_gtk.c:873
-msgid "Module Informations"
+msgid "Module Information"
 msgstr "Informations module"
 
 #: config_gtk.c:922
@@ -2387,11 +2387,11 @@ msgid "Monitor serial config successfully send to target."
 msgstr "Envoie réussi de la configuration moniteur série vers la cible!"
 
 #: monitor_transfer.c:175
-msgid "Loaded project transfered from target."
+msgid "Loaded project transferred from target."
 msgstr "Le projet transféré depuis la cible est chargé."
 
 #: monitor_transfer.c:175
-msgid "Failed to load project transfered from target..."
+msgid "Failed to load project transferred from target..."
 msgstr "Echec chargement du projet transféré depuis cible..."
 
 #: monitor_transfer.c:554

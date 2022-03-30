@@ -10,6 +10,8 @@ FUTURE / TODO LIST...
 - Application compilation on GTK+ version 3 to continue by removing possible warnings with some old functions used. But KEEP GTK+ version 2 compatibility for now!!!
 => 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), g_thread_init() deprecated, ...
 
+- At first startup (no ".classicladder_prefs" file in home), booleans vars windows is opened, but abnormally not checked in menu !
+
 - Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
 
 - On 'quit', hide immediately all windows opened, without waiting pause added (to wait end of threads)
