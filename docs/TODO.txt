@@ -10,8 +10,6 @@ FUTURE / TODO LIST...
 - Application compilation on GTK+ version 3 to continue by removing possible warnings with some old functions used. But KEEP GTK+ version 2 compatibility for now!!!
 => 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), g_thread_init() deprecated, ...
 
-- At first startup (no ".classicladder_prefs" file in home), booleans vars windows is opened, but abnormally not checked in menu !
-
 - Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
 
 - On 'quit', hide immediately all windows opened, without waiting pause added (to wait end of threads)
@@ -46,8 +44,10 @@ FUTURE / TODO LIST...
 - To do a .deb package (for Debian/Ubuntu).
 - Do an easy Windows installer (NSIS ? opencandy.com with ads?) Seems too difficult for some users to manually extract an archive (in fact 2!) in a directory... :-(
 
-- Idea to review interface to merge "sections manager" window in main window: to have current section name displayed in combo box at the right + manager toolbar without arrows.
-  We have to keep the "sections manager" window to reorder sections if needed...
+- Review interface to merge SOME "sections manager" window PARTS in main window: to have current section name displayed in a combo box at the right + move "sections"
+  button toolbar righter and add before a separator (+ manager toolbar without arrows??? No!?).
+  We have to keep the "sections manager" window to reorder sections if needed... or keep all as actually.
+  Section manager window should not be opened per-default.
 
 - Review all variables names to be in conformity with IEC61131, especially %Bxxx => %Mxxx ; %Wxxx => %MWxxx
 

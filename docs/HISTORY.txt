@@ -1089,5 +1089,8 @@ v0.9.114 (..... 2021)
      + can double-click on a var in the list to validate variable selected (instead of clicking "OK" button, faster!).
    - When opening the variables browser for "variable" properties, if string actually ending with '[' character, add variable selected
      instead of replacing it (usefull to add a second index variable between [ ]).
-   
+   - At first startup (no ".classicladder_prefs" file in home), booleans & free vars windows are opened, but abnormally not checked in
+     the view menu ! And also always opened at startup even if closed when quitting. Fixed.
+
+
 

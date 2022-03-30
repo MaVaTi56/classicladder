@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -498,7 +498,8 @@ gtk_table_attach_defaults (GTK_TABLE (table), CheckBoolVar[ ColumnVar ][ OffVar 
 //v0.9.20	UpdateAllLabelsBoolsVars( -1/*OnlyThisColumn*/ );
 	
 	gtk_window_set_icon(GTK_WINDOW(SpyBoolVarsWindow), gdk_pixbuf_new_from_inline (-1, IconWindowSpyBoolVars, FALSE, NULL));
-	gtk_widget_show_all(SpyBoolVarsWindow);
+	gtk_widget_show_all(table);
+//	gtk_widget_show_all(SpyBoolVarsWindow); // do not open the window per default here !
 
 	gtk_signal_connect( GTK_OBJECT(SpyBoolVarsWindow), "delete_event",
 		GTK_SIGNAL_FUNC(BoolVarsWindowDeleteEvent), 0 );
@@ -1139,7 +1140,8 @@ void FreeVarsWindowInitGtk( )
 	gtk_signal_connect( GTK_OBJECT(nbook), "switch-page",
                                         GTK_SIGNAL_FUNC(SignalTargetInfosPageSelected), (void *)NULL );
 	gtk_window_set_icon(GTK_WINDOW(SpyFreeVarsWindow), gdk_pixbuf_new_from_inline (-1, IconWindowSpyFreeVars, FALSE, NULL));
-	gtk_widget_show_all( SpyFreeVarsWindow );
+	gtk_widget_show_all( nbook );
+//////	gtk_widget_show_all( SpyFreeVarsWindow ); // do not open the window per default here !
 
 	gtk_signal_connect( GTK_OBJECT(SpyFreeVarsWindow), "delete_event",
 		GTK_SIGNAL_FUNC(FreeVarsWindowDeleteEvent), 0 );

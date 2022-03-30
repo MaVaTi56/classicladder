@@ -7,7 +7,7 @@ char SavePreferences( void );
 StrWindowPosisOpenPrefs * GetPtrWindowPrefs( char * WindowName, char CanBeANewWin );
 void RestoreWindowPosiPrefs( char * WindowName, GtkWidget * TheGtkWindow );
 void RememberWindowPosiPrefs( char * WindowName, GtkWidget * TheGtkWindow, char SaveWindowSize );
-char GetWindowOpenPrefs( char * WindowName );
+char GetWindowOpenPrefs( char * WindowName, char OpenedPerDefault );
 void RememberWindowOpenPrefs( char * WindowName, char WindowOpened );
 #endif
 

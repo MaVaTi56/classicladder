@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2017 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* August 2011 */
@@ -255,7 +255,7 @@ char SavePreferences( void )
 
 
 #ifdef GTK_INTERFACE
-StrWindowPosisOpenPrefs * GetPtrWindowPrefs( char * WindowName, char CanBeANewWin )
+StrWindowPosisOpenPrefs * GetPtrWindowPrefs( char * WindowName, char CanBeANewWinToAlloc )
 {
 	StrWindowPosisOpenPrefs * pWinPrefs = NULL;
 	StrWindowPosisOpenPrefs * pWinPrefsFree = NULL;
@@ -273,7 +273,7 @@ StrWindowPosisOpenPrefs * GetPtrWindowPrefs( char * WindowName, char CanBeANewWi
 	}
 	while( ScanWin<NBR_WINDOWS_PREFS && pWinPrefs==NULL );
 //printf("GetPtrWindowPrefs, index=%d, %s\n", ScanWin, pWinPrefs!=NULL?"found":"not found");
-	if( CanBeANewWin && pWinPrefs==NULL && pWinPrefsFree!=NULL )
+	if( CanBeANewWinToAlloc && pWinPrefs==NULL && pWinPrefsFree!=NULL )
 	{
 		pWinPrefs = pWinPrefsFree;
 		strcpy( pWinPrefs->WindowName, WindowName );
@@ -287,7 +287,7 @@ StrWindowPosisOpenPrefs * GetPtrWindowPrefs( char * WindowName, char CanBeANewWi
 void RestoreWindowPosiPrefs( char * WindowName, GtkWidget * TheGtkWindow )
 {
 //printf("RestoreWindowPosiPrefs: %s\n", WindowName);
-	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, FALSE/*CanBeANewWin*/ );
+	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, FALSE/*CanBeANewWinToAlloc*/ );
 	if ( pWinPrefs )
 	{
 		GdkScreen * pScreen = gtk_window_get_screen( GTK_WINDOW(TheGtkWindow) );
@@ -310,7 +310,7 @@ void RememberWindowPosiPrefs( char * WindowName, GtkWidget * TheGtkWindow, char 
 		printf("!!! RememberWindowPrefs CALLED WITH WINDOW %s NOT VISIBLE !!!\n",WindowName);
 		return;
 	}
-	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, TRUE/*CanBeANewWin*/ );
+	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, TRUE/*CanBeANewWinToAlloc*/ );
 	if( pWinPrefs==NULL )
 	{
 		printf("!!! Constant NBR_WINDOWS_PREFS in classicladder.h not enough...!?\n");
@@ -338,21 +338,21 @@ void RememberWindowPosiPrefs( char * WindowName, GtkWidget * TheGtkWindow, char 
 //printf("RememberWindowPrefs: %s seen at %d,%d (size=%d/%d)\n", WindowName, pWinPrefs->PosX, pWinPrefs->PosY,pWinPrefs->SizeX,pWinPrefs->SizeY);
 	}
 }
-char GetWindowOpenPrefs( char * WindowName )
+char GetWindowOpenPrefs( char * WindowName, char OpenedPerDefault )
 {
 //printf("GetWindowOpenPrefs: %s\n", WindowName);
-	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, FALSE/*CanBeANewWin*/ );
+	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, FALSE/*CanBeANewWinToAlloc*/ );
 	if ( pWinPrefs )
 	{
 //printf("GetWindowOpenPrefs: %s opened per default %d\n", WindowName, pWinPrefs->Opened);
 		return pWinPrefs->Opened;
 	}
-	return FALSE;
+	return OpenedPerDefault;
 }
 void RememberWindowOpenPrefs( char * WindowName, char WindowOpened )
 {
 //printf("RememberWindowOpenPrefs: %s opened=%d\n", WindowName,WindowOpened);
-	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, TRUE/*CanBeANewWin*/ );
+	StrWindowPosisOpenPrefs * pWinPrefs = GetPtrWindowPrefs( WindowName, TRUE/*CanBeANewWinToAlloc*/ );
 	if( pWinPrefs==NULL )
 	{
 		printf("!!! Constant NBR_WINDOWS_PREFS in classicladder.h not enough...!?\n");

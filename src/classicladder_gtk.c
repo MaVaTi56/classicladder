@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -1732,21 +1732,21 @@ printf("<<<<<<<<<<========== INIT GTK WINDOWS ==========>>>>>>>>>>\n");
 //printf("====> InitFramesLogWin\n");
 	FramesLogWindowsInitGtk( );
 	// restore each window open/closed state at startup !
-	if ( GetWindowOpenPrefs( "Edit" ) )
+	if ( GetWindowOpenPrefs( "Edit", FALSE/*OpenedPerDefault*/ ) )
 		SetToggleMenuForEditorWindow( TRUE );
-	if ( GetWindowOpenPrefs( "Symbols" ) )
+	if ( GetWindowOpenPrefs( "Symbols", FALSE/*OpenedPerDefault*/ ) )
 		SetToggleMenuForSymbolsWindow( TRUE );
-	if ( GetWindowOpenPrefs( "BoolVars" ) )
-		SetToggleMenuForBoolVarsWindow( TRUE );
-	if ( GetWindowOpenPrefs( "FreeVars" ) )
-		SetToggleMenuForFreeVarsWindow( TRUE );
-	if ( GetWindowOpenPrefs( "LogBook" ) )
+	if ( GetWindowOpenPrefs( "LogBook", FALSE/*OpenedPerDefault*/ ) )
 		SetToggleMenuForLogWindow( TRUE );
+	if ( GetWindowOpenPrefs( "BoolVars", TRUE/*OpenedPerDefault*/ ) )
+		SetToggleMenuForBoolVarsWindow( TRUE );
+	if ( GetWindowOpenPrefs( "FreeVars", TRUE/*OpenedPerDefault*/ ) )
+		SetToggleMenuForFreeVarsWindow( TRUE );
 	for( NumFramesLogWindow=0; NumFramesLogWindow<NBR_FRAMES_LOG_WINDOWS; NumFramesLogWindow++ )
 	{
 		char Buff[ 30 ];
 		sprintf( Buff, "FramesLogWindow%d", NumFramesLogWindow );
-		if ( GetWindowOpenPrefs( Buff ) )
+		if ( GetWindowOpenPrefs( Buff, FALSE/*OpenedPerDefault*/ ) )
 			SetToggleMenuForMonitorWindow( NumFramesLogWindow, TRUE );
 	}
 	MainSectionWindowTakeFocus( );

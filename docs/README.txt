@@ -5,7 +5,7 @@ http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder
 February 2001
 
-Version 0.9.113 (4 January 2020)
+Version 0.9.113+ (xx March 2022)
 --------------------------------
 
 A project to have a free ladder language in C.
@@ -111,7 +111,8 @@ embedded target!
 
 Since v0.9.11, a PSTN/GSM modem can be connected to be used for monitor protocol ! + can run just for one cycle.
 
-ClassicLadder can run in real-time with RTLinux, RTAI or Xenomai (optional). See below.
+ClassicLadder can run in real-time with RTLinux, RTAI or Xenomai (optional).
+Only Xenomai used in latest versions. See below.
 
 
 REQUIREMENTS...
@@ -119,36 +120,32 @@ REQUIREMENTS...
 For using Classic Ladder as it is, you need :
 
    * Linux
-   * Gtk version 2.10 or higher (Cairo used since v0.8.0)
+   * Gtk version 2 or 3
    
-A precompiled Linux binary executable is included in the archive that you can directly lanuch.
+A precompiled Linux binary executable is included in the archive that you can directly launch.
 If required, you can recompile yourself the project, see below...
 
 
 COMPILATION...
 --------------
 To recompile the sources, in a console :
-type "cd src;make clean;make;cd.."
+type "cd src;make clean;make;cd .."
 type "./classicladder" to launch this project.
-or "./classicladder xxxxxxxxxx.clprj" to start with using project datas "xxxxxxxxxx.clprj".
+or "./classicladder projects_examples/xxxxxxxxxx.clprj" to start with using project datas "xxxxxxxxxx.clprj".
 
-Ensure you've the package "libgtk2.0-dev" installed before to compile
-(package name on my Ubuntu9.04, perhaps another name on some distributions?).
-Also you need the gcc compiler installed, see package "build-essential" if needed !
+First you need to have the gcc compiler and make installed, see package "build-essential" if needed !
+You must have the package "zlib1g-dev" installed to be able to compile.
+To compile a GTK+2 version, ensure you've the package "libgtk2.0-dev" installed before.
+To compile a GTK+3 version, ensure you've the package "libgtk-3-dev" installed before.
+Choice between GTK2 and GTK3 is done by modifying the Makefile: comment lines after "#Default GTK2 Version"
+and uncomment lines after "#For GTK3 Version", or inversely.
+
 If you obtain an error: ‘GDK_KEY_Alt_L’ undeclared (first use in this function)
 that means that you have old includes, you can copy files from "gdk_includes_update/"
 to your "/usr/include/gtk-2.0/gdk/" or better: update your distribution...
 
 To compile on PowerPC processor, in the Makefile, add the caracter '#' to comment
 the line MAKE_IO_ACCESS.
-
-
-GTK3 BUILD...
--------------
-Included precompiled Linux binary executable compiled with GTK+2, but since v0.9.100 now available for GTK+3 to
-be manually compiled:
-install package "libgtk-3-dev" if needed, and then modify in Makefile: comment lines after "#Default GTK2 Version"
-and uncomment lines after "#For GTK3 Version")
 
 
 MODBUS SERVER INCLUDED (SLAVE TO CONNECT TO A SCADA)...
