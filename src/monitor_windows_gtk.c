@@ -227,7 +227,7 @@ char OpenDialogMonitorConnect( void )
 
 void ButtonCleanUpSignal( GtkWidget *widget, gpointer data )
 {
-	int NumFrameLogBuff = (int)data;
+	int NumFrameLogBuff = GPOINTER_TO_INT(data);
 	StrFramesLogWindow * pFramesLogWindow = &FramesLogWindow[ NumFrameLogBuff ];
 printf(">>> cleanup for monitor window %d\n", NumFrameLogBuff);
 	GtkTextBuffer *TextBufferForGtk;
@@ -245,7 +245,7 @@ printf(">>> cleanup for monitor window %d\n", NumFrameLogBuff);
 }
 void ButtonCopyToClipboardSignal( GtkWidget *widget, gpointer data )
 {
-	int NumFrameLogBuff = (int)data;
+	int NumFrameLogBuff = GPOINTER_TO_INT(data);
 	StrFramesLogWindow * pFramesLogWindow = &FramesLogWindow[ NumFrameLogBuff ];
 printf(">>> copy clipboard for monitor window %d\n", NumFrameLogBuff);
 	GtkTextBuffer *TextBufferForGtk;
@@ -281,7 +281,7 @@ static gint MonitorManualFrameEntrySignal(GtkWidget *widget, int NumVarSpy)
 }
 gint MonitorWindowDeleteEvent( GtkWidget * widget, GdkEvent * event, gpointer data )
 {
-	int NumFrameLogBuff = (int)data;
+	int NumFrameLogBuff = GPOINTER_TO_INT(data);
 	printf("MonitorWindowDeleteEvent, window=%d\n", NumFrameLogBuff);
 // Here, we must only toggle the menu check that will call itself the function below to close the window ...
 //	gtk_widget_hide( MonitorWindow );
@@ -311,7 +311,7 @@ gboolean StatisticsModbusSlaveSelectedRefreshInfosGtk( void )
 // and for now also for Gtk application... TODO: perhaps frames should be directly displayed permanently in the window !?
 void RefreshMonitorWindowSignal( GtkWidget *widget, gpointer data )
 {
-	int NumFrameLogBuff = (int)data;
+	int NumFrameLogBuff = GPOINTER_TO_INT(data);
 	StrFramesLogWindow * pFramesLogWindow = &FramesLogWindow[ NumFrameLogBuff ];
 printf(">>> refresh for window %d\n", NumFrameLogBuff);
 	GtkTextBuffer *TextBufferForGtk;
@@ -352,7 +352,7 @@ printf("*** HERE %s MONITOR WINDOW : %s !\n",Buff,OpenIt?"OPEN":"CLOSE");
 		gtk_window_present( GTK_WINDOW(pFramesLogWindow->MonitorWindow) );
 		if ( NumFramesLogWindow!=FRAMES_LOG_MONITOR_MASTER )
 		{
-			RefreshMonitorWindowSignal( NULL, (gpointer)NumFramesLogWindow );
+			RefreshMonitorWindowSignal( NULL, GINT_TO_POINTER(NumFramesLogWindow) );
 		}
 	}
 	else
@@ -413,7 +413,7 @@ void MonitorWindowInitGtk( int NumFramesLogWindow )
 		gtk_window_set_title ((GtkWindow *)pFramesLogWindow->MonitorWindow, Title);
 		gtk_window_set_default_size(GTK_WINDOW(pFramesLogWindow->MonitorWindow), 400, 200);
 		gtk_signal_connect( GTK_OBJECT( pFramesLogWindow->MonitorWindow ), "delete_event",
-			GTK_SIGNAL_FUNC(MonitorWindowDeleteEvent), (gpointer)NumFramesLogWindow );
+			GTK_SIGNAL_FUNC(MonitorWindowDeleteEvent), GINT_TO_POINTER(NumFramesLogWindow) );
 
 		vbox = gtk_vbox_new (FALSE, 0);
 		gtk_container_add(GTK_CONTAINER(pFramesLogWindow->MonitorWindow),vbox);
@@ -439,7 +439,7 @@ void MonitorWindowInitGtk( int NumFramesLogWindow )
 			ButtonRefresh = gtk_button_new_with_label( _("Refresh") );
 			gtk_box_pack_start(GTK_BOX(hbox),ButtonRefresh,FALSE,FALSE,0);
 			gtk_signal_connect(GTK_OBJECT (ButtonRefresh), "clicked", 
-					GTK_SIGNAL_FUNC(RefreshMonitorWindowSignal), (gpointer)NumFramesLogWindow);
+					GTK_SIGNAL_FUNC(RefreshMonitorWindowSignal), GINT_TO_POINTER(NumFramesLogWindow));
 			gtk_widget_show( ButtonRefresh );
 		}
 		pFramesLogWindow->MonitorAutoScroll = gtk_check_button_new_with_label( _("Scroll") );
@@ -449,7 +449,7 @@ void MonitorWindowInitGtk( int NumFramesLogWindow )
 		ButtonCleanUp = gtk_button_new_with_label( _("CleanUp") );
 		gtk_box_pack_start(GTK_BOX(hbox),ButtonCleanUp,FALSE,FALSE,0);
 		gtk_signal_connect(GTK_OBJECT (ButtonCleanUp), "clicked", 
-				GTK_SIGNAL_FUNC(ButtonCleanUpSignal), (gpointer)NumFramesLogWindow);
+				GTK_SIGNAL_FUNC(ButtonCleanUpSignal), GINT_TO_POINTER(NumFramesLogWindow));
 		gtk_widget_show( ButtonCleanUp );
 		if ( NumFramesLogWindow==FRAMES_LOG_MONITOR_MASTER )
 		{
@@ -462,7 +462,7 @@ void MonitorWindowInitGtk( int NumFramesLogWindow )
 		ButtonCopyToClipboard = gtk_button_new_with_label( _("Copy to clipboard") );
 		gtk_box_pack_start(GTK_BOX(hbox),ButtonCopyToClipboard,FALSE,FALSE,0);
 		gtk_signal_connect(GTK_OBJECT (ButtonCopyToClipboard), "clicked", 
-				GTK_SIGNAL_FUNC(ButtonCopyToClipboardSignal), (gpointer)NumFramesLogWindow);
+				GTK_SIGNAL_FUNC(ButtonCopyToClipboardSignal), GINT_TO_POINTER(NumFramesLogWindow));
 		gtk_widget_show( ButtonCopyToClipboard );
 		
 		if ( NumFramesLogWindow==FRAMES_LOG_MODBUS_MASTER )

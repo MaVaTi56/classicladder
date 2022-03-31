@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* December 2010 */
@@ -560,15 +560,19 @@ printf("*** HERE SET REMOTE_FILE_TRANSFER ---REGISTER CONTENT--- TO RECEIVE!\n")
 			}
 			else
 			{
-				char RegisterContentFileName[ 400 ];
-				GError *error = NULL;
-				sprintf( RegisterContentFileName, "%s/register_block_content.csv", TmpDirectoryRoot );
-				SaveRegisterFunctionBlockContent( RegisterSelect, RegisterContentFileName, FALSE/*Compressed*/ );
-				sprintf( RegisterContentFileName, "file://%s/register_block_content.csv", TmpDirectoryRoot );
-printf("REGISTER FILE FOR SHOW_URI = %s\n", RegisterContentFileName);
-				gtk_show_uri( NULL, RegisterContentFileName, GDK_CURRENT_TIME, &error);
+				char * pRegisterContentFileNameAlloc = (char *)malloc( LGT_FOR_PATH_AND_FILE+150 );
+				if( pRegisterContentFileNameAlloc )
+				{
+					GError *error = NULL;
+					sprintf( pRegisterContentFileNameAlloc, "%s/register_block_content.csv", TmpDirectoryRoot );
+					SaveRegisterFunctionBlockContent( RegisterSelect, pRegisterContentFileNameAlloc, FALSE/*Compressed*/ );
+					sprintf( pRegisterContentFileNameAlloc, "file://%s/register_block_content.csv", TmpDirectoryRoot );
+printf("REGISTER FILE FOR SHOW_URI = %s\n", pRegisterContentFileNameAlloc);
+					gtk_show_uri( NULL, pRegisterContentFileNameAlloc, GDK_CURRENT_TIME, &error);
 //printf("TEST SHOW_URI for Windows...\n");
 //gtk_show_uri( NULL, "file://C:\\essai.txt", GDK_CURRENT_TIME, &error);
+					free( pRegisterContentFileNameAlloc );
+				}
 			}
 		}
 		else

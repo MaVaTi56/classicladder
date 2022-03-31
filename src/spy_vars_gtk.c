@@ -103,7 +103,8 @@ GtkWidget * ProjectInfoEntry[ NBR_PROJECT_INFOS ];
 
 void DoFunctionSetOrUnsetVar( GtkWidget *widget, void * data_action )
 {
-	long DataAction = (int)data_action;
+//	long DataAction = (int)data_action;
+	int DataAction = GPOINTER_TO_INT(data_action);
 	gtk_widget_destroy(SetUnsetDialog);
 	if ( InfosGUI->TargetMonitor.RemoteConnected )
 	{
@@ -887,8 +888,8 @@ gtk_entry_set_width_chars( GTK_ENTRY(EntryVarSpy[ NumEntry ]), (ColumnVar==0)?15
 				{
 //ForGTK3, deprecated...					TooltipsEntryVarSpy[ NumVarSpy ] = gtk_tooltips_new();
 					gtk_signal_connect(GTK_OBJECT (EntryVarSpy[ NumEntry ]), "activate",
-	                                        GTK_SIGNAL_FUNC(EntryVarSpy_activate_event), (void *)NumVarSpy);
-	                                        
+	                                        GTK_SIGNAL_FUNC(EntryVarSpy_activate_event), GINT_TO_POINTER(NumVarSpy));
+                              
 	                // add variables browser icon-button access
 					ButVarSpyBrowser[ NumEntry ] = gtk_button_new();
 					gtk_button_set_image( GTK_BUTTON( ButVarSpyBrowser[ NumEntry ] ), gtk_image_new_from_stock( GTK_STOCK_INDEX, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
@@ -925,9 +926,9 @@ gtk_entry_set_width_chars( GTK_ENTRY(EntryVarSpy[ NumEntry ]), (ColumnVar==0)?15
 //	                                        (GtkSignalFunc)OpenModifyVarWindow_clicked_event, (void *)NumVarSpy );
 
 			gtk_signal_connect(GTK_OBJECT( DisplayFormatVarSpy[NumVarSpy] ), "changed", 
-									GTK_SIGNAL_FUNC(ComboBox_changed_event), (void *)NumVarSpy );
+									GTK_SIGNAL_FUNC(ComboBox_changed_event), GINT_TO_POINTER(NumVarSpy) );
 			gtk_signal_connect(GTK_OBJECT( DisplayFormatVarSpy[NumVarSpy] ), "popup", 
-									GTK_SIGNAL_FUNC(ComboBox_changed_event), (void *)NumVarSpy );
+									GTK_SIGNAL_FUNC(ComboBox_changed_event), GINT_TO_POINTER(NumVarSpy) );
 
 			NumEntry = NumVarSpy;
 			EditVarSpyValue[ NumEntry ] = gtk_entry_new();
@@ -942,7 +943,7 @@ gtk_entry_set_width_chars( GTK_ENTRY(EditVarSpyValue[ NumEntry ]), 20 );
 
 			gtk_editable_set_editable( GTK_EDITABLE(EditVarSpyValue[ NumEntry ]), TRUE );
 			gtk_signal_connect(GTK_OBJECT (EditVarSpyValue[ NumEntry ]), "activate", 
-	                                        GTK_SIGNAL_FUNC(EditVarSpyValue_changed_event), (void *)NumVarSpy );
+	                                        GTK_SIGNAL_FUNC(EditVarSpyValue_changed_event), GINT_TO_POINTER(NumVarSpy) );
         }
 	}
 	

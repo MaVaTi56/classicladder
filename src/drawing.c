@@ -92,8 +92,8 @@ char * DisplayArithmExpr(char * Expr, char SymbolsVarsNamesIfAvail)
 		{
 			int NumVar,TypeVar;
 			int IndexNumVar,IndexTypeVar;
-			char VarBuffer[20];
-			char VarIndexBuffer[20];
+			char VarBuffer[200];
+			char VarIndexBuffer[100];
 			if ( IdentifyVarIndexedOrNot( Ptr, &TypeVar, &NumVar, &IndexTypeVar, &IndexNumVar ) )
 			{
 				if ( IndexTypeVar!=-1 && IndexNumVar!=-1 )

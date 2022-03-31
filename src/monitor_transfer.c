@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* May 2012 */
@@ -60,7 +60,7 @@ int NbrErrorsMaster = 0;
 char FlagMasterQuestionAckForSlaveReceive = FALSE;
 int TimeSecurityAbortTransToSlave = -1; //sleeping...
 
-char TmpLogEventsFileFromTarget[ 400 ] = "";
+char TmpLogEventsFileFromTarget[ LGT_FOR_PATH_AND_FILE ] = "";
 
 void InitMonitorTransferFile( void )
 {
@@ -348,7 +348,7 @@ void DoNextRead( StrFileTransfer * pFileTrans )
 	NbrBytesRead = fread( CurrentDatasFile, 1, pFileTrans->SizeBlock, pFileTrans->pFileTransferDesc );
 	CurrentDatasFile[ NbrBytesRead ] = '\0';
 //printf("%s() string=%s, len=%d\n", __FUNCTION__, CurrentDatasFile, strlen( CurrentDatasFile ) );
-printf("%s() len=%d\n", __FUNCTION__, strlen( CurrentDatasFile ) );
+printf("%s() len=%d\n", __FUNCTION__, (int)strlen( CurrentDatasFile ) );
 	// inc block number for these new datas read
 	pFileTrans->NumBlock++;
 	if ( NbrBytesRead==0 )
@@ -427,7 +427,7 @@ char AddDatasToFileToReceive( StrFileTransfer * pFileTrans, char * DatasToAdd )
 	// not the end of file transfer ?
 	if( DatasToAdd[0]!='\0' )
 	{
-printf("%s() Datas to add to the file = %s (len=%d)\n", __FUNCTION__, DatasToAdd,strlen( DatasToAdd ) );
+printf("%s() Datas to add to the file = %s (len=%d)\n", __FUNCTION__, DatasToAdd,(int)strlen( DatasToAdd ) );
 		int NbrBytesDecoded = decode64( DatasToAdd );
 		// open file to add datas to it then close (useful if master abort during transfer...)
 		pFileTrans->pFileTransferDesc = fopen( pFileTrans->FileName, "ab+" );

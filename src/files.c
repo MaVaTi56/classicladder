@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -59,9 +59,9 @@ StrDatasForBase CorresDatasForBase[3] = { {BASE_MINS , TIME_BASE_MINS , "%.1fmn"
 char * TimersModesStrings[ NBR_TIMERSMODES ] = { "TON", "TOF", "TP" };
 char * RegistersModesStrings[ NBR_REGISTERS_MODES ] = { "UNDEF", "FIFO", "LIFO" };
 
-char TmpDirectoryRoot[ 400 ] = "";
+char TmpDirectoryRoot[ LGT_FOR_PATH_AND_FILE ] = "";
 // where little files project are stored
-char TmpDirectoryProject[ 400 ] = "";
+char TmpDirectoryProject[ LGT_FOR_PATH_AND_FILE ] = "";
 
 
 char *cl_fgets(char *s, int size, FILE *stream)

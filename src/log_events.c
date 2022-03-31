@@ -38,7 +38,7 @@
 #include "vars_access.h"
 
 StrLog Log;
-char LogEventsDataFile[ 400 ];
+char LogEventsDataFile[ LGT_FOR_PATH_AND_FILE ];
 StrConfigEventLog ConfigEventLog[ NBR_CONFIG_EVENTS_LOG ]; 
 
 unsigned char ListCurrentDefType[ NBR_CURRENT_DEFS_MAX ];

@@ -1702,7 +1702,8 @@ printf("<<<<<<<<<<========== INIT GTK WINDOWS ==========>>>>>>>>>>\n");
 //ProblemWithPrint	gdk_threads_init ();
 //set back for monitor window...
 //ForGTK3
-#if ( GTK_MAJOR_VERSION<=2 )
+//#if ( GTK_MAJOR_VERSION<=2 )
+#if !GLIB_CHECK_VERSION(2,31,0)
 	g_thread_init (NULL);
 #endif
 //Dec.2016, for MSYS2/Win32!!!	gdk_threads_init( );
@@ -1779,34 +1780,39 @@ gboolean UpdateAllGtkWindows( void )
 
 gboolean UpdateWindowTitleWithProjectName( void )
 {
-	char Buff[ 250 ];
-	int ScanFileNameOnly = 0;
-	int LgtProjectFileName = strlen(InfosGene->CurrentProjectFileName);
-	char * WindowTitle = _("ClassicLadder Section Display");
-	if ( LgtProjectFileName==0 )
+	char * pBuffAlloc = (char *)malloc( LGT_FOR_PATH_AND_FILE+150 );
+	if( pBuffAlloc )
 	{
-		sprintf( Buff, "%s (%s)", WindowTitle, _("No project") );
-		if ( InfosGUI->TargetMonitor.RemoteConnected )
+		int ScanFileNameOnly = 0;
+		int LgtProjectFileName = strlen(InfosGene->CurrentProjectFileName);
+		char * WindowTitle = _("ClassicLadder Section Display");
+		if ( LgtProjectFileName==0 )
 		{
-			strcat( Buff, " - ");
-			strcat( Buff, _("CONNECTED") );
+			sprintf( pBuffAlloc, "%s (%s)", WindowTitle, _("No project") );
+			if ( InfosGUI->TargetMonitor.RemoteConnected )
+			{
+				strcat( pBuffAlloc, " - ");
+				strcat( pBuffAlloc, _("CONNECTED") );
+			}
+		}
+		else 
+		{
+			if ( LgtProjectFileName>2 )
+			{
+				ScanFileNameOnly = LgtProjectFileName-1;
+				while( ScanFileNameOnly>0 && InfosGene->CurrentProjectFileName[ScanFileNameOnly-1]!='/' && InfosGene->CurrentProjectFileName[ScanFileNameOnly-1]!='\\')
+					ScanFileNameOnly--;
+			}
+			sprintf( pBuffAlloc, "%s (%s)", &InfosGene->CurrentProjectFileName[ScanFileNameOnly], WindowTitle );
+			if ( InfosGUI->TargetMonitor.RemoteConnected )
+			{
+				strcat( pBuffAlloc, " - ");
+				strcat( pBuffAlloc, _("CONNECTED") );
+			}
 		}
 	}
-	else 
-	{
-		if ( LgtProjectFileName>2 )
-		{
-			ScanFileNameOnly = LgtProjectFileName-1;
-			while( ScanFileNameOnly>0 && InfosGene->CurrentProjectFileName[ScanFileNameOnly-1]!='/' && InfosGene->CurrentProjectFileName[ScanFileNameOnly-1]!='\\')
-				ScanFileNameOnly--;
-		}
-		sprintf( Buff, "%s (%s)", &InfosGene->CurrentProjectFileName[ScanFileNameOnly], WindowTitle );
-		if ( InfosGUI->TargetMonitor.RemoteConnected )
-		{
-			strcat( Buff, " - ");
-			strcat( Buff, _("CONNECTED") );
-		}
-	}
-	gtk_window_set_title( GTK_WINDOW(MainSectionWindow), Buff );
+	gtk_window_set_title( GTK_WINDOW(MainSectionWindow), (pBuffAlloc!=NULL)?pBuffAlloc:"Out of memory !?" );
+	if( pBuffAlloc )
+		free( pBuffAlloc );
 	return FALSE; //useful when called with g_idle_add (just one time)
 }

@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -28,8 +28,8 @@
 
 #define CL_PRODUCT_NAME "ClassicLadder"
 #define CL_RELEASE_VER_STRING "0.9.113+"
-#define CL_RELEASE_DATE_STRING "5 April 2021"
-#define CL_RELEASE_COPYRIGHT_YEARS "2001-2021"
+#define CL_RELEASE_DATE_STRING "30 March 2022"
+#define CL_RELEASE_COPYRIGHT_YEARS "2001-2022"
 
 
 //to debug "monitor": useful if PLC running... and connecting to itself (same executable) only for tests purposes at the start, and after also!
@@ -439,6 +439,7 @@ typedef struct StrProjectProperties
 	char ParamComment[ LGT_STR_INFO_COMMENT ];
 }StrProjectProperties;
 
+#define LGT_FOR_PATH_AND_FILE 400
 typedef struct StrInfosGene
 {
 	StrProjectProperties ProjectProperties;
@@ -481,7 +482,7 @@ typedef struct StrInfosGene
 	char ErrorMsgStringToDisplay[ 120 ];
 	char ErrorTitleStringToDisplay[ 60 ];
 //	char DisplaySymbols;
-	char CurrentProjectFileName[ 400 ];
+	char CurrentProjectFileName[ LGT_FOR_PATH_AND_FILE ];
 	// splitted, because now two different threads (inputs read, and outputs write done in logic)
 	char AskToConfHardInputs;
 	char AskToConfHardOutputs;
@@ -535,7 +536,7 @@ typedef struct StrTargetMonitor
 	// possibility to be connected, and transfer a file at the same time...
 	int TransferFileNum;
 	int TransferFileSubNum;
-	char TransferFileSelectedName[ 400 ];
+	char TransferFileSelectedName[ LGT_FOR_PATH_AND_FILE ];
 	char TransferFileIsSend;
 
 	// latest target run/stop state
@@ -760,7 +761,7 @@ typedef struct StrModem
 
 typedef struct StrPreferences
 {
-	char DefaultProjectFileNameToLoadAtStartup[ 400 ];
+	char DefaultProjectFileNameToLoadAtStartup[ LGT_FOR_PATH_AND_FILE ];
 	int LatestStateSaved;
 	char MonitorSlaveOnSerialPort[ 30 ]; // listening monitor requests on the serial link instead of udp network
 	int MonitorSlaveSerialSpeed;

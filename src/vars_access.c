@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2017 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -20,11 +20,6 @@
 /* License along with this library; if not, write to the Free Software */
 /* Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA */
 
-#ifdef GTK_INTERFACE
-#include <gtk/gtk.h>
-#include "classicladder_gtk.h"
-#endif
-
 #if defined(MODULE) && defined(RTAI)
 #include <linux/kernel.h>
 #include <linux/module.h>
@@ -38,6 +33,11 @@
 #include "vars_access.h"
 #ifdef COMPLETE_PLC
 #include "log_events.h"
+#endif
+
+#ifdef GTK_INTERFACE
+#include <gtk/gtk.h>
+#include "classicladder_gtk.h"
 #endif
 
 #define MASK_VAR_SETTED 0x80

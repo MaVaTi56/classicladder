@@ -6,7 +6,7 @@
 
 typedef struct StrFileTransfer
 {
-	char FileName[ 400 ];
+	char FileName[ LGT_FOR_PATH_AND_FILE ];
 	char IsSendTransfer; //send or received file
 	FILE * pFileTransferDesc;
 	int NumBlock;

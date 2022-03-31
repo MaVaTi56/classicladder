@@ -8,7 +8,7 @@ FUTURE / TODO LIST...
 ---------------------
 
 - Application compilation on GTK+ version 3 to continue by removing possible warnings with some old functions used. But KEEP GTK+ version 2 compatibility for now!!!
-=> 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), g_thread_init() deprecated, ...
+=> 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), ...
 
 - Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
 
@@ -24,11 +24,18 @@ FUTURE / TODO LIST...
   Complex case of multi steps activated/desactivated simultaneously (click on steps -or- steps AND only more LEFT/RIGHT, then transition but not reverse else
   bads things arriving... to see!)
   
+- Update french language translation (some missing strings).
+  
 - Switch all monitor task creations to use common functions...
 
 - Fixing library broken when compiled for that...
 
-- Directly in rungs for contacts (extract a bit of a word) & coils (set a bit of a word) with var format "v[i]:Xz".
+- Review interface to merge SOME "sections manager" window PARTS in main window: to have current section name displayed in a combo box at the right + move "sections"
+  button toolbar righter and add before a separator (+ manager toolbar without arrows??? No!?).
+  We have to keep the "sections manager" window to reorder sections if needed... or keep all as actually.
+  Section manager window should not be opened per-default.
+
+- Directly in rungs for contacts to be able to "extract a bit of a word" & also in coils "set a bit of a word" with var format "v[i]:Xz".
   Example "%W20:X4" => bit 4 of %W20 ; "%W10[%W30]:X9" => bit 9 of %W10[%W30].
   => will require new rung file format VER4.0 (if used in project) with var "t/o[ti/oi]" => "t/o[ti/oi]:Xb"
 - Easy possibilities in eval block to be able to copy some bits list in a word and extract a bit of a word...
@@ -43,11 +50,6 @@ FUTURE / TODO LIST...
 
 - To do a .deb package (for Debian/Ubuntu).
 - Do an easy Windows installer (NSIS ? opencandy.com with ads?) Seems too difficult for some users to manually extract an archive (in fact 2!) in a directory... :-(
-
-- Review interface to merge SOME "sections manager" window PARTS in main window: to have current section name displayed in a combo box at the right + move "sections"
-  button toolbar righter and add before a separator (+ manager toolbar without arrows??? No!?).
-  We have to keep the "sections manager" window to reorder sections if needed... or keep all as actually.
-  Section manager window should not be opened per-default.
 
 - Review all variables names to be in conformity with IEC61131, especially %Bxxx => %Mxxx ; %Wxxx => %MWxxx
 

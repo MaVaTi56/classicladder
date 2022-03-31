@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* July 2003 */
@@ -117,7 +117,7 @@ GtkWidget * CreateGeneralParametersPage( void )
 	for (NumObj=0; NumObj<NBR_OBJECTS_GENERAL; NumObj++)
 	{
 		char BuffLabel[ 100 ];
-		char BuffValue[ 200 ];
+		char BuffValue[ LGT_FOR_PATH_AND_FILE ];
                 
 		int InfoUsed = 0;
 		hbox[NumObj] = gtk_hbox_new (FALSE, 0);
@@ -134,7 +134,7 @@ GtkWidget * CreateGeneralParametersPage( void )
 				break;
 			case 3:
 				InfoUsed = GetNbrRungsDefined( )*100/InfosGene->GeneralParams.SizesInfos.nbr_rungs;
-				sprintf( BuffLabel, "%s (%d%c %s - %s=%d %s=%d%s)", _("Nbr.rungs"), InfoUsed,'%', _("used"), _("current alloc"), NBR_RUNGS, _("size"), NBR_RUNGS*sizeof( StrRung ), _("bytes") );
+				sprintf( BuffLabel, "%s (%d%c %s - %s=%d %s=%d%s)", _("Nbr.rungs"), InfoUsed,'%', _("used"), _("current alloc"), NBR_RUNGS, _("size"), NBR_RUNGS*(int)sizeof( StrRung ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_rungs );
 				break;
 			case 4:
@@ -146,19 +146,19 @@ GtkWidget * CreateGeneralParametersPage( void )
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_words );
 				break;
 			case 6:
-				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Counters"), _("current alloc"), NBR_COUNTERS, _("size"), NBR_COUNTERS*sizeof( StrCounter ), _("bytes") );
+				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Counters"), _("current alloc"), NBR_COUNTERS, _("size"), NBR_COUNTERS*(int)sizeof( StrCounter ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_counters );
 				break;
 			case 7:
-				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Timers IEC"), _("current alloc"), NBR_TIMERS_IEC, _("size"), NBR_TIMERS_IEC*sizeof( StrTimerIEC ), _("bytes") );
+				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Timers IEC"), _("current alloc"), NBR_TIMERS_IEC, _("size"), NBR_TIMERS_IEC*(int)sizeof( StrTimerIEC ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_timers_iec );
 				break;
 			case 8:
-				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Registers"), _("current alloc"), NBR_REGISTERS, _("size"), NBR_REGISTERS*sizeof( StrRegister ), _("bytes") );
+				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Registers"), _("current alloc"), NBR_REGISTERS, _("size"), NBR_REGISTERS*(int)sizeof( StrRegister ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_registers );
 				break;
 			case 9:
-				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Register list size"), _("current alloc"), REGISTER_LIST_SIZE, _("size"), NBR_REGISTERS * REGISTER_LIST_SIZE * sizeof(int), _("bytes") );
+				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Register list size"), _("current alloc"), REGISTER_LIST_SIZE, _("size"), NBR_REGISTERS * REGISTER_LIST_SIZE * (int)sizeof(int), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.register_list_size );
 				break;
 			case 10:
@@ -179,12 +179,12 @@ GtkWidget * CreateGeneralParametersPage( void )
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_phys_words_outputs );
 				break;
 			case 14:
-				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Arithm.Expr."), _("current alloc"), NBR_ARITHM_EXPR, _("size"), NBR_ARITHM_EXPR*sizeof( StrArithmExpr ), _("bytes") );
+				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Arithm.Expr."), _("current alloc"), NBR_ARITHM_EXPR, _("size"), NBR_ARITHM_EXPR*(int)sizeof( StrArithmExpr ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_arithm_expr );
 				break;
 			case 15:
 				InfoUsed = NbrSectionsDefined( )*100/InfosGene->GeneralParams.SizesInfos.nbr_sections;
-				sprintf( BuffLabel, "%s (%d%c %s - %s=%d %s=%d%s)", _("Nbr.Sections"), InfoUsed,'%', _("used"), _("current alloc"), NBR_SECTIONS, _("size"), NBR_SECTIONS*sizeof( StrSection ), _("bytes") );
+				sprintf( BuffLabel, "%s (%d%c %s - %s=%d %s=%d%s)", _("Nbr.Sections"), InfoUsed,'%', _("used"), _("current alloc"), NBR_SECTIONS, _("size"), NBR_SECTIONS*(int)sizeof( StrSection ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_sections );
 				break;
 			case 16:
@@ -193,11 +193,11 @@ GtkWidget * CreateGeneralParametersPage( void )
 				break;
 #ifdef OLD_TIMERS_MONOS_SUPPORT
 			case 17:
-				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Timers"), _("current alloc"), NBR_TIMERS, _("size"), NBR_TIMERS*sizeof( StrTimer ), _("bytes") );
+				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Timers"), _("current alloc"), NBR_TIMERS, _("size"), NBR_TIMERS*(int)sizeof( StrTimer ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_timers );
 				break;
 			case 18:
-				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Monostables"), _("current alloc"), NBR_MONOSTABLES, _("size"), NBR_MONOSTABLES*sizeof( StrMonostable ), _("bytes") );
+				sprintf( BuffLabel, "%s (%s=%d %s=%d%s)", _("Nbr.Monostables"), _("current alloc"), NBR_MONOSTABLES, _("size"), NBR_MONOSTABLES*(int)sizeof( StrMonostable ), _("bytes") );
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_monostables );
 				break;
 #endif
@@ -1488,8 +1488,8 @@ static gint RemoteAlarmType_changed_event( GtkWidget *widget, void * NumSlot )
 {
 	int Type = gtk_combo_box_get_active( GTK_COMBO_BOX(widget) );
 //	printf("combo change type=%d (slot=%d)\n",Type,(int)NumSlot);
-	gtk_widget_set_sensitive( RemoteAlarmConfEntry[ (int)NumSlot+2 ][ 2 ], (Type-1)==ALARMS_TYPE_SMS );
-	gtk_widget_set_sensitive( RemoteAlarmConfEntry[ (int)NumSlot+2 ][ 3 ], (Type-1)==ALARMS_TYPE_EMAIL );
+	gtk_widget_set_sensitive( RemoteAlarmConfEntry[ GPOINTER_TO_INT(NumSlot)+2 ][ 2 ], (Type-1)==ALARMS_TYPE_SMS );
+	gtk_widget_set_sensitive( RemoteAlarmConfEntry[ GPOINTER_TO_INT(NumSlot)+2 ][ 3 ], (Type-1)==ALARMS_TYPE_EMAIL );
 	return TRUE;
 }
 GtkWidget * CreateRemoteAlarmsConfigPage( void )
@@ -1538,7 +1538,7 @@ GtkWidget * CreateRemoteAlarmsConfigPage( void )
 					FillComboBoxReqType( MY_GTK_COMBO_BOX( RemoteAlarmConfEntry[ ScanLine ][ ScanCol ] ), ListComboTypeAlarm );
 //					gtk_combo_box_set_active( GTK_COMBO_BOX( RemoteAlarmConfEntry[ ScanLine ][ ScanCol ] ), pAlarms->AlarmType[ ScanLine-2 ]+1 );
 					// can't be called (with a previous set_active() function here) if not already show...?
-					gtk_signal_connect( GTK_OBJECT(RemoteAlarmConfEntry[ ScanLine ][ ScanCol ]), "changed", GTK_SIGNAL_FUNC(RemoteAlarmType_changed_event), (void *)(ScanLine-2) );
+					gtk_signal_connect( GTK_OBJECT(RemoteAlarmConfEntry[ ScanLine ][ ScanCol ]), "changed", GTK_SIGNAL_FUNC(RemoteAlarmType_changed_event), GINT_TO_POINTER(ScanLine-2) );
 				}
 				else
 				{

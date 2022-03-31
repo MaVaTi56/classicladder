@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -70,8 +70,8 @@ extern int PrintRightMarginPosiX;
 extern int PrintRightMarginWidth;
 #endif
 
-extern char TmpDirectoryRoot[ 400 ];
-extern char TmpDirectoryProject[ 400 ];
+extern char TmpDirectoryRoot[ LGT_FOR_PATH_AND_FILE ];
+extern char TmpDirectoryProject[ LGT_FOR_PATH_AND_FILE ];
 
 extern StrGeneralParams GeneralParamsMirror;
 
@@ -83,7 +83,7 @@ extern StrModbusConfig ModbusConfig;
 
 extern char * ErrorMessageVarParser;
 
-extern char LogEventsDataFile[ 400 ];
+extern char LogEventsDataFile[ LGT_FOR_PATH_AND_FILE ];
 extern StrLog Log;
 extern StrConfigEventLog ConfigEventLog[ NBR_CONFIG_EVENTS_LOG ]; 
 extern unsigned char ListCurrentDefType[ NBR_CURRENT_DEFS_MAX ];
@@ -98,7 +98,7 @@ extern StrNetworkConfigDatas NetworkConfigDatas;
 
 extern StrModem Modem;
 
-extern char TmpLogEventsFileFromTarget[ 400 ];
+extern char TmpLogEventsFileFromTarget[ LGT_FOR_PATH_AND_FILE ];
 
 //extern char * LaunchScriptParamList[ 30 ];
 
