@@ -107,3 +107,5 @@ extern int PipeLaunchExternalCmd;
 
 //extern struct tm * ptm_for_vars_sys;
 extern struct tm tm_copy_for_vars_sys;
+
+extern int DrawingBlockPxHeightUsedForFont;

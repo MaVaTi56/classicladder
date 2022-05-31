@@ -28,7 +28,7 @@
 
 #define CL_PRODUCT_NAME "ClassicLadder"
 #define CL_RELEASE_VER_STRING "0.9.113+"
-#define CL_RELEASE_DATE_STRING "30 March 2022"
+#define CL_RELEASE_DATE_STRING "27 May 2022"
 #define CL_RELEASE_COPYRIGHT_YEARS "2001-2022"
 
 
@@ -759,6 +759,7 @@ typedef struct StrModem
 	char StrCodePIN[ TELEPHONE_NUMBER_LGT ];
 }StrModem;
 
+#define FONT_NAME_LGT 200
 typedef struct StrPreferences
 {
 	char DefaultProjectFileNameToLoadAtStartup[ LGT_FOR_PATH_AND_FILE ];
@@ -772,6 +773,7 @@ typedef struct StrPreferences
 	StrWindowPosisOpenPrefs WindowPosisOpenPrefs[ NBR_WINDOWS_PREFS ];
 	char DisplaySymbolsInMainWindow;
 	char DisplaySymbolsInBoolsVarsWindows;
+	char FontNameUsedToDraw[ FONT_NAME_LGT ];
 }StrPreferences;
 
 typedef struct StrSearchDatas

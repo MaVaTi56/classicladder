@@ -45,7 +45,7 @@
 #include "drawing.h"
 
 PangoLayout * pFontLayout = NULL;
-int BlockPxHeightUsedForFont = -1;
+int DrawingBlockPxHeightUsedForFont = -1;
 
 int PrintRightMarginExprPosiY = 0;
 int PrintRightMarginNumExpr = 0;
@@ -131,14 +131,28 @@ char * DisplayArithmExpr(char * Expr, char SymbolsVarsNamesIfAvail)
 
 void CreateFontPangoLayout( cairo_t *cr, int BlockPxHeight, char DrawingOption )
 {
-	if ( pFontLayout==NULL || BlockPxHeightUsedForFont!=BlockPxHeight )
+	if ( pFontLayout==NULL || DrawingBlockPxHeightUsedForFont!=BlockPxHeight )
 	{
-		char BuffFontDesc[ 25 ];
+		char BuffFontDesc[ FONT_NAME_LGT ];
 		PangoFontDescription *FontDesc;
-		const char * FontName = "Lucida Sans";
-		int FontHeight = 8;
+		strcpy( BuffFontDesc, Preferences.FontNameUsedToDraw );
 		if ( DrawingOption==DRAW_FOR_PRINT )
-			FontHeight = BlockPxHeight*8/BLOCK_HEIGHT_DEF;
+		{
+			int PrintFontHeight = BlockPxHeight*8/BLOCK_HEIGHT_DEF;
+printf("Font description size searching in '%s' before print\n",BuffFontDesc);
+			char * ptcSearchHeight = BuffFontDesc;
+			do
+			{
+				ptcSearchHeight++;
+			}
+			while( !(*ptcSearchHeight>='0' && *ptcSearchHeight<='9') && *ptcSearchHeight!='\0' );
+			if( *ptcSearchHeight!='\0' )
+			{
+				printf("Font description size search to print : '%s' => '%s' (newsize=%d)\n", BuffFontDesc, ptcSearchHeight, PrintFontHeight );
+				sprintf( ptcSearchHeight, "%d", PrintFontHeight );
+			}
+			
+		}
 //TODO: cleanup also needed on exit?
 		if ( pFontLayout!=NULL )
 			g_object_unref( pFontLayout );
@@ -147,12 +161,11 @@ void CreateFontPangoLayout( cairo_t *cr, int BlockPxHeight, char DrawingOption )
 //	FontDesc = pango_font_description_from_string( "Andale Mono 8" );
 //Cairo		FontDesc = pango_font_description_from_string( "Courier New 8" );
 //	FontDesc = pango_font_description_from_string( "Lucida Bright 8" );
-		sprintf( BuffFontDesc, "%s %d", FontName, FontHeight );
-printf("Pango Layout Font:'%s' Height:%d BlockPxHeight:%d, BLOCK_HEIGHT_DEF:%d\n", FontName, FontHeight, BlockPxHeight, BLOCK_HEIGHT_DEF );
+printf("Pango Layout FontDesc:'%s' BlockPxHeight:%d, BLOCK_HEIGHT_DEF:%d\n", BuffFontDesc, BlockPxHeight, BLOCK_HEIGHT_DEF );
 		FontDesc = pango_font_description_from_string( BuffFontDesc );
 		pango_layout_set_font_description( pFontLayout, FontDesc );
 		pango_font_description_free( FontDesc );
-		BlockPxHeightUsedForFont = BlockPxHeight;
+		DrawingBlockPxHeightUsedForFont = BlockPxHeight;
 		
 		pango_layout_set_wrap( pFontLayout, PANGO_WRAP_CHAR );
 	}

@@ -1093,4 +1093,7 @@ v0.9.114 (..... 2021)
      the view menu ! And also always opened at startup even if closed when quitting. Fixed.
    - To avoid (justified) warnings with new gcc version, replace '400' value constant per LGT_FOR_PATH_AND_FILE define + some mallocs done.
    - Remove some warnings with gcc 64 bits compilation (till now, always in 32 bits...). Use of GINT_TO_POINTER() & GPOINTER_TO_INT() macros.
+   - Added in preferences choice of the font name / size used to draw in the main window. Font chooser dialog only available
+     on Gtk+3 version. Default size 9, now with larger screen resolution, the default little 8 is no more adapted...
+  
 

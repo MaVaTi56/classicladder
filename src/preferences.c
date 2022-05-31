@@ -67,6 +67,8 @@ void InitPreferences( void )
 	}
 	Preferences.DisplaySymbolsInMainWindow = TRUE;
 	Preferences.DisplaySymbolsInBoolsVarsWindows = FALSE;
+//	strcpy( Preferences.FontNameUsedToDraw, "Lucida Sans 8" );
+	strcpy( Preferences.FontNameUsedToDraw, "Sans 9" );
 
 	NetworkConfigDatas.IpAddr[0] = '\0';
 	NetworkConfigDatas.NetMask[0] = '\0';
@@ -210,6 +212,9 @@ void LoadPreferences( void )
 				pParameter = "DISPLAY_SYMBOLS_BOOLS_VARS_WINDOW=";
 				if ( strncmp( Line, pParameter, strlen( pParameter) )==0 )
 					Preferences.DisplaySymbolsInBoolsVarsWindows = atoi( &Line[ strlen( pParameter) ] );
+				pParameter = "FONT_NAME_USED_TO_DRAW=";
+				if ( strncmp( Line, pParameter, strlen( pParameter) )==0 )
+					strcpy( Preferences.FontNameUsedToDraw, &Line[ strlen( pParameter) ] );
 			}
 		}
 		while(LineOk);
@@ -247,6 +252,7 @@ char SavePreferences( void )
 		}
 		fprintf( File,S_LINE "DISPLAY_SYMBOLS_MAIN_WINDOW=%d" E_LINE "\n", Preferences.DisplaySymbolsInMainWindow?1:0 );
 		fprintf( File,S_LINE "DISPLAY_SYMBOLS_BOOLS_VARS_WINDOW=%d" E_LINE "\n", Preferences.DisplaySymbolsInBoolsVarsWindows?1:0 );
+		fprintf( File,S_LINE "FONT_NAME_USED_TO_DRAW=%s" E_LINE "\n", Preferences.FontNameUsedToDraw );
 		fclose(File);
 		printf("Saved prefs file %s\n", PrefsFile );
 	}

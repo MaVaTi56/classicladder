@@ -30,10 +30,12 @@ FUTURE / TODO LIST...
 
 - Fixing library broken when compiled for that...
 
-- Review interface to merge SOME "sections manager" window PARTS in main window: to have current section name displayed in a combo box at the right + move "sections"
-  button toolbar righter and add before a separator (+ manager toolbar without arrows??? No!?).
-  We have to keep the "sections manager" window to reorder sections if needed... or keep all as actually.
-  Section manager window should not be opened per-default.
+- Adjust drawing height of label/comment rung header, to size of the font selected.
+
+- Review interface to merge SOME "sections manager" window PARTS in main window: to have current section name displayed in a combo box at the right "selectable"
+  (with a tooltip "Section name")
+  + move "sections" button toolbar righter and add before a separator.
+  Section manager window should not be opened per-default. To have another window at less at startup (if not really useful when editing just one ladder section) !
 
 - Directly in rungs for contacts to be able to "extract a bit of a word" & also in coils "set a bit of a word" with var format "v[i]:Xz".
   Example "%W20:X4" => bit 4 of %W20 ; "%W10[%W30]:X9" => bit 9 of %W10[%W30].

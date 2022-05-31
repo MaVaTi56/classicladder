@@ -40,9 +40,9 @@
 #include "config_gtk.h"
 
 #ifdef OLD_TIMERS_MONOS_SUPPORT
-#define NBR_OBJECTS_GENERAL 19+2
+#define NBR_OBJECTS_GENERAL 19+3
 #else
-#define NBR_OBJECTS_GENERAL 17+2
+#define NBR_OBJECTS_GENERAL 17+3
 #endif
 #define NBR_SUBS_VBOX 3
 GtkWidget *LabelParam[ NBR_OBJECTS_GENERAL ],*ValueParam[ NBR_OBJECTS_GENERAL ];
@@ -95,12 +95,36 @@ GtkWidget *ConfigWindow;
 void ButtonSetDefaultProject_click( void )
 {
 	strcpy( Preferences.DefaultProjectFileNameToLoadAtStartup, InfosGene->CurrentProjectFileName );
-	gtk_entry_set_text( GTK_ENTRY(ValueParam[NBR_OBJECTS_GENERAL-1]), Preferences.DefaultProjectFileNameToLoadAtStartup );
+	gtk_entry_set_text( GTK_ENTRY(ValueParam[NBR_OBJECTS_GENERAL-2]), Preferences.DefaultProjectFileNameToLoadAtStartup );
 }
 void ButtonClearDefaultProject_click( void )
 {
 	Preferences.DefaultProjectFileNameToLoadAtStartup[ 0 ] = '\0';
-	gtk_entry_set_text( GTK_ENTRY(ValueParam[NBR_OBJECTS_GENERAL-1]), Preferences.DefaultProjectFileNameToLoadAtStartup );
+	gtk_entry_set_text( GTK_ENTRY(ValueParam[NBR_OBJECTS_GENERAL-2]), Preferences.DefaultProjectFileNameToLoadAtStartup );
+}
+void ButtonChooseDrawingFont_click( void )
+{
+#if GTK_MAJOR_VERSION>=3
+	GtkWidget  * dialog = gtk_font_chooser_dialog_new( _("Select font used to draw"), GTK_WINDOW(ConfigWindow) );
+	if( dialog )
+	{
+		gtk_font_chooser_set_font( GTK_FONT_CHOOSER(dialog), Preferences.FontNameUsedToDraw ); 
+
+		if( gtk_dialog_run( GTK_DIALOG(dialog))==GTK_RESPONSE_OK )
+		{
+			gchar * fontname = gtk_font_chooser_get_font(GTK_FONT_CHOOSER(dialog));
+			printf("Font description selected: %s\n", fontname);
+	//		gtk_widget_override_font( label, pango_font_description_from_string(fontname) );
+			strcpy( Preferences.FontNameUsedToDraw, fontname );
+			g_free (fontname);
+			DrawingBlockPxHeightUsedForFont = -1; // to force redrawing with new font selected
+			gtk_entry_set_text( GTK_ENTRY(ValueParam[NBR_OBJECTS_GENERAL-1]), Preferences.FontNameUsedToDraw );
+		}
+		gtk_widget_destroy (dialog);
+	}
+#else
+	ShowMessageBoxError( _("Available only on newer major version of Gtk+...") );
+#endif
 }
 
 GtkWidget * CreateGeneralParametersPage( void )
@@ -201,13 +225,17 @@ GtkWidget * CreateGeneralParametersPage( void )
 				sprintf( BuffValue, "%d", GeneralParamsMirror.SizesInfos.nbr_monostables );
 				break;
 #endif
-			case NBR_OBJECTS_GENERAL-2:
+			case NBR_OBJECTS_GENERAL-3:
 				sprintf( BuffLabel, _("Current file project") );
 				sprintf( BuffValue, "%s",InfosGene->CurrentProjectFileName);
 				break;                                
-			case NBR_OBJECTS_GENERAL-1:
+			case NBR_OBJECTS_GENERAL-2:
 				sprintf( BuffLabel, _("Default startup project") );
 				sprintf( BuffValue, "%s",Preferences.DefaultProjectFileNameToLoadAtStartup);
+				break;                                
+			case NBR_OBJECTS_GENERAL-1:
+				sprintf( BuffLabel, _("Font description used to draw") );
+				sprintf( BuffValue, "%s",Preferences.FontNameUsedToDraw);
 				break;                                
 			default:
 				sprintf( BuffLabel, "???" );
@@ -241,40 +269,47 @@ GtkWidget * CreateGeneralParametersPage( void )
 		else
 		{
 			LabelParam[NumObj] = gtk_label_new(BuffLabel);
-//ForGTK3			gtk_widget_set_usize(/*(GtkWidget *)*/LabelParam[NumObj],(NumObj<NBR_OBJECTS_GENERAL-2)?420:180,0);
-			if( NumObj<NBR_OBJECTS_GENERAL-2 )
+//ForGTK3			gtk_widget_set_usize(/*(GtkWidget *)*/LabelParam[NumObj],(NumObj<NBR_OBJECTS_GENERAL-3)?420:180,0);
+			if( NumObj<NBR_OBJECTS_GENERAL-3 )
 				gtk_widget_set_size_request(LabelParam[NumObj],440,-1);
 			gtk_box_pack_start (GTK_BOX(hbox[NumObj]), LabelParam[NumObj], FALSE, FALSE, 0);
 
 			/* For numbers */
 			ValueParam[NumObj] = gtk_entry_new();
-//ForGTK3			gtk_widget_set_usize(/*(GtkWidget *)*/ValueParam[NumObj],(NumObj<NBR_OBJECTS_GENERAL-2)?50:450,0);
-			if (NumObj<NBR_OBJECTS_GENERAL-2)
+//ForGTK3			gtk_widget_set_usize(/*(GtkWidget *)*/ValueParam[NumObj],(NumObj<NBR_OBJECTS_GENERAL-3)?50:450,0);
+			if (NumObj<NBR_OBJECTS_GENERAL-3)
 				gtk_widget_set_size_request(/*(GtkWidget *)*/ValueParam[NumObj],45,-1);
-			gtk_box_pack_start (GTK_BOX(hbox[NumObj]), ValueParam[NumObj], NumObj>=NBR_OBJECTS_GENERAL-2 /*expand*/, NumObj>=NBR_OBJECTS_GENERAL-2 /*fill*/, 0);
+			gtk_box_pack_start (GTK_BOX(hbox[NumObj]), ValueParam[NumObj], NumObj>=NBR_OBJECTS_GENERAL-3 /*expand*/, NumObj>=NBR_OBJECTS_GENERAL-3 /*fill*/, 0);
 			gtk_entry_set_text( GTK_ENTRY(ValueParam[NumObj]), BuffValue );
-			gtk_editable_set_editable( GTK_EDITABLE(ValueParam[NumObj]), (NumObj<NBR_OBJECTS_GENERAL-2)?TRUE:FALSE);
+			gtk_editable_set_editable( GTK_EDITABLE(ValueParam[NumObj]), (NumObj<NBR_OBJECTS_GENERAL-3)?TRUE:FALSE);
 
-			if ( NumObj<NBR_OBJECTS_GENERAL-2 )
+			if ( NumObj<NBR_OBJECTS_GENERAL-3 )
 				gtk_container_add (GTK_CONTAINER(vbox_sub[CurrentSub]), hbox[NumObj]);
 			else
 				gtk_container_add (GTK_CONTAINER(vbox_main), hbox[NumObj]);
 		}
 
 		
-		if ( NumObj==NBR_OBJECTS_GENERAL-2 )
+		if ( NumObj==NBR_OBJECTS_GENERAL-3 )
 		{
 			GtkWidget * ButtonSetDefaultPrj = gtk_button_new_with_label ( _("Use as default project") );
 			gtk_box_pack_start (GTK_BOX(hbox[NumObj]), ButtonSetDefaultPrj, FALSE, FALSE, 0);
 			gtk_signal_connect(GTK_OBJECT (ButtonSetDefaultPrj), "clicked",
 						GTK_SIGNAL_FUNC(ButtonSetDefaultProject_click), 0);
 		}
-		if ( NumObj==NBR_OBJECTS_GENERAL-1 )
+		if ( NumObj==NBR_OBJECTS_GENERAL-2 )
 		{
 			GtkWidget * ButtonClearDefaultPrj = gtk_button_new_with_label ( _("No default project") );
 			gtk_box_pack_start (GTK_BOX(hbox[NumObj]), ButtonClearDefaultPrj, FALSE, FALSE, 0);
 			gtk_signal_connect(GTK_OBJECT (ButtonClearDefaultPrj), "clicked",
 						GTK_SIGNAL_FUNC(ButtonClearDefaultProject_click), 0);
+		}
+		if ( NumObj==NBR_OBJECTS_GENERAL-1 )
+		{
+			GtkWidget * ButtonChooseDrawingFont = gtk_button_new_with_label ( _("Font select") );
+			gtk_box_pack_start (GTK_BOX(hbox[NumObj]), ButtonChooseDrawingFont, FALSE, FALSE, 0);
+			gtk_signal_connect(GTK_OBJECT (ButtonChooseDrawingFont), "clicked",
+						GTK_SIGNAL_FUNC(ButtonChooseDrawingFont_click), 0);
 		}
 	}
 	gtk_widget_show_all(vbox_main);

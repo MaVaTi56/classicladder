@@ -221,7 +221,8 @@ void InitInfosGene( void )
 	InfosGene->PageWidth = 0;
 	InfosGene->PageHeight = 0;
 	InitInfosGeneRungDisplayGUI( );
-	InfosGene->HeaderLabelCommentHeight = BLOCK_HEIGHT_DEF*65/100;
+//	InfosGene->HeaderLabelCommentHeight = BLOCK_HEIGHT_DEF*65/100;
+	InfosGene->HeaderLabelCommentHeight = BLOCK_HEIGHT_DEF*80/100;
 
 	InfosGene->DurationOfLastScan = -1; // unknown value, to do not display!
 	InfosGene->MaxScanDuration = -1;
