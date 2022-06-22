@@ -163,19 +163,19 @@ static GtkActionEntry ActionEntriesArray[ ] =
 #endif
 };
 static GtkToggleActionEntry ToggleActionEntriesArray[ ] =
-{	{ "ViewSectionsAction", GTK_STOCK_DND_MULTIPLE, N_("Sections window"), "F2", N_("View sections manager window"), G_CALLBACK( OpenManagerWindow ), TRUE },
-	{ "ViewEditorAction", GTK_STOCK_EDIT, N_("Editor window"), "F3", N_("View editor window"), G_CALLBACK( OpenEditWindow ), FALSE },
-	{ "ViewSymbolsAction", GTK_STOCK_SELECT_FONT, N_("Symbols window"), "F4", N_("View symbols window"), G_CALLBACK( OpenSymbolsWindow ), FALSE },
-	{ "ViewBoolVarsAction", NULL, N_("Bools vars window"), "F5", NULL, G_CALLBACK( OpenSpyBoolVarsWindow ), FALSE },
-	{ "ViewFreeVarsAction", NULL, N_("Free vars window"), "F6", NULL, G_CALLBACK( OpenSpyFreeVarsWindow ), FALSE },
+{	{ "ViewSectionsAction", GTK_STOCK_DND_MULTIPLE, N_("Sections window"), "F2", N_("View sections manager window"), G_CALLBACK( OpenManagerWindow ), FALSE/*InitialState*/ },
+	{ "ViewEditorAction", GTK_STOCK_EDIT, N_("Editor window"), "F3", N_("View editor window"), G_CALLBACK( OpenEditWindow ), FALSE/*InitialState*/ },
+	{ "ViewSymbolsAction", GTK_STOCK_SELECT_FONT, N_("Symbols window"), "F4", N_("View symbols window"), G_CALLBACK( OpenSymbolsWindow ), FALSE/*InitialState*/ },
+	{ "ViewBoolVarsAction", NULL, N_("Bools vars window"), "F5", NULL, G_CALLBACK( OpenSpyBoolVarsWindow ), FALSE/*InitialState*/ },
+	{ "ViewFreeVarsAction", NULL, N_("Free vars window"), "F6", NULL, G_CALLBACK( OpenSpyFreeVarsWindow ), FALSE/*InitialState*/ },
 #ifdef COMPLETE_PLC
-	{ "ViewLogAction", NULL, N_("Events log window"), "F7", NULL, G_CALLBACK( OpenLogBookWindow ), FALSE },
+	{ "ViewLogAction", NULL, N_("Events log window"), "F7", NULL, G_CALLBACK( OpenLogBookWindow ), FALSE/*InitialState*/ },
 #endif
-	{ "ViewMonitor4Action", NULL, N_("Monitor master frames with target"), NULL, NULL, G_CALLBACK( OpenMonitorWindow4 ), FALSE },
-	{ "ViewMonitor0Action", NULL, N_("Modbus master frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow0 ), FALSE },
-	{ "ViewMonitor1Action", NULL, N_("Target monitor slave (IP) frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow1 ), FALSE },
-	{ "ViewMonitor2Action", NULL, N_("Target monitor slave (Serial) frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow2 ), FALSE },
-	{ "ViewMonitor3Action", NULL, N_("Modbus slave frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow3 ), FALSE },
+	{ "ViewMonitor4Action", NULL, N_("Monitor master frames with target"), NULL, NULL, G_CALLBACK( OpenMonitorWindow4 ), FALSE/*InitialState*/ },
+	{ "ViewMonitor0Action", NULL, N_("Modbus master frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow0 ), FALSE/*InitialState*/ },
+	{ "ViewMonitor1Action", NULL, N_("Target monitor slave (IP) frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow1 ), FALSE/*InitialState*/ },
+	{ "ViewMonitor2Action", NULL, N_("Target monitor slave (Serial) frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow2 ), FALSE/*InitialState*/ },
+	{ "ViewMonitor3Action", NULL, N_("Modbus slave frames"), NULL, NULL, G_CALLBACK( OpenMonitorWindow3 ), FALSE/*InitialState*/ },
 };
 
 static const gchar *ClassicLadder_ui_strings = 
@@ -270,9 +270,10 @@ static const gchar *ClassicLadder_ui_strings =
 "		<toolitem action='ResetAction' />"
 "		<toolitem action='ConfigurationAction' />"
 "		<separator />"
-"		<toolitem action='ViewSectionsAction' />"
 "		<toolitem action='ViewEditorAction' />"
 "		<toolitem action='ViewSymbolsAction' />"
+"		<separator />"
+"		<toolitem action='ViewSectionsAction' />"
 "		<separator />"
 "	</toolbar>"
 "	<popup action='PopUpMenuLadder'>"
@@ -360,10 +361,11 @@ static const gchar *ClassicLadder_ui_strings =
 "	</popup>"
 "</ui>";
 
-GtkUIManager * InitMenusAndToolBar( GtkWidget *vbox )
+GtkWidget * InitMenusAndToolBar( GtkWidget *vbox )
 {
 	GtkActionGroup * ActionGroup;
 	GError *error = NULL;
+	GtkWidget *hboxToolBar; // to add the section combo later...
 	uiManager = gtk_ui_manager_new( );
 	
 	ActionGroup = gtk_action_group_new( "ClassicLadderActionGroup" );
@@ -383,14 +385,28 @@ GtkUIManager * InitMenusAndToolBar( GtkWidget *vbox )
 	}
 	else
 	{
-		GtkWidget * ToolBarWidget = gtk_ui_manager_get_widget( uiManager, "/ToolBar" );
 		gtk_box_pack_start( GTK_BOX(vbox), gtk_ui_manager_get_widget( uiManager, "/MenuBar" ), FALSE, FALSE, 0 );
+
+		hboxToolBar = gtk_hbox_new (FALSE,0);
+		gtk_container_add (GTK_CONTAINER (vbox), hboxToolBar);
+		gtk_widget_show(hboxToolBar);
+		gtk_box_set_child_packing(GTK_BOX(vbox), hboxToolBar,
+			/*expand*/ FALSE, /*fill*/ FALSE, /*pad*/ 0, GTK_PACK_START);
+
+		GtkWidget * ToolBarWidget = gtk_ui_manager_get_widget( uiManager, "/ToolBar" );
 		//do not display text under icons (seems to be the case per default under Windows...)
 		gtk_toolbar_set_style( GTK_TOOLBAR(ToolBarWidget), GTK_TOOLBAR_ICONS );
 //		gtk_toolbar_set_style( GTK_TOOLBAR(ToolBarWidget), GTK_TOOLBAR_BOTH );
-		gtk_box_pack_start( GTK_BOX(vbox), ToolBarWidget, FALSE, FALSE, 0 );
+#if GTK_MAJOR_VERSION>=3
+		gtk_box_pack_start( GTK_BOX(hboxToolBar/*vbox*/), ToolBarWidget, FALSE/*expand*/, FALSE/*fill*/, 0 );
+#else
+		gtk_box_pack_start( GTK_BOX(hboxToolBar/*vbox*/), ToolBarWidget, TRUE/*expand*/, TRUE/*fill*/, 0 );
+#endif
+
+		gtk_window_add_accel_group( GTK_WINDOW( MainSectionWindow ), 
+				  gtk_ui_manager_get_accel_group(uiManager) );
 	}
-	return uiManager;
+	return hboxToolBar;
 }
 
 void EnableDisableMenusAccordingSectionType( )

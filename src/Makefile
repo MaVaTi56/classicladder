@@ -1,10 +1,10 @@
 #
 # ClassicLadder project - Makefile
-# Copyright (C) 2001-2021 Marc Le Douarain
+# Copyright (C) 2001-2022 Marc Le Douarain
 # http://www.sourceforge.net/projects/classicladder
 # http://sites.google.com/site/classicladder
 #
-# Last update : December 2020
+# Last update : May 2022
 #
 
 # Comment if you do not want the GTK interface (for an embedded version)

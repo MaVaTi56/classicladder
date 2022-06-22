@@ -1083,7 +1083,7 @@ v0.9.113 (4 January 2020)
    - If editor window closed, and "modifying" from popup menu, was opening editor window without checking menu "View / Editor window". fixed.
      + now also open editor window when adding or inserting a rung.
 
-v0.9.114 (..... 2021)
+v0.9.114 (.. June 2022)
    - When opening the variables browser, if already a var is present in the edit widget, display the corresponding combo type
      and select it per default in the list.
      + can double-click on a var in the list to validate variable selected (instead of clicking "OK" button, faster!).
@@ -1095,5 +1095,10 @@ v0.9.114 (..... 2021)
    - Remove some warnings with gcc 64 bits compilation (till now, always in 32 bits...). Use of GINT_TO_POINTER() & GPOINTER_TO_INT() macros.
    - Added in preferences choice of the font name / size used to draw in the main window. Font chooser dialog only available
      on Gtk+3 version. Default size 9, now with larger screen resolution, the default little 8 is no more adapted...
-  
+   - Review interface to have in main window the current section name displayed in a combo box on the right and "selectable" from here
+     + move "sections" button toolbar righter and add before a separator.
+   - Section manager window not opened per-default now. To have another window at less at startup (not really useful when editing
+     just one ladder section for example, and also after defined all sections wanted) !
+
+ 
 

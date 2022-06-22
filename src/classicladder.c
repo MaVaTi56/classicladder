@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -757,7 +757,7 @@ printf( "Tasks periods (GeneralParams): inputs=%dms , logic=%dms\n", GeneralPara
 			{
 				AllocMemoryOk = ClassicLadder_AllocProjectDatas();
 #ifdef GTK_INTERFACE
-				ManagerDisplaySections( TRUE/*ForgetSectionSelected*/ );
+				ManagerDisplaySections( TRUE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 #endif
 			}
 			if ( AllocMemoryOk )

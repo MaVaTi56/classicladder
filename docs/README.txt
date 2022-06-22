@@ -1,12 +1,12 @@
 CLASSIC LADDER PROJECT
-Copyright (C) 2001-2021 Marc Le Douarain
+Copyright (C) 2001-2022 Marc Le Douarain
 marc . le - douarain /AT\ laposte \DOT/ net
 http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder
 February 2001
 
-Version 0.9.113+ (xx March 2022)
---------------------------------
+Version 0.9.113+ (xx June 2022)
+-------------------------------
 
 A project to have a free ladder language in C.
 Generally, you find this type of language on PLC to make the programs.
@@ -137,8 +137,8 @@ First you need to have the gcc compiler and make installed, see package "build-e
 You must have the package "zlib1g-dev" installed to be able to compile.
 To compile a GTK+2 version, ensure you've the package "libgtk2.0-dev" installed before.
 To compile a GTK+3 version, ensure you've the package "libgtk-3-dev" installed before.
-Choice between GTK2 and GTK3 is done by modifying the Makefile: comment lines after "#Default GTK2 Version"
-and uncomment lines after "#For GTK3 Version", or inversely.
+Choice between GTK2 and GTK3 is done by modifying the Makefile: comment lines after "#===For GTK2 Version==="
+and uncomment lines after "#===For GTK3 Version===", or inversely.
 
 If you obtain an error: ‘GDK_KEY_Alt_L’ undeclared (first use in this function)
 that means that you have old includes, you can copy files from "gdk_includes_update/"

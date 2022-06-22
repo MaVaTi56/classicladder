@@ -50,6 +50,8 @@
 #include "monitor_serial_config_window_gtk.h"
 
 //Cairo GdkPixmap *pixmap = NULL;
+GtkWidget * WidgetComboCurrentSection;
+char BlockComboCurrentChangedSignal = FALSE;
 GtkWidget *drawing_area = NULL;
 GtkWidget *entrylabel,*entrycomment;
 GtkWidget *CheckDispSymbols;
@@ -1183,7 +1185,7 @@ void QuitAppliGtk()
 	int NumFramesLogWindow;
 	printf("Quit GTK application...\n");
 	// look all window open/closed states + posis/sizes if opened (to restore them at next startup !)
-RememberManagerWindowPrefs( );//not open-close state for this window, see TODO note in function...
+	RememberManagerWindowPrefs( );
 	RememberEditWindowPrefs( );
 	RememberSymbolsWindowPrefs( );
 	RememberBoolVarsWindowPrefs( );
@@ -1377,9 +1379,21 @@ void FileTransferInitGtk(GtkBox *vbox)
 	gtk_widget_show( FileTransferAbortButton );
 }
 
+static gint ComboCurrentSection_changed_event(GtkWidget *widget, int NotUsed)
+{
+	if( !BlockComboCurrentChangedSignal )
+	{
+	int CurrentSectionIndex = gtk_combo_box_get_active( GTK_COMBO_BOX( WidgetComboCurrentSection ) );
+printf("** CurrentSection combo idx selected event = %d\n", CurrentSectionIndex);
+	if( CurrentSectionIndex!=-1 )
+		ChangeSectionSelectedFromComboIndex( CurrentSectionIndex );
+	}
+	return TRUE;
+}	
+
 void MainSectionWindowInitGtk()
 {
-	GtkWidget *vbox,*hboxtop; //,*hboxbottom,*hboxbottom2;
+	GtkWidget *vbox,*hboxtop,*hboxToolBarAndCombo; //,*hboxbottom,*hboxbottom2;
 	GtkWidget *hboxmiddle;
 //	GtkWidget *ButtonQuit;
 //	GtkWidget *ButtonNew,*ButtonLoad,*ButtonSave,*ButtonSaveAs,*ButtonReset,*ButtonConfig,*ButtonAbout;
@@ -1388,7 +1402,6 @@ void MainSectionWindowInitGtk()
 //	GtkWidget *ButtonPrint,*ButtonPrintPreview,*ButtonExportSVG,*ButtonExportPNG,*ButtonCopyToClipboard;
 //#endif
 //ForGTK3, deprecated...	GtkTooltips * TooltipsEntryLabel, * TooltipsEntryComment;
-	GtkUIManager * PtrUIManager;
 
 	MainSectionWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title ( GTK_WINDOW(MainSectionWindow), _("ClassicLadder Section Display"));
@@ -1401,9 +1414,27 @@ RestoreWindowPosiPrefs( "Main", MainSectionWindow );
 	gtk_signal_connect (GTK_OBJECT (MainSectionWindow), "destroy",
 						GTK_SIGNAL_FUNC (QuitAppliGtk), NULL);
 
-	PtrUIManager = InitMenusAndToolBar( vbox );
-	gtk_window_add_accel_group( GTK_WINDOW( MainSectionWindow ), 
-				  gtk_ui_manager_get_accel_group(PtrUIManager) );
+
+	hboxToolBarAndCombo = InitMenusAndToolBar( vbox );
+
+	WidgetComboCurrentSection = gtk_combo_box_new_text( );
+	gtk_combo_box_append_text( MY_GTK_COMBO_BOX(WidgetComboCurrentSection), "CurrentSection1" );
+	gtk_combo_box_append_text( MY_GTK_COMBO_BOX(WidgetComboCurrentSection), "CurrentSection2" );
+	//TODO? not satisfying under old Gtk+2 with combo completely at right, and little toolbar if not expanded/filled...
+#if GTK_MAJOR_VERSION>=3
+	gtk_box_pack_start( GTK_BOX (hboxToolBarAndCombo), WidgetComboCurrentSection, TRUE/*expand*/, TRUE/*fill*/, 0 );
+#else
+//	gtk_widget_set_size_request( WidgetComboCurrentSection, 200, -1 );
+	gtk_box_pack_start( GTK_BOX (hboxToolBarAndCombo), WidgetComboCurrentSection, FALSE/*expand*/, FALSE/*fill*/, 0 );
+#endif
+	gtk_widget_set_tooltip_text( WidgetComboCurrentSection, _("Current section selected") );
+	gtk_widget_show( WidgetComboCurrentSection );
+	gtk_signal_connect(GTK_OBJECT( WidgetComboCurrentSection ), "changed", 
+							GTK_SIGNAL_FUNC(ComboCurrentSection_changed_event), (void *)NULL );
+
+//GtkWidget * WidgetRightSpacerLabel = gtk_label_new( "..........." );
+//	gtk_box_pack_start( GTK_BOX (hboxToolBarAndCombo), WidgetRightSpacerLabel, FALSE, FALSE, 0 );
+//	gtk_widget_show( WidgetRightSpacerLabel );
 
 	hboxtop = gtk_hbox_new (FALSE,0);
 	gtk_container_add (GTK_CONTAINER (vbox), hboxtop);
@@ -1733,6 +1764,8 @@ printf("<<<<<<<<<<========== INIT GTK WINDOWS ==========>>>>>>>>>>\n");
 //printf("====> InitFramesLogWin\n");
 	FramesLogWindowsInitGtk( );
 	// restore each window open/closed state at startup !
+	if ( GetWindowOpenPrefs( "Manager", FALSE/*OpenedPerDefault*/ ) )
+		SetToogleMenuForSectionsManagerWindow( TRUE );
 	if ( GetWindowOpenPrefs( "Edit", FALSE/*OpenedPerDefault*/ ) )
 		SetToggleMenuForEditorWindow( TRUE );
 	if ( GetWindowOpenPrefs( "Symbols", FALSE/*OpenedPerDefault*/ ) )
@@ -1762,7 +1795,7 @@ SetGtkMenuStateForConnectDisconnectSwitch( FALSE );
 
 gboolean UpdateAllGtkWindows( void )
 {
-	ManagerDisplaySections( TRUE/*ForgetSectionSelected*/ );
+	ManagerDisplaySections( TRUE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 //	DrawCurrentSection( );
 	RedrawSignalDrawingArea( );
 	RefreshLabelCommentEntries( );

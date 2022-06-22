@@ -1,5 +1,5 @@
 CLASSIC LADDER PROJECT
-Copyright (C) 2001-2021 Marc Le Douarain
+Copyright (C) 2001-2022 Marc Le Douarain
 marc . le - douarain /AT\ laposte \DOT/ net
 http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder
@@ -7,9 +7,11 @@ http://sites.google.com/site/classicladder
 FUTURE / TODO LIST...
 ---------------------
 
-- Application compilation on GTK+ version 3 to continue by removing possible warnings with some old functions used. But KEEP GTK+ version 2 compatibility for now!!!
+- Application compilation on GTK+ version 3 to continue by removing warnings with some old functions used. But KEEP GTK+ version 2 compatibility for now!!!
 => 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), ...
 
+- Update french language translation (some missing strings).
+  
 - Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
 
 - On 'quit', hide immediately all windows opened, without waiting pause added (to wait end of threads)
@@ -24,18 +26,11 @@ FUTURE / TODO LIST...
   Complex case of multi steps activated/desactivated simultaneously (click on steps -or- steps AND only more LEFT/RIGHT, then transition but not reverse else
   bads things arriving... to see!)
   
-- Update french language translation (some missing strings).
-  
 - Switch all monitor task creations to use common functions...
 
 - Fixing library broken when compiled for that...
 
 - Adjust drawing height of label/comment rung header, to size of the font selected.
-
-- Review interface to merge SOME "sections manager" window PARTS in main window: to have current section name displayed in a combo box at the right "selectable"
-  (with a tooltip "Section name")
-  + move "sections" button toolbar righter and add before a separator.
-  Section manager window should not be opened per-default. To have another window at less at startup (if not really useful when editing just one ladder section) !
 
 - Directly in rungs for contacts to be able to "extract a bit of a word" & also in coils "set a bit of a word" with var format "v[i]:Xz".
   Example "%W20:X4" => bit 4 of %W20 ; "%W10[%W30]:X9" => bit 9 of %W10[%W30].
@@ -51,7 +46,7 @@ FUTURE / TODO LIST...
 - Registers: add a time/date for each value stored, that can be viewed later for content of each value.
 
 - To do a .deb package (for Debian/Ubuntu).
-- Do an easy Windows installer (NSIS ? opencandy.com with ads?) Seems too difficult for some users to manually extract an archive (in fact 2!) in a directory... :-(
+- Do an easy Windows installer ? (just 'one' archive now including gtk files library to extract...)
 
 - Review all variables names to be in conformity with IEC61131, especially %Bxxx => %Mxxx ; %Wxxx => %MWxxx
 
@@ -94,7 +89,7 @@ FUTURE / TODO LIST...
   (but during edit, always displaying current edit with nbr of lines maxi).
 - 'Undo' available during edit...
 
-- Log of integer variables (with a periodic time and mini delta value) stored (in RAM or) csv files.
+- Log of integer variables (with a periodic time and mini delta value) stored (in RAM or directly) csv files.
 - Directly graphical display (with a gtk component like gtkdatabox? or GtkPlot of gtkextra?) of logs of integer variables.
 
 - Adding inputs mask filter value in ms unit (for all local physical inputs) in config input window.

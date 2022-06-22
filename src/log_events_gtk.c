@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* July 2009 */
@@ -231,7 +231,6 @@ gint LogBookWindowDeleteEvent( GtkWidget * widget, GdkEvent * event, gpointer da
 	// we do not want that the window be destroyed.
 	return TRUE;
 }
-
 // called per toggle action menu, or at startup (if window saved open or not)...
 void OpenLogBookWindow( GtkAction * ActionOpen, gboolean OpenIt )
 {

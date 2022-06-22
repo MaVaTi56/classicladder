@@ -64,6 +64,8 @@ extern StrConvIdVarName TableConvIdVarName[];
 
 #ifdef __GTK_H__
 extern GtkWidget *MainSectionWindow;
+extern GtkWidget * WidgetComboCurrentSection;
+extern char BlockComboCurrentChangedSignal;
 //Cairo extern GdkPixmap *pixmap;
 extern GtkWidget *drawing_area;
 extern int PrintRightMarginPosiX;

@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* August 2002 */
@@ -54,7 +54,7 @@ static char BlockTreeViewCursorChangedSignal = FALSE;
 
 enum
 {
-	SECTION_NUMBER, //hidden
+	SECTION_NUMBER, //hidden but useful later to get directly section number array
 	SECTION_NAME,
 	SECTION_LANGUAGE,
 	SECTION_TYPE,
@@ -70,11 +70,12 @@ void RefreshSectionSelected( )
 	UpdateVScrollBar( TRUE/*AutoSelectCurrentRung*/ );
 }
 
-void ManagerDisplaySections( char ForgetSectionSelected )
+void ManagerDisplaySections( char ForgetSectionSelected, char RefreshComboSectionLists )
 {
 	StrSection * pSection;
 	GtkTreeIter   iter;
 	int NumSec;
+	int ComboIndex = 0;
 	char BufferForSRx[ 10 ];
 char buffer_debug[ 50 ];
 //	pNameSectionSelected = NULL;
@@ -82,26 +83,34 @@ char buffer_debug[ 50 ];
 		SectionNbrSelected = -1;
 printf("%s(): init...\n",__FUNCTION__);
 	BlockTreeViewCursorChangedSignal = TRUE;
+	BlockComboCurrentChangedSignal = TRUE;
 	gtk_list_store_clear( ListStore );
+	// for combo in main window
+	if( RefreshComboSectionLists )
+		gtk_list_store_clear (GTK_LIST_STORE (gtk_combo_box_get_model (WidgetComboCurrentSection)));
 	for ( NumSec=0; NumSec<NBR_SECTIONS; NumSec++ )
 	{
 		pSection = &SectionArray[ NumSec ];
 		if ( pSection->Used )
 		{
+			// for combo in main window
+			if( RefreshComboSectionLists )
+				gtk_combo_box_append_text( MY_GTK_COMBO_BOX(WidgetComboCurrentSection), pSection->Name );
+
 			if ( pSection->Language == SECTION_IN_LADDER )
 				strcpy( BufferForSRx, _("Main") );
 			if ( pSection->Language == SECTION_IN_SEQUENTIAL )
 				strcpy( BufferForSRx, "---" );
 			if ( pSection->SubRoutineNumber>=0 )
 				sprintf( BufferForSRx, "SR%d", pSection->SubRoutineNumber );
-sprintf( buffer_debug, "F=%d, L=%d, P=%d", pSection->FirstRung, pSection->LastRung, pSection->SequentialPage );
+sprintf( buffer_debug, "(%d) F=%d, L=%d, P=%d", NumSec, pSection->FirstRung, pSection->LastRung, pSection->SequentialPage );
 
 			// Acquire an iterator
 			gtk_list_store_append( ListStore, &iter );
 
 			// fill the element
 			gtk_list_store_set( ListStore, &iter,
-					SECTION_NUMBER, NumSec,
+					SECTION_NUMBER, NumSec, // hidden but useful later to get directly section number array
 					SECTION_NAME, pSection->Name,
 				SECTION_LANGUAGE, ( pSection->Language == SECTION_IN_SEQUENTIAL )?(_("Sequential")):(_("Ladder")),
 				SECTION_TYPE, BufferForSRx,
@@ -110,23 +119,28 @@ sprintf( buffer_debug, "F=%d, L=%d, P=%d", pSection->FirstRung, pSection->LastRu
 printf("%s(): added %s...\n",__FUNCTION__,pSection->Name);
 			if ( SectionNbrSelected==-1 || SectionNbrSelected==NumSec )
 			{
-printf("select... before=%d scan=%d\n", SectionNbrSelected, NumSec );
+printf("%s(): select... before=%d scan=%d\n", __FUNCTION__, SectionNbrSelected, NumSec );
 				GtkTreeSelection * selection;
 				selection = gtk_tree_view_get_selection( GTK_TREE_VIEW( ListViewSections ) );
 				gtk_tree_selection_select_iter( selection, &iter );
 				SectionNbrSelected = NumSec;
+				// for combo in main window to select in correspondence
+				if( RefreshComboSectionLists )
+					gtk_combo_box_set_active( GTK_COMBO_BOX( WidgetComboCurrentSection ), ComboIndex );
 				RefreshSectionSelected( );
 			}
+			ComboIndex++;
 		}
 	}
 	BlockTreeViewCursorChangedSignal = FALSE;
+	BlockComboCurrentChangedSignal = FALSE;
 }
 
 void TreeViewCursorChangedSignal( GtkTreeView * treeview, gpointer user_data )
 {
 	if ( !BlockTreeViewCursorChangedSignal )
 	{
-		printf("cursor-changed signal !\n");
+		printf(":: Manage TreeView : cursor-changed signal !\n");
 		GtkTreeSelection * selection;
 		GtkTreeModel * model;
 		GtkTreeIter iter;
@@ -134,15 +148,59 @@ void TreeViewCursorChangedSignal( GtkTreeView * treeview, gpointer user_data )
 		if ( gtk_tree_selection_get_selected( selection, &model, &iter) )
 		{
 			int SecNumberSelected;
+			// first get line number selected for combo activate
+			GtkTreePath* PathLineNumberSelected = gtk_tree_model_get_path ( model, &iter );
+			if( PathLineNumberSelected )
+			{
+				char * pathstring = gtk_tree_path_to_string( PathLineNumberSelected );
+				if( pathstring )
+				{
+					printf(":: section line path selected: %s\n",pathstring);
+					// for combo in main window to select in correspondence
+					BlockComboCurrentChangedSignal = TRUE;
+					gtk_combo_box_set_active( GTK_COMBO_BOX( WidgetComboCurrentSection ), atoi( pathstring ) );
+					BlockComboCurrentChangedSignal = FALSE;
+					free( pathstring );
+				}
+				gtk_tree_path_free( PathLineNumberSelected );
+			}
 			gtk_tree_model_get( model, &iter, 0/*ColumnNbr*/, &SecNumberSelected, -1/*EndOfList*/ );
-			printf("selected: %d\n", SecNumberSelected);
+			printf(":: section number selected: %d\n", SecNumberSelected);
 			SectionNbrSelected = SecNumberSelected;
 			RefreshSectionSelected( );
 		}
 		else
 		{
-			printf("No selection...\n");
+			printf(":: No selection...\n");
 		}
+	}
+}
+
+//added for combo event from main window (parameter = index defined sections list, not directly section number array !)
+void ChangeSectionSelectedFromComboIndex( int SectionIndexToSelect )
+{
+	int NumSec = 0;
+	int ComboIndex = 0;
+	int FoundSec = -1;
+	do
+	{
+		if ( SectionArray[ NumSec ].Used )
+		{
+			if( SectionIndexToSelect==ComboIndex )
+				FoundSec = NumSec;
+			ComboIndex++;
+		}
+		NumSec++;
+	}
+	while( NumSec<NBR_SECTIONS && FoundSec==-1 );
+	if( FoundSec!=-1 )
+	{
+		SectionNbrSelected = FoundSec;
+		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, FALSE/*RefreshComboSectionLists*/ );
+	}
+	else
+	{
+		printf("!!! Error in %s() no section found for index %d !!!\n", __FUNCTION__, SectionIndexToSelect);
 	}
 }
 
@@ -150,7 +208,7 @@ void TreeViewCursorChangedSignal( GtkTreeView * treeview, gpointer user_data )
 void ChangeSectionSelectedInManager( int SectionToSelect )
 {
 	SectionNbrSelected = SectionToSelect;
-	ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+	ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 }
 void SelectNextSectionInManager(void)
 {
@@ -158,7 +216,7 @@ void SelectNextSectionInManager(void)
 	if ( SearchSectionNext!=-1 )
 	{
 		SectionNbrSelected = SearchSectionNext;
-		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 	}
 }
 
@@ -168,7 +226,7 @@ void SelectPreviousSectionInManager(void)
 	if ( SearchSectionPrev!=-1 )
 	{
 		SectionNbrSelected = SearchSectionPrev;
-		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 	}
 }
 
@@ -186,7 +244,7 @@ void ButtonAddSectionDoneClickSignal( )
 		{
 			ModifySectionProperties( SectionNbrSelected /*pNameSectionSelected*/, pSectionNameEntered );
 			gtk_widget_hide( AddSectionWindow );
-			ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+			ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 		}
 		else
 		{
@@ -220,7 +278,7 @@ void ButtonAddSectionDoneClickSignal( )
 				else
 				{
 					SectionNbrSelected = NewSectionNbrAllocated;
-					ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+					ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 				}
 				gtk_widget_hide( AddSectionWindow );
 			}
@@ -305,7 +363,7 @@ void DeleteCurrentSection( )
 {
 	DelSection( SectionNbrSelected );
 	SectionNbrSelected = -1; // to select another section during list display
-	ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+	ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 }
 
 void ButtonDelClickSignal( )
@@ -357,7 +415,7 @@ void ButtonMoveUpClickSignal( )
 		{
 			ShowMessageBoxError( _("This section is already executed the first !") );
 		}
-		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 	}
 }
 void ButtonMoveDownClickSignal( )
@@ -382,7 +440,7 @@ void ButtonMoveDownClickSignal( )
 		{
 			ShowMessageBoxError( _("This section is already executed the latest !") );
 		}
-		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/ );
+		ManagerDisplaySections( FALSE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 	}
 }
 
@@ -415,8 +473,7 @@ void RememberManagerWindowPrefs( void )
 {
 //ForGTK3	char WindowIsOpened = GTK_WIDGET_VISIBLE( GTK_WINDOW(ManagerWindow) );
 	char WindowIsOpened = MY_GTK_WIDGET_VISIBLE( ManagerWindow );
-//TODO: when project opened (and we see that project have many sections), open this window !!! so for now just always opened per default...
-//	RememberWindowOpenPrefs( "Manager", WindowIsOpened );
+	RememberWindowOpenPrefs( "Manager", WindowIsOpened );
 	if ( WindowIsOpened )
 		RememberWindowPosiPrefs( "Manager", ManagerWindow, FALSE/*SaveWindowSize*/ );
 }
@@ -624,11 +681,11 @@ void ManagerInitGtk()
 	gtk_signal_connect( GTK_OBJECT(ManagerWindow), "delete_event",
 		GTK_SIGNAL_FUNC(ManagerWindowDeleteEvent), 0 );
 	gtk_window_set_icon_name (GTK_WINDOW( ManagerWindow ), GTK_STOCK_DND_MULTIPLE);
-RestoreWindowPosiPrefs( "Manager", ManagerWindow );
+//RestoreWindowPosiPrefs( "Manager", ManagerWindow );
 
 gtk_window_set_default_size ( GTK_WINDOW(ManagerWindow), -1, 130);
 
-gtk_widget_show (ManagerWindow);
+//gtk_widget_show (ManagerWindow);
 
 	AddSectionWindowInit( );
 }

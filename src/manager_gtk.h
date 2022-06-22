@@ -1,4 +1,5 @@
-void ManagerDisplaySections( char ForgetSectionSelected );
+void ManagerDisplaySections( char ForgetSectionSelected, char RefreshComboSectionLists );
+void ChangeSectionSelectedFromComboIndex( int SectionIndexToSelect );
 void ChangeSectionSelectedInManager( int SectionToSelect );
 void SelectNextSectionInManager(void);
 void SelectPreviousSectionInManager(void);
