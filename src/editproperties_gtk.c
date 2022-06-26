@@ -350,7 +350,7 @@ void PropertiesInitGtk()
 		
 		// Variables browser icon-button access
 		PropButVarSpyBrowser[ NumParam ] = gtk_button_new();
-		gtk_button_set_image( GTK_BUTTON( PropButVarSpyBrowser[ NumParam ] ), gtk_image_new_from_stock( GTK_STOCK_INDEX, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
+		gtk_button_set_image( GTK_BUTTON( PropButVarSpyBrowser[ NumParam ] ), gtk_image_new_from_icon_name( GTK_STOCK_INDEX, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
 		gtk_widget_set_tooltip_text( PropButVarSpyBrowser[ NumParam ], _("Variables browser") );
 		gtk_box_pack_start( GTK_BOX( hbox[NumParam] ), PropButVarSpyBrowser[ NumParam ], FALSE, FALSE, 0 );
 //		gtk_signal_connect( GTK_OBJECT(PropButVarSpyBrowser[ NumParam ]), "clicked", GTK_SIGNAL_FUNC(OpenBrowserVarsToReplace), PropEntryParam[NumParam] );

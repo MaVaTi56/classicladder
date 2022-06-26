@@ -1281,7 +1281,7 @@ void SearchInitGtk(GtkBox *vbox)
 		/*expand*/ FALSE, /*fill*/ FALSE, /*pad*/ 0, GTK_PACK_START);
 
 	ButtonSearchClose = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchClose ), gtk_image_new_from_stock( GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchClose ), gtk_image_new_from_icon_name( GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchClose, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchClose), "clicked", GTK_SIGNAL_FUNC(FunctionSearchCloseBox), 0 );
 	gtk_widget_show( ButtonSearchClose );
@@ -1304,19 +1304,19 @@ void SearchInitGtk(GtkBox *vbox)
 	gtk_signal_connect(GTK_OBJECT (SearchType), "changed", GTK_SIGNAL_FUNC(FunctionNewSearchData), NULL);
 
 	ButtonSearchNow = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchNow ), gtk_image_new_from_stock( GTK_STOCK_FIND, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchNow ), gtk_image_new_from_icon_name( GTK_STOCK_FIND, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start (GTK_BOX (hBoxSearch), ButtonSearchNow, FALSE, FALSE, 0);
 	gtk_signal_connect(GTK_OBJECT (ButtonSearchNow), "clicked", GTK_SIGNAL_FUNC(FunctionNewSearchData), 0);
 	gtk_widget_set_sensitive( ButtonSearchNow, TRUE );
 	gtk_widget_show( ButtonSearchNow );
 
 	ButtonSearchNext = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchNext ), gtk_image_new_from_stock( GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchNext ), gtk_image_new_from_icon_name( GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchNext, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchNext), "clicked", GTK_SIGNAL_FUNC(SearchAndGoToNextElement), 0 );
 	gtk_widget_show( ButtonSearchNext );
 	ButtonSearchPrev = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchPrev ), gtk_image_new_from_stock( GTK_STOCK_GO_BACK, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchPrev ), gtk_image_new_from_icon_name( GTK_STOCK_GO_BACK, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchPrev, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchPrev), "clicked", GTK_SIGNAL_FUNC(SearchAndGoToPreviousElement), 0 );
 	gtk_widget_show( ButtonSearchPrev );
@@ -1372,7 +1372,7 @@ void FileTransferInitGtk(GtkBox *vbox)
 	gtk_widget_show( FileTransferBar );
 	
 	FileTransferAbortButton = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( FileTransferAbortButton ), gtk_image_new_from_stock( GTK_STOCK_STOP, GTK_ICON_SIZE_BUTTON ) );
+	gtk_button_set_image( GTK_BUTTON( FileTransferAbortButton ), gtk_image_new_from_icon_name( GTK_STOCK_STOP, GTK_ICON_SIZE_BUTTON ) );
 	gtk_box_pack_start( GTK_BOX (hBoxFileTransfer), FileTransferAbortButton, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (FileTransferAbortButton), "clicked", GTK_SIGNAL_FUNC(TransferMasterAskToAbort), 0 );
 	gtk_widget_show( FileTransferAbortButton );

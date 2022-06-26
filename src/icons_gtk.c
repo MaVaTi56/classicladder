@@ -170,7 +170,7 @@ void DestroyCustomIconsAndCursors (void)
 	for (cnt=0; cnt<N_ICONS; cnt++)
 	{
 		if( MyCursor[cnt]!=NULL ) {
-			gdk_cursor_unref(MyCursor[cnt]);
+			g_object_unref(MyCursor[cnt]);
 			MyCursor[cnt] = NULL;
 		}
 
