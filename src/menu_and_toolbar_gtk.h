@@ -1,7 +1,7 @@
 
 GtkWidget * InitMenusAndToolBar( GtkWidget *vbox );
 void EnableDisableMenusAccordingSectionType( );
-void SetToogleMenuForSectionsManagerWindow( gboolean OpenedWin );
+void SetToggleMenuForSectionsManagerWindow( gboolean OpenedWin );
 void SetToggleMenuForEditorWindow( gboolean OpenedWin );
 void SetToggleMenuForSymbolsWindow( gboolean OpenedWin );
 void SetToggleMenuForBoolVarsWindow( gboolean OpenedWin );

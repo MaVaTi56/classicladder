@@ -75,7 +75,7 @@ void gtk_combo_box_set_active_text( GtkComboBox *p_combo_box, const gchar *text 
 // gtk_combo_box_get_active_text( ) - a newly allocated string containing the currently active text. Must be freed with g_free().
 
 
-void SetProperty(int NumParam,char * LblParam,char * ValParam, char ReadOnlyPropertie, char SetFocus)
+void SetProperty(int NumParam,char * LblParam,char * ValParam, char ReadOnlyProperty, char SetFocus)
 {
 	gtk_label_set_text((GtkLabel *)PropLabelParam[NumParam],LblParam);
 	if (strcmp(LblParam,_("Base"))==0)
@@ -119,7 +119,7 @@ void SetProperty(int NumParam,char * LblParam,char * ValParam, char ReadOnlyProp
 		gtk_widget_hide(PropEntryTimerModeParam[NumParam]);
 		gtk_widget_hide(PropEntryRegisterModeParam[NumParam]);
 		gtk_entry_set_text(GTK_ENTRY(PropEntryParam[NumParam]),ValParam);
-		gtk_widget_set_sensitive( PropEntryParam[NumParam], !ReadOnlyPropertie );
+		gtk_widget_set_sensitive( PropEntryParam[NumParam], !ReadOnlyProperty );
 		if (SetFocus)
 			gtk_widget_grab_focus( PropEntryParam[NumParam] );
 	}

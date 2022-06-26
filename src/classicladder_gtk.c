@@ -943,14 +943,14 @@ void DoActionAboutClassicLadder()
 		strcpy( comments, "("CL_RELEASE_DATE_STRING")\n\n" );
 		strcat( comments, GtkVersionString );
 		strcat( comments, static_comments );
-		strcat( comments, "http://www.sourceforge.net/projects/classicladder\n" );
+		strcat( comments, "https://www.sourceforge.net/projects/classicladder\n" );
 		gtk_show_about_dialog ( GTK_WINDOW( MainSectionWindow ),
 							"program-name", CL_PRODUCT_NAME ,
 							"version", CL_RELEASE_VER_STRING ,
 							"copyright", "Copyright (C) " CL_RELEASE_COPYRIGHT_YEARS " Marc Le Douarain\nmarc . le - douarain /At\\ laposte \\DoT/ net" ,
 //							"logo", example_logo,
 							"title", _("About ClassicLadder"),
-							"website", "http://sites.google.com/site/classicladder" ,
+							"website", "https://sites.google.com/site/classicladder" ,
 							"comments", comments ,
 					   NULL );
 		free( comments );
@@ -1765,7 +1765,7 @@ printf("<<<<<<<<<<========== INIT GTK WINDOWS ==========>>>>>>>>>>\n");
 	FramesLogWindowsInitGtk( );
 	// restore each window open/closed state at startup !
 	if ( GetWindowOpenPrefs( "Manager", FALSE/*OpenedPerDefault*/ ) )
-		SetToogleMenuForSectionsManagerWindow( TRUE );
+		SetToggleMenuForSectionsManagerWindow( TRUE );
 	if ( GetWindowOpenPrefs( "Edit", FALSE/*OpenedPerDefault*/ ) )
 		SetToggleMenuForEditorWindow( TRUE );
 	if ( GetWindowOpenPrefs( "Symbols", FALSE/*OpenedPerDefault*/ ) )

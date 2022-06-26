@@ -58,7 +58,7 @@ int ModbusRequestToRespond( unsigned char * Question, int LgtQuestion, unsigned 
 				int NbrRealBytes = (NbrBits+7)/8;
 				int ScanByte, ScanBit;
 				// validity request verify
-				if ( FirstBit+1+NbrRealBytes*8>GetMobdusSlaveNbrVars( FunctionCode ) )
+				if ( FirstBit+1+NbrRealBytes*8>GetModbusSlaveNbrVars( FunctionCode ) )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
 				if ( NbrBits>2000 )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
@@ -98,7 +98,7 @@ int ModbusRequestToRespond( unsigned char * Question, int LgtQuestion, unsigned 
 				int FirstWord = (Question[1]<<8) | Question[2];
 				int NbrWords = (Question[3]<<8) | Question[4];
 				// validity request verify
-				if ( FirstWord+1+NbrWords>GetMobdusSlaveNbrVars( FunctionCode ) )
+				if ( FirstWord+1+NbrWords>GetModbusSlaveNbrVars( FunctionCode ) )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
 				if ( NbrWords>200 )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
@@ -134,7 +134,7 @@ int ModbusRequestToRespond( unsigned char * Question, int LgtQuestion, unsigned 
 				ValueBit = ValueBit | Question[ OffsetQuest++ ];
 			
 				// validity request verify
-				if ( FirstBit+1>GetMobdusSlaveNbrVars( FunctionCode ) )
+				if ( FirstBit+1>GetModbusSlaveNbrVars( FunctionCode ) )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
 				if ( ValueBit!=MODBUS_BIT_ON && ValueBit!=MODBUS_BIT_OFF )
 					ErrorCode = MODBUS_ILLEGAL_DATA_VALUE;
@@ -160,7 +160,7 @@ int ModbusRequestToRespond( unsigned char * Question, int LgtQuestion, unsigned 
 				int FirstBit = (Question[1]<<8) | Question[2];
 				int NbrBits = (Question[3]<<8) | Question[4];
 				// validity request verify
-				if ( FirstBit+1+NbrBits>GetMobdusSlaveNbrVars( FunctionCode ) )
+				if ( FirstBit+1+NbrBits>GetModbusSlaveNbrVars( FunctionCode ) )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
 				if ( NbrBits>2000 )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
@@ -220,7 +220,7 @@ int ModbusRequestToRespond( unsigned char * Question, int LgtQuestion, unsigned 
 						ErrorCode = MODBUS_ILLEGAL_DATA_VALUE;
 				}
 				// request verify
-				if ( FirstWord+1+NbrWords>GetMobdusSlaveNbrVars( FunctionCode ) )
+				if ( FirstWord+1+NbrWords>GetModbusSlaveNbrVars( FunctionCode ) )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
 				if ( NbrWords>200 )
 					ErrorCode = MODBUS_ILLEGAL_DATA_ADDRESS;
@@ -274,7 +274,7 @@ int ModbusRequestToRespond( unsigned char * Question, int LgtQuestion, unsigned 
 }
 
 
-int GetMobdusSlaveNbrVars( unsigned char FunctCode )
+int GetModbusSlaveNbrVars( unsigned char FunctCode )
 {
 	switch( FunctCode )
 	{

@@ -6,7 +6,7 @@
 /* --------------------------- */
 /* Editor for Sequential Pages */
 /* --------------------------- */
-/* This part of the editor is the one who will not change even if if we use */
+/* This part of the editor is the one who will not change even if we use */
 /* another gui instead of gtk... who know? */
 /* ------------------------------------------------------------- */
 /* This library is free software; you can redistribute it and/or */
@@ -117,35 +117,35 @@ void LoadSeqElementProperties( void )
 	char * TextFalse = _("False");
 	int NumParam;
 	for(NumParam=0;NumParam<NBR_PARAMS_PER_OBJ;NumParam++)
-		SetProperty(NumParam,"---","", TRUE/*ReadOnlyPropertie*/, FALSE/*SetFocus*/);
+		SetProperty(NumParam,"---","", TRUE/*ReadOnlyProperty*/, FALSE/*SetFocus*/);
 	if ( TypeSeqEleEdited!=-1 )
 	{
 		switch( TypeSeqEleEdited )
 		{
 			case ELE_SEQ_STEP:
 				sprintf( TextToWrite, "%d", EditSeqDatas.Step[ OffsetSeqEleEdited ].StepNumber );
-				SetProperty(0,_("Step Nbr"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(0,_("Step Nbr"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				sprintf( TextToWrite, "%s", EditSeqDatas.Step[ OffsetSeqEleEdited ].InitStep?TextTrue:TextFalse );
-				SetProperty(1,_("Init. Step"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+				SetProperty(1,_("Init. Step"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 				break;
 			case ELE_SEQ_TRANSITION:
 				{
 					StrTransition * pTransi = &EditSeqDatas.Transition[ OffsetSeqEleEdited ];
 					strcpy( TextToWrite, CreateVarName( pTransi->VarTypeCondi,
 						pTransi->VarNumCondi, Preferences.DisplaySymbolsInMainWindow/*InfosGene->DisplaySymbols*/ ) );
-					SetProperty(0,_("Variable"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+					SetProperty(0,_("Variable"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 					BuffStepListToDisplay( TextToWrite, pTransi->NumStepToDesactiv, TRUE/*ConvertInStepNumber*/ );
-					SetProperty(1,_("StepsToReset"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+					SetProperty(1,_("StepsToReset"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 					BuffStepListToDisplay( TextToWrite, pTransi->NumStepToActiv, TRUE/*ConvertInStepNumber*/ );
-					SetProperty(2,_("StepsToSet"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+					SetProperty(2,_("StepsToSet"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 					BuffStepListToDisplay( TextToWrite, pTransi->NumTransLinkedForStart, FALSE/*ConvertInStepNumber*/ );
-					SetProperty(3,_("OrTransisStart"),TextToWrite,TRUE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+					SetProperty(3,_("OrTransisStart"),TextToWrite,TRUE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 					BuffStepListToDisplay( TextToWrite, pTransi->NumTransLinkedForEnd, FALSE/*ConvertInStepNumber*/ );
-					SetProperty(4,_("OrTransisEnd"),TextToWrite,TRUE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+					SetProperty(4,_("OrTransisEnd"),TextToWrite,TRUE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 				}
 				break;
 			case ELE_SEQ_COMMENT:
-				SetProperty(0, _("Comment"), EditSeqDatas.SeqComment[ OffsetSeqEleEdited ].Comment,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(0, _("Comment"), EditSeqDatas.SeqComment[ OffsetSeqEleEdited ].Comment,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				break;
 		}
 	}
