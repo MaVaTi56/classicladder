@@ -430,11 +430,7 @@ int GetModbusResponseLenghtToReceive( void )
 					LgtResp = LgtResp + (NbrEles*2)+1;  //2 bytes per data and 1 byte for number of datas (max 125)
 					break;
 				case MODBUS_FC_FORCE_COIL:
-					LgtResp = LgtResp+4; // 2 bytes for address, 2 for data
-					break;
 				case MODBUS_FC_FORCE_COILS:
-					LgtResp = LgtResp+4; // 2 bytes for address, 2 for data
-					break;
 				case MODBUS_FC_WRITE_HOLD_REG:
 					LgtResp = LgtResp+4; // 2 bytes for address, 2 for data
 					break;
@@ -817,10 +813,8 @@ int GetVarForModbus( StrModbusMasterReq * ModbusReq, int ModbusNum )
 		{
 			case MODBUS_REQ_COILS_WRITE:
 				return ReadVar( ModbusConfig.MapTypeForWriteCoils, VarNum );
-				break;
 			case MODBUS_REQ_HOLD_REGS_WRITE:
 				return ReadVar( ModbusConfig.MapTypeForWriteHoldRegs, VarNum );
-				break;
 		}
 	}
 	return 0;
@@ -863,7 +857,7 @@ int GetCurrentNumSlaveForStats( void )
 int GetNbrTotalSlaveForStats( void )
 {
 	int TotSlaves = 0;
-	int SlaveScan = 0;
+	int SlaveScan;
 	for( SlaveScan=0; SlaveScan<NBR_MODBUS_SLAVES; SlaveScan++ )
 	{
 		if ( ModbusSlaveList[ SlaveScan ].SlaveAdr[ 0 ]!='\0' )

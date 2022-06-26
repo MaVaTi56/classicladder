@@ -444,7 +444,7 @@ printf("[[[ In %s(), will alloc '%d' TimersIEC... ]]]\n", __FUNCTION__, NBR_TIME
 		debug_printf("Failed to alloc RegisterArray !\n");
 		return FALSE;
 	}
-printf("[[[ In %s(), will alloc '%d' datas for %d registers... ]]]\n", __FUNCTION__, NBR_REGISTERS * REGISTER_LIST_SIZE * sizeof(int), NBR_REGISTERS );
+printf("[[[ In %s(), will alloc '%ld' datas for %d registers... ]]]\n", __FUNCTION__, NBR_REGISTERS * REGISTER_LIST_SIZE * sizeof(int), NBR_REGISTERS );
 	RegistersListsDatas = (int *)MyMalloc( "RegistersLists", NBR_REGISTERS * REGISTER_LIST_SIZE * sizeof(int) );
 	if (!RegistersListsDatas)
 	{

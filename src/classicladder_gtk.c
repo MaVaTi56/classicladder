@@ -720,8 +720,7 @@ void DoTheSave()
 			strcpy( InfosGene->ProjectProperties.ParamModifDate, BuffCurrTime );
 			if ( InfosGene->ProjectProperties.ParamVersion[ 0 ]>='0' && InfosGene->ProjectProperties.ParamVersion[ 0 ]<='9' )
 			{
-				int version = 0;
-				version = atoi( InfosGene->ProjectProperties.ParamVersion );
+				int version = atoi( InfosGene->ProjectProperties.ParamVersion );
 				version++;
 				sprintf( InfosGene->ProjectProperties.ParamVersion, "%d", version );
 			}
@@ -1589,8 +1588,8 @@ void RedrawSignalDrawingArea( void )
 
 static gint PeriodicUpdateDisplay(gpointer data)
 {
-if ( InfosGene==NULL )
-	return 1;
+	if ( InfosGene==NULL )
+		return 1;
 //Dec.2016, for MSYS2/Win32!!! gdk_threads_enter();
 	if ( InfosGene->LadderState==STATE_RUN || InfosGene->LadderState==STATE_RUN_FOR_ONE_CYCLE || InfosGene->LadderState==STATE_RUN_FREEZE )
 	{

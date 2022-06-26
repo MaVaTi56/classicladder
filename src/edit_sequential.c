@@ -75,7 +75,7 @@ void BuffStepListToDisplay( char * Buff, short int StepsOrTransisList[ NBR_SWITC
 }
 void ConvertUserStepsList( int * UserStepsList, short int * StepsList )
 {
-	int ScanStep = 0;
+	int ScanStep;
 	int ScanOut = 0;
 	for ( ScanStep = 0; ScanStep<NBR_SWITCHS_MAX; ScanStep++ )
 		StepsList[ ScanStep ] = -1;
@@ -374,7 +374,7 @@ printf("found free comment=%d!!!\n", Result );
 void DestroyStep( int Offset )
 {
 	StrStep * pStep = &EditSeqDatas.Step[ Offset ];
-	int ScanTransi = 0;
+	int ScanTransi;
 	StrTransition * pTransi;
 	int NumPageTmp = pStep->NumPage;
 	pStep->NumPage = -1;
@@ -429,7 +429,7 @@ int CreateStep( int page, int x, int y, char init )
 		if ( TopStepForAutoNumber==-1 )
 		{
 			// search next step number available...
-			int ScanStep = 0;
+			int ScanStep;
 			for( ScanStep=0; ScanStep<NBR_STEPS; ScanStep++ )
 			{
 				StrStep * pScanStep = &EditSeqDatas.Step[ ScanStep ];
@@ -671,7 +671,7 @@ char CommonSearchForManyStepsOrTransi( char ForManySteps, int TypeEle1, int OffE
 		RightX = Ele2X;
 
 	if ( pOffsetTransiFound!=NULL )
-	*pOffsetTransiFound = OffsetTransiFound;
+		*pOffsetTransiFound = OffsetTransiFound;
 	if ( pStepsBaseY!=NULL )
 		*pStepsBaseY = StepsBaseY;
 	if ( pTransitionsBaseY!=NULL )

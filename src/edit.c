@@ -117,10 +117,9 @@ int ConvRegisterModeInTextToId(char * text)
 
 int ConvLabelToNumRung(char * LabelName)
 {
-	int ScanRung = 0;
 	int RungFound = -1;
 	int Done = FALSE;
-	ScanRung = InfosGene->FirstRung;
+	int ScanRung = InfosGene->FirstRung;
 	do
 	{
 		if (strcmp(RungArray[ScanRung].Label,LabelName)==0)
@@ -297,14 +296,13 @@ char * GetElementPropertiesForStatusBar(StrElement * Element)
 /* return TRUE if okay */
 int TextToNumber(char * text,int ValMin,int ValMaxi,int *ValFound)
 {
-	int IsOk = TRUE;
 	int Value;
 	Value = atoi(text);
 	if ( (Value<ValMin) || (Value>ValMaxi) )
-		IsOk = FALSE;
-	if (IsOk)
-		*ValFound = Value;
-	return IsOk;
+		return FALSE;
+
+	*ValFound = Value;
+	return TRUE;
 }
 
 /* Convert a string of arithmetic expression for the arithm_eval format : */
@@ -1237,13 +1235,11 @@ int SetDefaultVariableForElement(int NumElement)
 			case ELE_RISING_INPUT:
 			case ELE_FALLING_INPUT:
 				return DEFAULT_VAR_FOR_CONTACT; //variables %I
-				break;
 			case ELE_OUTPUT:
 			case ELE_OUTPUT_NOT:
 			case ELE_OUTPUT_SET:
 			case ELE_OUTPUT_RESET:
 				return DEFAULT_VAR_FOR_COIL; //variables %Q
-				break;
 	}
 	return -1;
 }

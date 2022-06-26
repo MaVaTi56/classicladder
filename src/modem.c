@@ -171,7 +171,7 @@ printf( "modem: CommandToSend='%s' - Timeout=%d\n", StrCommand, TimeOutSeconds )
 			{
 				int WaitTime = (TimeOutSeconds*1000)/MODEM_PAUSE_TIME;
 				ModemReturnsError = FALSE;
-				sprintf( BuffMsgDebug, "Send:%s (size=%d) (wait=%dms)", StartCommand, strlen( StartCommand ), WaitTime*MODEM_PAUSE_TIME );
+				sprintf( BuffMsgDebug, "Send:%s (size=%ld) (wait=%dms)", StartCommand, strlen( StartCommand ), WaitTime*MODEM_PAUSE_TIME );
 				ModemDebugMsg( '<', BuffMsgDebug );
 				if ( strcmp( StartCommand, "+++" )==0 || StartCommand[ strlen(StartCommand)-1 ]==0x1A /*End marker for SMS*/ )
 					strcpy( BuffSendCmd, StartCommand );
