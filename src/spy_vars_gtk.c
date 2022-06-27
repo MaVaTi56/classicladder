@@ -74,7 +74,6 @@ GdkPixbuf *PixBufOutputOff;
 GdkPixbuf *PixBufOutputOn;
 
 
-GtkWidget *SetUnsetDialog;
 int TypeSetUnsetVar = -1;
 int OffsetSetUnsetVar = -1;
 
@@ -101,11 +100,8 @@ GtkWidget * TargetInfoEntry[ NBR_TARGET_INFOS ];
 #define NBR_PROJECT_INFOS 8
 GtkWidget * ProjectInfoEntry[ NBR_PROJECT_INFOS ];
 
-void DoFunctionSetOrUnsetVar( GtkWidget *widget, void * data_action )
+void DoFunctionSetOrUnsetVar( int DataAction )
 {
-//	long DataAction = (int)data_action;
-	int DataAction = GPOINTER_TO_INT(data_action);
-	gtk_widget_destroy(SetUnsetDialog);
 	if ( InfosGUI->TargetMonitor.RemoteConnected )
 	{
 		InfosGUI->TargetMonitor.AskTargetToSetOrUnsetVarType = TypeSetUnsetVar;
@@ -124,42 +120,29 @@ void DoFunctionSetOrUnsetVar( GtkWidget *widget, void * data_action )
 }
 void ShowAskBoxToSetOrUnset( )
 {
-	/* From the example in gtkdialog help */
-	GtkWidget *label, *Set1Button, *Set0Button, *UnsetButton;
+	GtkWidget *label;
 	GtkWidget *DialogContentArea;
-	GtkWidget *DialogActionArea;
-	/* Create the widgets */
-	SetUnsetDialog = gtk_dialog_new();
-	//ForGTK3
-	DialogContentArea = gtk_dialog_get_content_area(GTK_DIALOG(SetUnsetDialog));
-	DialogActionArea = gtk_dialog_get_action_area(GTK_DIALOG(SetUnsetDialog));
+	GtkWidget *dialog;
+	int response;
+
+	dialog = gtk_dialog_new_with_buttons(_("Set/UnSet variable"),
+										 NULL,
+										 GTK_DIALOG_MODAL,
+										 _("Set to 1"), 1,
+										 _("Set to 0"), 2,
+										 _("UnSet"), 0,
+										 NULL);
+	gtk_window_set_position(GTK_WINDOW(dialog),GTK_WIN_POS_CENTER);
+	gtk_dialog_set_default_response (GTK_DIALOG(dialog), 0);
+
+	DialogContentArea = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
 	label = gtk_label_new ( CreateVarName(TypeSetUnsetVar,OffsetSetUnsetVar,Preferences.DisplaySymbolsInMainWindow/*InfosGene->DisplaySymbols*/) );
-	Set1Button = gtk_button_new_with_label( _("Set to 1") );
-	Set0Button = gtk_button_new_with_label( _("Set to 0") );
-	UnsetButton = gtk_button_new_with_label( _("UnSet") );
-	/* Ensure that the dialog box is destroyed when the user clicks ok. */
-//	gtk_signal_connect_object (GTK_OBJECT (no_button), "clicked",
-//							GTK_SIGNAL_FUNC (gtk_widget_destroy), GTK_OBJECT(SetUnsetDialog));
-	gtk_signal_connect(GTK_OBJECT (Set1Button), "clicked",
-							GTK_SIGNAL_FUNC (DoFunctionSetOrUnsetVar), (void *)1);
-//ForGTK3	gtk_container_add (GTK_CONTAINER (GTK_DIALOG(SetUnsetDialog)->action_area), Set1Button);
-	gtk_container_add (GTK_CONTAINER(DialogActionArea), Set1Button);
-	gtk_signal_connect(GTK_OBJECT (Set0Button), "clicked",
-							GTK_SIGNAL_FUNC (DoFunctionSetOrUnsetVar), (void *)2);
-//ForGTK3	gtk_container_add (GTK_CONTAINER (GTK_DIALOG(SetUnsetDialog)->action_area), Set0Button);
-	gtk_container_add (GTK_CONTAINER(DialogActionArea), Set0Button);
-	gtk_signal_connect(GTK_OBJECT (UnsetButton), "clicked",
-							GTK_SIGNAL_FUNC (DoFunctionSetOrUnsetVar), (void *)0);
-//ForGTK3	gtk_container_add (GTK_CONTAINER (GTK_DIALOG(SetUnsetDialog)->action_area), UnsetButton);
-	gtk_container_add (GTK_CONTAINER(DialogActionArea), UnsetButton);
-	/* Add the label, and show everything we've added to the dialog. */
-//ForGTK3	gtk_container_add (GTK_CONTAINER (GTK_DIALOG(SetUnsetDialog)->vbox), label);
 	gtk_container_add (GTK_CONTAINER(DialogContentArea), label);
-	gtk_widget_grab_focus(UnsetButton);
-	gtk_window_set_modal(GTK_WINDOW(SetUnsetDialog),TRUE);
-	gtk_window_set_title(GTK_WINDOW(SetUnsetDialog), _("Set/UnSet variable") );
-	gtk_window_set_position(GTK_WINDOW(SetUnsetDialog),GTK_WIN_POS_CENTER);
-	gtk_widget_show_all (SetUnsetDialog);
+	gtk_widget_show_all (dialog);
+
+	response = gtk_dialog_run(GTK_DIALOG(dialog));
+	DoFunctionSetOrUnsetVar(response);
+	gtk_widget_destroy(dialog);
 }
 
 static gint chkvar_press_event( GtkWidget * widget, void * numcheck )
