@@ -249,7 +249,7 @@ static void draw_page( GtkPrintOperation *operation, GtkPrintContext   *context,
 			while( !SectionArray[ ScanSectionToPrint ].Used );
 			if ( SectionArray[ ScanSectionToPrint ].Used )
 			{
-				int iCurrentLanguage = SectionArray[ ScanSectionToPrint ].Language;
+				iCurrentLanguage = SectionArray[ ScanSectionToPrint ].Language;
 				if ( iCurrentLanguage==SECTION_IN_LADDER )
 					ScanRungToPrint = SectionArray[ ScanSectionToPrint ].FirstRung;
 			}

@@ -77,7 +77,7 @@ void InitPreferences( void )
 	NetworkConfigDatas.ServerDNS2[0] = '\0';
 	NetworkConfigDatas.HostName[0] = '\0';
 	SetsVarsFile[ 0 ] = '\0';
-};
+}
 
 void GetPrefsFilePathAndName( void )
 {

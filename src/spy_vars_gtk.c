@@ -426,7 +426,7 @@ gtk_entry_set_width_chars( GTK_ENTRY(offsetboolvar[ ColumnVar ]), 4 );
 //				gtk_container_add (GTK_CONTAINER (vboxboolvars[ ColumnVar ]), hboxinpoutvars[ ColumnVar-1 ][ OffVar ]);
 
 				ButSetBoolVar[ ColumnVar-1 ][ OffVar ] = gtk_button_new();
-				gtk_button_set_image( GTK_BUTTON( ButSetBoolVar[ ColumnVar-1 ][ OffVar ] ), gtk_image_new_from_stock( GTK_STOCK_GOTO_LAST, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
+				gtk_button_set_image( GTK_BUTTON( ButSetBoolVar[ ColumnVar-1 ][ OffVar ] ), gtk_image_new_from_icon_name( GTK_STOCK_GOTO_LAST, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
 				gtk_widget_set_tooltip_text( ButSetBoolVar[ ColumnVar-1 ][ OffVar ], (ColumnVar>=2)?(_("Set/Unset output")):(_("Set/Unset input")) );
 				gtk_box_pack_start( GTK_BOX(hboxinpoutvars[ ColumnVar-1 ][ OffVar ]), ButSetBoolVar[ ColumnVar-1 ][ OffVar ], FALSE, FALSE, 0 );
 				gtk_signal_connect( GTK_OBJECT(ButSetBoolVar[ ColumnVar-1 ][ OffVar ]), "clicked", GTK_SIGNAL_FUNC(buttoninpout_clicked_event), (void*)NumCheckWidget );
@@ -875,7 +875,7 @@ gtk_entry_set_width_chars( GTK_ENTRY(EntryVarSpy[ NumEntry ]), (ColumnVar==0)?15
                               
 	                // add variables browser icon-button access
 					ButVarSpyBrowser[ NumEntry ] = gtk_button_new();
-					gtk_button_set_image( GTK_BUTTON( ButVarSpyBrowser[ NumEntry ] ), gtk_image_new_from_stock( GTK_STOCK_INDEX, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
+					gtk_button_set_image( GTK_BUTTON( ButVarSpyBrowser[ NumEntry ] ), gtk_image_new_from_icon_name( GTK_STOCK_INDEX, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
 					gtk_widget_set_tooltip_text( ButVarSpyBrowser[ NumEntry ], _("Variables browser") );
 					gtk_box_pack_start( GTK_BOX( hboxfreevars[ NumLine ] ), ButVarSpyBrowser[ NumEntry ], FALSE, FALSE, 0 );
 					gtk_signal_connect( GTK_OBJECT(ButVarSpyBrowser[ NumEntry ]), "clicked", GTK_SIGNAL_FUNC(OpenBrowserVarsToReplace), EntryVarSpy[ NumEntry ] );

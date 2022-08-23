@@ -6,7 +6,7 @@
 /* ------ */
 /* Editor */
 /* ------ */
-/* This part of the editor is the one who will not change even if if we use */
+/* This part of the editor is the one who will not change even if we use */
 /* another gui instead of gtk... who know? */
 /* ------------------------------------------------------------- */
 /* This library is free software; you can redistribute it and/or */
@@ -117,10 +117,9 @@ int ConvRegisterModeInTextToId(char * text)
 
 int ConvLabelToNumRung(char * LabelName)
 {
-	int ScanRung = 0;
 	int RungFound = -1;
 	int Done = FALSE;
-	ScanRung = InfosGene->FirstRung;
+	int ScanRung = InfosGene->FirstRung;
 	do
 	{
 		if (strcmp(RungArray[ScanRung].Label,LabelName)==0)
@@ -146,7 +145,7 @@ void LoadElementProperties(StrElement * Element)
 	StrTimerIEC * TimerIEC = NULL;
 	StrRegister * Register = NULL;
 	for(NumParam=0;NumParam<NBR_PARAMS_PER_OBJ;NumParam++)
-		SetProperty(NumParam,"---","",TRUE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+		SetProperty(NumParam,"---","",TRUE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 	if (Element)
 	{
 		switch(Element->Type)
@@ -161,14 +160,14 @@ void LoadElementProperties(StrElement * Element)
 			case ELE_OUTPUT_RESET:
 //				strcpy(TextToWrite,CreateVarName(Element->VarType,Element->VarNum));
 				CreateVarNameForElement( TextToWrite, Element, Preferences.DisplaySymbolsInMainWindow/*InfosGene->DisplaySymbols*/ );
-				SetProperty(0, _("Variable"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(0, _("Variable"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				break;
 			case ELE_OUTPUT_JUMP:
-				SetProperty(0, _("JumpToLabel"),RungArray[Element->VarNum].Label,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(0, _("JumpToLabel"),RungArray[Element->VarNum].Label,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				break;
 			case ELE_OUTPUT_CALL:
 				sprintf(TextToWrite,"%d",Element->VarNum);
-				SetProperty(0, _("Sub-Routine"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(0, _("Sub-Routine"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				break;
 #ifdef OLD_TIMERS_MONOS_SUPPORT
 			case ELE_TIMER:
@@ -193,33 +192,33 @@ void LoadElementProperties(StrElement * Element)
 			case ELE_COUNTER:
 				Counter = &CounterArray[Element->VarNum];
 				sprintf(TextToWrite,"%d",Element->VarNum);
-				SetProperty(0, _("CounterNbr"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+				SetProperty(0, _("CounterNbr"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 				sprintf(TextToWrite,"%d",Counter->Preset);
-				SetProperty(1, _("Preset"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(1, _("Preset"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				break;
 			case ELE_TIMER_IEC:
 				TimerIEC = &NewTimerArray[Element->VarNum];
 				sprintf(TextToWrite,"%d",Element->VarNum);
-				SetProperty(0, _("TimerNbr"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+				SetProperty(0, _("TimerNbr"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 				sprintf(TextToWrite,"%s",CorresDatasForBase[ ConvBaseInMilliSecsToId(TimerIEC->Base) ].ParamSelect);
-				SetProperty(1, _("Base"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+				SetProperty(1, _("Base"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 				sprintf(TextToWrite,"%d",TimerIEC->Preset);
-				SetProperty(2, _("Preset"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(2, _("Preset"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 printf( "LoadElementProperties, TimerIEC%d:TimerMode=%d\n",Element->VarNum,TimerIEC->TimerMode ); 
 				sprintf(TextToWrite,"%s",TimersModesStrings[ (int)TimerIEC->TimerMode ]);
-				SetProperty(3, _("TimerMode"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+				SetProperty(3, _("TimerMode"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 				break;
 			case ELE_REGISTER:
 				Register = &RegisterArray[Element->VarNum];
 				sprintf(TextToWrite,"%d",Element->VarNum);
-				SetProperty(0, _("RegisterNbr"),TextToWrite,FALSE/*ReadOnlyPropertie*/,FALSE/*SetFocus*/);
+				SetProperty(0, _("RegisterNbr"),TextToWrite,FALSE/*ReadOnlyProperty*/,FALSE/*SetFocus*/);
 				sprintf(TextToWrite,"%s",RegistersModesStrings[ (int)Register->RegisterMode ]);
-				SetProperty(1, _("RegisterMode"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(1, _("RegisterMode"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				break;
 			case ELE_COMPAR:
 			case ELE_OUTPUT_OPERATE:
 				strcpy(TextToWrite,DisplayArithmExpr(EditArithmExpr[Element->VarNum].Expr,Preferences.DisplaySymbolsInMainWindow/*InfosGene->DisplaySymbols*/));
-				SetProperty(0, _("Expression"),TextToWrite,FALSE/*ReadOnlyPropertie*/,TRUE/*SetFocus*/);
+				SetProperty(0, _("Expression"),TextToWrite,FALSE/*ReadOnlyProperty*/,TRUE/*SetFocus*/);
 				break;
 		}
 	}
@@ -297,14 +296,13 @@ char * GetElementPropertiesForStatusBar(StrElement * Element)
 /* return TRUE if okay */
 int TextToNumber(char * text,int ValMin,int ValMaxi,int *ValFound)
 {
-	int IsOk = TRUE;
 	int Value;
 	Value = atoi(text);
 	if ( (Value<ValMin) || (Value>ValMaxi) )
-		IsOk = FALSE;
-	if (IsOk)
-		*ValFound = Value;
-	return IsOk;
+		return FALSE;
+
+	*ValFound = Value;
+	return TRUE;
 }
 
 /* Convert a string of arithmetic expression for the arithm_eval format : */
@@ -692,7 +690,7 @@ void SetUsedStateFunctionBlock( int Type, int Num, char Val )
 	}
 }
 // update the lists with the functions blocks number already used in the rungs defined
-void CopyUsedFonctionBlockBeforeEdit( )
+void CopyUsedFunctionBlockBeforeEdit( )
 {
 	int ScanBlock;
 	int ScanRung;
@@ -848,7 +846,7 @@ char AddRung()
 		AdjustLabelCommentEntriesToSection( SECTION_IN_LADDER );
 		ClearLabelCommentEntries();
 		CopyCurrentArithmExpr();
-		CopyUsedFonctionBlockBeforeEdit( );
+		CopyUsedFunctionBlockBeforeEdit( );
 	}
 	return EditDatas.NumRung>=0;
 }
@@ -870,7 +868,7 @@ void ModifyCurrentRung()
 	EditDatas.ElementUnderEdit = NULL;
 	AdjustLabelCommentEntriesToSection( SECTION_IN_LADDER );
 	CopyCurrentArithmExpr();
-	CopyUsedFonctionBlockBeforeEdit( );
+	CopyUsedFunctionBlockBeforeEdit( );
 }
 
 void DeleteCurrentRung()
@@ -1237,13 +1235,11 @@ int SetDefaultVariableForElement(int NumElement)
 			case ELE_RISING_INPUT:
 			case ELE_FALLING_INPUT:
 				return DEFAULT_VAR_FOR_CONTACT; //variables %I
-				break;
 			case ELE_OUTPUT:
 			case ELE_OUTPUT_NOT:
 			case ELE_OUTPUT_SET:
 			case ELE_OUTPUT_RESET:
 				return DEFAULT_VAR_FOR_COIL; //variables %Q
-				break;
 	}
 	return -1;
 }

@@ -420,7 +420,7 @@ void EnableDisableMenusAccordingSectionType( )
 }
 
 // called at startup (if window saved open or not), and when window closed...
-void SetToogleMenuForSectionsManagerWindow( gboolean OpenedWin )
+void SetToggleMenuForSectionsManagerWindow( gboolean OpenedWin )
 {
 	GtkWidget *ToggleElement = gtk_ui_manager_get_widget( uiManager, "/MenuBar/ViewMenuAction/ViewSectionsAction" );
 //ForGTK3	gtk_check_menu_item_set_state( GTK_CHECK_MENU_ITEM(ToggleElement), OpenedWin );

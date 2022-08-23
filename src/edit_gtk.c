@@ -361,7 +361,7 @@ void EditorButtonsAccordingSectionType( )
 		gtk_widget_show( ToolbarDatas[ NUM_TOOLBAR_FOR_SEQ ].ToolbarTable );
 #endif
 	}
-    else
+	else
 	{
 #ifdef SEQUENTIAL_SUPPORT
 		gtk_widget_hide( ToolbarDatas[ NUM_TOOLBAR_FOR_SEQ ].ToolbarTable );
@@ -631,7 +631,7 @@ printf( "Ghost Size %d,%d for type=%d\n", EditDatas.GhostZoneSizeX, EditDatas.Gh
 
 void InitAllForToolbar( void )
 {
-	int ScanToolbar = 0;
+	int ScanToolbar;
 	for ( ScanToolbar=0; ScanToolbar<NBR_TOOLBARS; ScanToolbar++ )
 	{
 		int ScanX,ScanY;

@@ -94,16 +94,13 @@ int GetNbrVarsForType( int TypeVar )
 #endif
 #ifdef OLD_TIMERS_MONOS_SUPPORT
 		case VAR_TIMER_DONE:
-			return NBR_TIMERS;
 		case VAR_TIMER_RUNNING:
 			return NBR_TIMERS;
 		case VAR_MONOSTABLE_RUNNING:
 			return NBR_MONOSTABLES;
 #endif
 		case VAR_COUNTER_DONE:
-			return NBR_COUNTERS;
 		case VAR_COUNTER_EMPTY:
-			return NBR_COUNTERS;
 		case VAR_COUNTER_FULL:
 			return NBR_COUNTERS;
 		case VAR_TIMER_IEC_DONE:
@@ -125,20 +122,16 @@ int GetNbrVarsForType( int TypeVar )
 #endif
 #ifdef OLD_TIMERS_MONOS_SUPPORT
 		case VAR_TIMER_PRESET:
-			return NBR_TIMERS;
 		case VAR_TIMER_VALUE:
 			return NBR_TIMERS;
 		case VAR_MONOSTABLE_PRESET:
-			return NBR_MONOSTABLES;
 		case VAR_MONOSTABLE_VALUE:
 			return NBR_MONOSTABLES;
 #endif
 		case VAR_COUNTER_PRESET:
-			return NBR_COUNTERS;
 		case VAR_COUNTER_VALUE:
 			return NBR_COUNTERS;
 		case VAR_TIMER_IEC_PRESET:
-			return NBR_TIMERS_IEC;
 		case VAR_TIMER_IEC_VALUE:
 			return NBR_TIMERS_IEC;
 		case VAR_REGISTER_IN_VALUE:

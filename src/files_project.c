@@ -286,40 +286,39 @@ char JoinFiles( char * DirAndNameOfProject, char * TmpDirectoryFiles, char Compr
 //v0.9.5		if (pDir)
 //v0.9.5		{
 //v0.9.5			while ((pEnt = readdir(pDir)) != NULL)
-			for( ScanFileList=0; ScanFileList<NbrFilesProjectList; ScanFileList++ )
+		for( ScanFileList=0; ScanFileList<NbrFilesProjectList; ScanFileList++ )
 			{
 //v0.9.5				if ( strcmp(pEnt->d_name,".") && strcmp(pEnt->d_name,"..") )
 //v0.9.5				{
-					FILE * pParametersFile;
+				FILE * pParametersFile;
 ////WIN32PORT added /
-					sprintf(Buff, "%s/%s", TmpDirectoryFiles, pFilesProjectList[ ScanFileList ]/*pEnt->d_name*/);
-					pParametersFile = fopen( Buff, "rt" );
-					if (pParametersFile)
+				sprintf(Buff, "%s/%s", TmpDirectoryFiles, pFilesProjectList[ ScanFileList ]/*pEnt->d_name*/);
+				pParametersFile = fopen( Buff, "rt" );
+				if (pParametersFile)
+				{
+					sprintf( BuffTemp, FILE_HEAD "%s\n", pFilesProjectList[ ScanFileList ]/*pEnt->d_name*/ );
+					if ( CompressedProject )
+						gzputs( pProjectFileZ, BuffTemp );
+					else
+						fputs( BuffTemp, pProjectFile );
+					while( !feof( pParametersFile ) )
 					{
-						sprintf( BuffTemp, FILE_HEAD "%s\n", pFilesProjectList[ ScanFileList ]/*pEnt->d_name*/ );
-						if ( CompressedProject )
-							gzputs( pProjectFileZ, BuffTemp );
-						else
-							fputs( BuffTemp, pProjectFile );
-						while( !feof( pParametersFile ) )
+						fgets( Buff, 300, pParametersFile );
+						if (!feof(pParametersFile))
 						{
-							char Buff[ 300 ];
-							fgets( Buff, 300, pParametersFile );
-							if (!feof(pParametersFile))
-							{
-								if ( CompressedProject )
-									gzputs( pProjectFileZ, Buff );
-								else
-									fputs( Buff, pProjectFile );
-							}
+							if ( CompressedProject )
+								gzputs( pProjectFileZ, Buff );
+							else
+								fputs( Buff, pProjectFile );
 						}
-						fclose( pParametersFile );
-						sprintf( BuffTemp, "_/FILE-%s\n", pFilesProjectList[ ScanFileList ]/*pEnt->d_name*/ );
-						if ( CompressedProject )
-							gzputs( pProjectFileZ, BuffTemp );
-						else
-							fputs( BuffTemp, pProjectFile );
 					}
+					fclose( pParametersFile );
+					sprintf( BuffTemp, "_/FILE-%s\n", pFilesProjectList[ ScanFileList ]/*pEnt->d_name*/ );
+					if ( CompressedProject )
+						gzputs( pProjectFileZ, BuffTemp );
+					else
+						fputs( BuffTemp, pProjectFile );
+				}
 //v0.9.5				}
 			}
 //v0.9.5			closedir(pDir);

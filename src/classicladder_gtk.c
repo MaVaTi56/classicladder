@@ -720,8 +720,7 @@ void DoTheSave()
 			strcpy( InfosGene->ProjectProperties.ParamModifDate, BuffCurrTime );
 			if ( InfosGene->ProjectProperties.ParamVersion[ 0 ]>='0' && InfosGene->ProjectProperties.ParamVersion[ 0 ]<='9' )
 			{
-				int version = 0;
-				version = atoi( InfosGene->ProjectProperties.ParamVersion );
+				int version = atoi( InfosGene->ProjectProperties.ParamVersion );
 				version++;
 				sprintf( InfosGene->ProjectProperties.ParamVersion, "%d", version );
 			}
@@ -955,14 +954,14 @@ void DoActionAboutClassicLadder()
 		strcpy( comments, "("CL_RELEASE_DATE_STRING")\n\n" );
 		strcat( comments, GtkVersionString );
 		strcat( comments, static_comments );
-		strcat( comments, "http://www.sourceforge.net/projects/classicladder\n" );
+		strcat( comments, "https://www.sourceforge.net/projects/classicladder\n" );
 		gtk_show_about_dialog ( GTK_WINDOW( MainSectionWindow ),
 							"program-name", CL_PRODUCT_NAME ,
 							"version", CL_RELEASE_VER_STRING ,
 							"copyright", "Copyright (C) " CL_RELEASE_COPYRIGHT_YEARS " Marc Le Douarain\nmarc . le - douarain /At\\ laposte \\DoT/ net" ,
 //							"logo", example_logo,
 							"title", _("About ClassicLadder"),
-							"website", "http://sites.google.com/site/classicladder" ,
+							"website", "https://sites.google.com/site/classicladder" ,
 							"comments", comments ,
 					   NULL );
 		free( comments );
@@ -1269,7 +1268,7 @@ void SearchInitGtk(GtkBox *vbox)
 		/*expand*/ FALSE, /*fill*/ FALSE, /*pad*/ 0, GTK_PACK_START);
 
 	ButtonSearchClose = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchClose ), gtk_image_new_from_stock( GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchClose ), gtk_image_new_from_icon_name( GTK_STOCK_CLOSE, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchClose, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchClose), "clicked", GTK_SIGNAL_FUNC(FunctionSearchCloseBox), 0 );
 	gtk_widget_show( ButtonSearchClose );
@@ -1292,19 +1291,19 @@ void SearchInitGtk(GtkBox *vbox)
 	gtk_signal_connect(GTK_OBJECT (SearchType), "changed", GTK_SIGNAL_FUNC(FunctionNewSearchData), NULL);
 
 	ButtonSearchNow = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchNow ), gtk_image_new_from_stock( GTK_STOCK_FIND, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchNow ), gtk_image_new_from_icon_name( GTK_STOCK_FIND, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start (GTK_BOX (hBoxSearch), ButtonSearchNow, FALSE, FALSE, 0);
 	gtk_signal_connect(GTK_OBJECT (ButtonSearchNow), "clicked", GTK_SIGNAL_FUNC(FunctionNewSearchData), 0);
 	gtk_widget_set_sensitive( ButtonSearchNow, TRUE );
 	gtk_widget_show( ButtonSearchNow );
 
 	ButtonSearchNext = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchNext ), gtk_image_new_from_stock( GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchNext ), gtk_image_new_from_icon_name( GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchNext, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchNext), "clicked", GTK_SIGNAL_FUNC(SearchAndGoToNextElement), 0 );
 	gtk_widget_show( ButtonSearchNext );
 	ButtonSearchPrev = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchPrev ), gtk_image_new_from_stock( GTK_STOCK_GO_BACK, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchPrev ), gtk_image_new_from_icon_name( GTK_STOCK_GO_BACK, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchPrev, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchPrev), "clicked", GTK_SIGNAL_FUNC(SearchAndGoToPreviousElement), 0 );
 	gtk_widget_show( ButtonSearchPrev );
@@ -1360,7 +1359,7 @@ void FileTransferInitGtk(GtkBox *vbox)
 	gtk_widget_show( FileTransferBar );
 	
 	FileTransferAbortButton = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( FileTransferAbortButton ), gtk_image_new_from_stock( GTK_STOCK_STOP, GTK_ICON_SIZE_BUTTON ) );
+	gtk_button_set_image( GTK_BUTTON( FileTransferAbortButton ), gtk_image_new_from_icon_name( GTK_STOCK_STOP, GTK_ICON_SIZE_BUTTON ) );
 	gtk_box_pack_start( GTK_BOX (hBoxFileTransfer), FileTransferAbortButton, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (FileTransferAbortButton), "clicked", GTK_SIGNAL_FUNC(TransferMasterAskToAbort), 0 );
 	gtk_widget_show( FileTransferAbortButton );
@@ -1576,8 +1575,8 @@ void RedrawSignalDrawingArea( void )
 
 static gint PeriodicUpdateDisplay(gpointer data)
 {
-if ( InfosGene==NULL )
-	return 1;
+	if ( InfosGene==NULL )
+		return 1;
 //Dec.2016, for MSYS2/Win32!!! gdk_threads_enter();
 	if ( InfosGene->LadderState==STATE_RUN || InfosGene->LadderState==STATE_RUN_FOR_ONE_CYCLE || InfosGene->LadderState==STATE_RUN_FREEZE )
 	{
@@ -1752,7 +1751,7 @@ printf("<<<<<<<<<<========== INIT GTK WINDOWS ==========>>>>>>>>>>\n");
 	FramesLogWindowsInitGtk( );
 	// restore each window open/closed state at startup !
 	if ( GetWindowOpenPrefs( "Manager", FALSE/*OpenedPerDefault*/ ) )
-		SetToogleMenuForSectionsManagerWindow( TRUE );
+		SetToggleMenuForSectionsManagerWindow( TRUE );
 	if ( GetWindowOpenPrefs( "Edit", FALSE/*OpenedPerDefault*/ ) )
 		SetToggleMenuForEditorWindow( TRUE );
 	if ( GetWindowOpenPrefs( "Symbols", FALSE/*OpenedPerDefault*/ ) )
