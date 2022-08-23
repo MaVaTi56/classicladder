@@ -672,13 +672,14 @@ void CheckDispSymbols_toggled( )
 
 void StoreDirectorySelected( GtkFileChooser *selector, char cForLoadingProject)
 {
-	char * TempDir;
+	char * TempDir = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
 
-	TempDir = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
 	if ( cForLoadingProject )
 		VerifyDirectorySelected( InfosGene->CurrentProjectFileName, TempDir );
 	else
 		strcpy( InfosGene->CurrentProjectFileName, TempDir );
+
+	g_free(TempDir);
 }
 
 
@@ -756,33 +757,45 @@ void SaveAsLadder(void)
 
 void on_filechooserdialog_save_response(GtkDialog  *dialog,gint response_id,gpointer user_data)
 {
-	debug_printf("SAVE %s %d\n",gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector)),response_id);
+	char * FileName = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
+
+	debug_printf("SAVE %s %d\n",FileName,response_id);
 
 	if(response_id==GTK_RESPONSE_ACCEPT || response_id==GTK_RESPONSE_OK)
 		SaveAsLadder();
 	gtk_widget_destroy(GTK_WIDGET(dialog));
+
+	g_free(FileName);
 }
 void on_filechooserdialog_load_response(GtkDialog  *dialog,gint response_id,gpointer user_data)
 {
-	debug_printf("LOAD %s %d\n",gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector)),response_id);
+	char * FileName = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
+
+	debug_printf("LOAD %s %d\n",FileName,response_id);
 
 	if(response_id==GTK_RESPONSE_ACCEPT || response_id==GTK_RESPONSE_OK)
 		LoadNewLadder();
 	gtk_widget_destroy(GTK_WIDGET(dialog));
+
+	g_free(FileName);
 }
 void on_filechooserdialog_selected_soft_response(GtkDialog  *dialog,gint response_id,gpointer user_data)
 {
 	char GoOn = FALSE;
-	debug_printf("SOFT SELECTED %s %d\n",gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector)),response_id);
+	char * FileName = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
+
+	debug_printf("SOFT SELECTED %s %d\n",FileName,response_id);
 
 	if(response_id==GTK_RESPONSE_ACCEPT || response_id==GTK_RESPONSE_OK)
 	{
 		GoOn = TRUE;
-		strcpy( InfosGUI->TargetMonitor.TransferFileSelectedName, gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector)) );
+		strcpy( InfosGUI->TargetMonitor.TransferFileSelectedName, FileName );
 	}
 	gtk_widget_destroy(GTK_WIDGET(dialog));
 	if ( GoOn )
 		NextStepBeforeSendingUpdateSoftToTarget();
+
+	g_free(FileName);
 }
 
 
