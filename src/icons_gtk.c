@@ -169,8 +169,10 @@ void DestroyCustomIconsAndCursors (void)
 
 	for (cnt=0; cnt<N_ICONS; cnt++)
 	{
-		if( MyCursor[cnt]!=NULL ) {
-			g_object_unref(MyCursor[cnt]);
+		if( MyCursor[cnt]!=NULL )
+		{
+			gdk_cursor_unref(MyCursor[cnt]);
+//havardAasen modif august 2022, crashing when compiled for Gtk+2 !?			g_object_unref(MyCursor[cnt]);
 			MyCursor[cnt] = NULL;
 		}
 

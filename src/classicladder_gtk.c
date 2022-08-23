@@ -1297,12 +1297,12 @@ void SearchInitGtk(GtkBox *vbox)
 	gtk_widget_show( ButtonSearchNow );
 
 	ButtonSearchNext = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchNext ), gtk_image_new_from_icon_name( GTK_STOCK_GO_FORWARD, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchNext ), gtk_image_new_from_icon_name( "go-next" /*GTK_STOCK_GO_FORWARD*/, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchNext, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchNext), "clicked", GTK_SIGNAL_FUNC(SearchAndGoToNextElement), 0 );
 	gtk_widget_show( ButtonSearchNext );
 	ButtonSearchPrev = gtk_button_new();
-	gtk_button_set_image( GTK_BUTTON( ButtonSearchPrev ), gtk_image_new_from_icon_name( GTK_STOCK_GO_BACK, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
+	gtk_button_set_image( GTK_BUTTON( ButtonSearchPrev ), gtk_image_new_from_icon_name( "go-previous" /*GTK_STOCK_GO_BACK*/, GTK_ICON_SIZE_MENU/*GTK_ICON_SIZE_BUTTON*/ ) );
 	gtk_box_pack_start( GTK_BOX (hBoxSearch), ButtonSearchPrev, FALSE, FALSE, 0 );
 	gtk_signal_connect( GTK_OBJECT (ButtonSearchPrev), "clicked", GTK_SIGNAL_FUNC(SearchAndGoToPreviousElement), 0 );
 	gtk_widget_show( ButtonSearchPrev );
