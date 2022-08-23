@@ -64,7 +64,6 @@ GtkWidget *HScrollBar;
 GtkAdjustment * AdjustVScrollBar;
 GtkAdjustment * AdjustHScrollBar;
 GtkWidget *FileSelector;
-GtkWidget *ConfirmDialog;
 GtkWidget *MainSectionWindow;
 GtkWidget *StatusBar;
 gint StatusBarContextId;
@@ -1095,53 +1094,28 @@ void ShowMessageBoxError( const char * text )
 	ShowMessageBox( _("Error"), text, _("Ok") );
 }
 
-void DoFunctionOfConfirmationBox( GtkWidget *widget, void * (*function_to_do)(void *) )
+static void DoFunctionOfConfirmationBox( void * (*function_to_do)(void *) )
 {
-	gtk_widget_destroy(ConfirmDialog);
 	(function_to_do)(NULL);
 }
-void ShowConfirmationBoxWithChoiceOrNot(const char * title,const char * text,void * function_if_yes, char HaveTheChoice)
+void ShowConfirmationBox(const char * title, const char * text, void * function_to_do)
 {
-	/* From the example in gtkdialog help */
-	GtkWidget *label, *yes_button, *no_button;
-	/* Create the widgets */
-	ConfirmDialog = gtk_dialog_new();
-	label = gtk_label_new (text);
-	if ( HaveTheChoice )
-	{
-		yes_button = gtk_button_new_with_label(_("Yes"));
-		no_button = gtk_button_new_with_label(_("No"));
-	}
-	else
-	{
-		yes_button = gtk_button_new_with_label(_("Ok"));
-	}
-	/* Ensure that the dialog box is destroyed when the user clicks ok. */
-	if ( HaveTheChoice )
-	{
-//ForGTK3		gtk_signal_connect_object (GTK_OBJECT (no_button), "clicked",
-//ForGTK3							GTK_SIGNAL_FUNC (gtk_widget_destroy), GTK_OBJECT(ConfirmDialog));
-		g_signal_connect_swapped(GTK_OBJECT (no_button), "clicked",
-							GTK_SIGNAL_FUNC (gtk_widget_destroy), GTK_OBJECT(ConfirmDialog));
-//ForGTK3		gtk_container_add (GTK_CONTAINER (GTK_DIALOG(ConfirmDialog)->action_area), no_button);
-		gtk_container_add (GTK_CONTAINER (gtk_dialog_get_action_area(GTK_DIALOG(ConfirmDialog))), no_button);
-		gtk_widget_grab_focus(no_button);
-	}
-	gtk_signal_connect(GTK_OBJECT (yes_button), "clicked",
-							GTK_SIGNAL_FUNC (DoFunctionOfConfirmationBox), function_if_yes);
-//ForGTK3	gtk_container_add (GTK_CONTAINER (GTK_DIALOG(ConfirmDialog)->action_area), yes_button);
-	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_action_area(GTK_DIALOG(ConfirmDialog))), yes_button);
-	/* Add the label, and show everything we've added to the dialog. */
-//ForGTK3	gtk_container_add (GTK_CONTAINER (GTK_DIALOG(ConfirmDialog)->vbox), label);
-	gtk_container_add (GTK_CONTAINER (gtk_dialog_get_content_area(GTK_DIALOG(ConfirmDialog))), label);
-	gtk_window_set_modal(GTK_WINDOW(ConfirmDialog),TRUE);
-	gtk_window_set_title(GTK_WINDOW(ConfirmDialog),title);
-	gtk_window_set_position(GTK_WINDOW(ConfirmDialog),GTK_WIN_POS_CENTER);
-	gtk_widget_show_all (ConfirmDialog);
-}
-void ShowConfirmationBox(const char * title,const char * text,void * function_if_yes)
-{
-	ShowConfirmationBoxWithChoiceOrNot( title, text, function_if_yes, TRUE );
+	GtkWidget *dialog;
+	int response;
+
+	dialog = gtk_message_dialog_new(NULL,
+									GTK_DIALOG_MODAL,
+									GTK_MESSAGE_OTHER,
+									GTK_BUTTONS_YES_NO,
+									"%s", title);
+	gtk_message_dialog_format_secondary_text(GTK_MESSAGE_DIALOG(dialog), "%s", text);
+	gtk_window_set_position(GTK_WINDOW(dialog),GTK_WIN_POS_CENTER);
+	gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_NO);
+
+	response = gtk_dialog_run(GTK_DIALOG(dialog));
+	gtk_widget_destroy(dialog);
+	if (response == GTK_RESPONSE_YES)
+		DoFunctionOfConfirmationBox(function_to_do);
 }
 
 // StoreStringResult must be initialized (content will be displayed at startup, can be "") !
