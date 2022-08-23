@@ -122,27 +122,27 @@ void ShowAskBoxToSetOrUnset( )
 {
 	GtkWidget *label;
 	GtkWidget *DialogContentArea;
-	GtkWidget *dialog;
+	GtkWidget *SetUnsetDialog;
 	int response;
 
-	dialog = gtk_dialog_new_with_buttons(_("Set/UnSet variable"),
+	SetUnsetDialog = gtk_dialog_new_with_buttons(_("Set/UnSet variable"),
 										 NULL,
 										 GTK_DIALOG_MODAL,
 										 _("Set to 1"), 1,
 										 _("Set to 0"), 2,
 										 _("UnSet"), 0,
 										 NULL);
-	gtk_window_set_position(GTK_WINDOW(dialog),GTK_WIN_POS_CENTER);
-	gtk_dialog_set_default_response (GTK_DIALOG(dialog), 0);
+	gtk_window_set_position(GTK_WINDOW(SetUnsetDialog),GTK_WIN_POS_CENTER);
+	gtk_dialog_set_default_response (GTK_DIALOG(SetUnsetDialog), 0);
 
-	DialogContentArea = gtk_dialog_get_content_area(GTK_DIALOG(dialog));
+	DialogContentArea = gtk_dialog_get_content_area(GTK_DIALOG(SetUnsetDialog));
 	label = gtk_label_new ( CreateVarName(TypeSetUnsetVar,OffsetSetUnsetVar,Preferences.DisplaySymbolsInMainWindow/*InfosGene->DisplaySymbols*/) );
 	gtk_container_add (GTK_CONTAINER(DialogContentArea), label);
-	gtk_widget_show_all (dialog);
+	gtk_widget_show_all (SetUnsetDialog);
 
-	response = gtk_dialog_run(GTK_DIALOG(dialog));
+	response = gtk_dialog_run(GTK_DIALOG(SetUnsetDialog));
 	DoFunctionSetOrUnsetVar(response);
-	gtk_widget_destroy(dialog);
+	gtk_widget_destroy(SetUnsetDialog);
 }
 
 static gint chkvar_press_event( GtkWidget * widget, void * numcheck )

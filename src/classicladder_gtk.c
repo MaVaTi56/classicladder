@@ -672,7 +672,7 @@ void CheckDispSymbols_toggled( )
 
 void StoreDirectorySelected( GtkFileChooser *selector, char cForLoadingProject)
 {
-	char * TempDir = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
+	char * TempDir = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER(FileSelector) );
 
 	if ( cForLoadingProject )
 		VerifyDirectorySelected( InfosGene->CurrentProjectFileName, TempDir );
@@ -757,7 +757,7 @@ void SaveAsLadder(void)
 
 void on_filechooserdialog_save_response(GtkDialog  *dialog,gint response_id,gpointer user_data)
 {
-	char * FileName = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
+	char * FileName = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER(FileSelector) );
 
 	debug_printf("SAVE %s %d\n",FileName,response_id);
 
@@ -769,7 +769,7 @@ void on_filechooserdialog_save_response(GtkDialog  *dialog,gint response_id,gpoi
 }
 void on_filechooserdialog_load_response(GtkDialog  *dialog,gint response_id,gpointer user_data)
 {
-	char * FileName = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
+	char * FileName = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER(FileSelector) );
 
 	debug_printf("LOAD %s %d\n",FileName,response_id);
 
@@ -782,7 +782,7 @@ void on_filechooserdialog_load_response(GtkDialog  *dialog,gint response_id,gpoi
 void on_filechooserdialog_selected_soft_response(GtkDialog  *dialog,gint response_id,gpointer user_data)
 {
 	char GoOn = FALSE;
-	char * FileName = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER(FileSelector));
+	char * FileName = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER(FileSelector) );
 
 	debug_printf("SOFT SELECTED %s %d\n",FileName,response_id);
 
@@ -1029,10 +1029,9 @@ void FileRequestToExportSvgOrPng(char GoForSvg)
 	gtk_file_chooser_set_current_name( GTK_FILE_CHOOSER (dialog), GoForSvg?"classicladder_export.svg":"classicladder_export.png" );
 	if ( gtk_dialog_run( GTK_DIALOG (dialog) ) == GTK_RESPONSE_ACCEPT )
 	{
-		char *filename;
-		filename = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER(dialog) );
-		ExportSvgOrPngFile( filename, GoForSvg );
-		g_free( filename );
+		char * FileName = gtk_file_chooser_get_filename( GTK_FILE_CHOOSER(dialog) );
+		ExportSvgOrPngFile( FileName, GoForSvg );
+		g_free( FileName );
 	}
 	gtk_widget_destroy( dialog );
 }
