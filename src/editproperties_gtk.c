@@ -75,7 +75,7 @@ void gtk_combo_box_set_active_text( GtkComboBox *p_combo_box, const gchar *text 
 // gtk_combo_box_get_active_text( ) - a newly allocated string containing the currently active text. Must be freed with g_free().
 
 
-void SetProperty(int NumParam,char * LblParam,char * ValParam, char ReadOnlyPropertie, char SetFocus)
+void SetProperty(int NumParam,char * LblParam,char * ValParam, char ReadOnlyProperty, char SetFocus)
 {
 	gtk_label_set_text((GtkLabel *)PropLabelParam[NumParam],LblParam);
 	if (strcmp(LblParam,_("Base"))==0)
@@ -119,7 +119,7 @@ void SetProperty(int NumParam,char * LblParam,char * ValParam, char ReadOnlyProp
 		gtk_widget_hide(PropEntryTimerModeParam[NumParam]);
 		gtk_widget_hide(PropEntryRegisterModeParam[NumParam]);
 		gtk_entry_set_text(GTK_ENTRY(PropEntryParam[NumParam]),ValParam);
-		gtk_widget_set_sensitive( PropEntryParam[NumParam], !ReadOnlyPropertie );
+		gtk_widget_set_sensitive( PropEntryParam[NumParam], !ReadOnlyProperty );
 		if (SetFocus)
 			gtk_widget_grab_focus( PropEntryParam[NumParam] );
 	}
@@ -350,7 +350,7 @@ void PropertiesInitGtk()
 		
 		// Variables browser icon-button access
 		PropButVarSpyBrowser[ NumParam ] = gtk_button_new();
-		gtk_button_set_image( GTK_BUTTON( PropButVarSpyBrowser[ NumParam ] ), gtk_image_new_from_stock( GTK_STOCK_INDEX, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
+		gtk_button_set_image( GTK_BUTTON( PropButVarSpyBrowser[ NumParam ] ), gtk_image_new_from_icon_name( GTK_STOCK_INDEX, /*GTK_ICON_SIZE_MENU*/GTK_ICON_SIZE_BUTTON ) );
 		gtk_widget_set_tooltip_text( PropButVarSpyBrowser[ NumParam ], _("Variables browser") );
 		gtk_box_pack_start( GTK_BOX( hbox[NumParam] ), PropButVarSpyBrowser[ NumParam ], FALSE, FALSE, 0 );
 //		gtk_signal_connect( GTK_OBJECT(PropButVarSpyBrowser[ NumParam ]), "clicked", GTK_SIGNAL_FUNC(OpenBrowserVarsToReplace), PropEntryParam[NumParam] );

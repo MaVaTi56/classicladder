@@ -242,7 +242,7 @@ FrameLogString( SlaveThreadForSerial?FRAMES_LOG_MONITOR_SLAVE_SERIAL:FRAMES_LOG_
 			char * ReplyToSend = MonitorParseGeneralResponseToSwitch( RequestReceived, /*SlaveMode*/1+SlaveThreadForSerial );
 			if ( ReplyToSend )
 			{
-				printf("monslave: send response (lgt=%d) : %s \n", strlen(ReplyToSend), ReplyToSend );
+				printf("monslave: send response (lgt=%ld) : %s \n", strlen(ReplyToSend), ReplyToSend );
 //				printf("monslave: send response (lgt=%d)!\n", strlen(ReplyToSend) );
 				FrameLogString( SlaveThreadForSerial?FRAMES_LOG_MONITOR_SLAVE_SERIAL:FRAMES_LOG_MONITOR_SLAVE_IP, '>', ReplyToSend );
 				if ( SlaveThreadForSerial )

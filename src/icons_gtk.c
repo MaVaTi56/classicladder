@@ -169,11 +169,11 @@ void DestroyCustomIconsAndCursors (void)
 
 	for (cnt=0; cnt<N_ICONS; cnt++)
 	{
-		if( MyCursor[cnt]!=NULL )
-			gdk_cursor_unref(MyCursor[cnt]);
-//ForGTK3		if( MyCursor[cnt]->ref_count <= 0 )
+		if( MyCursor[cnt]!=NULL ) {
+			g_object_unref(MyCursor[cnt]);
 			MyCursor[cnt] = NULL;
-			
+		}
+
 		g_object_unref( PixBufIcon[cnt] );
 		PixBufIcon[cnt] = NULL;
 	}

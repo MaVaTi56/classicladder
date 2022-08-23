@@ -448,7 +448,7 @@ gint ManagerWindowDeleteEvent( GtkWidget * widget, GdkEvent * event, gpointer da
 {
 // Here, we must only toggle the menu check that will call itself the function below to close the window ...
 //	gtk_widget_hide( ManagerWindow );
-	SetToogleMenuForSectionsManagerWindow( FALSE/*OpenedWin*/ );
+	SetToggleMenuForSectionsManagerWindow( FALSE/*OpenedWin*/ );
 	// we do not want that the window be destroyed.
 	return TRUE;
 }
@@ -479,7 +479,7 @@ void RememberManagerWindowPrefs( void )
 }
 void OpenManagerWindowFromPopup( void )
 {
-	SetToogleMenuForSectionsManagerWindow( TRUE );
+	SetToggleMenuForSectionsManagerWindow( TRUE );
 	gtk_window_present( GTK_WINDOW(ManagerWindow) );
 }
 void ManagerEnableActionsSectionsList( char cState )

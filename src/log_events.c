@@ -636,7 +636,7 @@ void CreateAlarmEventMessage( int AlarmType, StrEventLog * pEvent, char ForEnd, 
 		strcat( BuffMsgSubject, " " );
 	}
 	strcat( BuffMsg, ConfigEventLog[ pEvent->ConfigArrayNum ].Text );
-printf("%s(): strlen_msg=%d, strlen_subject=%d\n", __FUNCTION__, strlen(BuffMsg), BuffMsgSubject?strlen(BuffMsgSubject):-1);
+printf("%s(): strlen_msg=%ld, strlen_subject=%ld\n", __FUNCTION__, strlen(BuffMsg), BuffMsgSubject?strlen(BuffMsgSubject):-1);
 }
 
 

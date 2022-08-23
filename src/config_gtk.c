@@ -1506,7 +1506,7 @@ void GetModemConfigSettings( void )
 	Modem.StrConfigSequence[ MODEM_STRING_LGT-1 ] = '\0';
 	strncpy( Modem.StrCallSequence, gtk_entry_get_text(GTK_ENTRY( ModemConfEntry[ ScanLine++ ] )), MODEM_STRING_LGT );
 	Modem.StrCallSequence[ MODEM_STRING_LGT-1 ] = '\0';
-	strncpy( Modem.StrCodePIN, gtk_entry_get_text(GTK_ENTRY( ModemConfEntry[ ScanLine++ ] )), MODEM_STRING_LGT );
+	strncpy( Modem.StrCodePIN, gtk_entry_get_text(GTK_ENTRY( ModemConfEntry[ ScanLine++ ] )), TELEPHONE_NUMBER_LGT );
 	Modem.StrCodePIN[ TELEPHONE_NUMBER_LGT-1 ] = '\0';
 
 	strncpy( Preferences.ModemForMasterMonitor.StrInitSequence, gtk_entry_get_text(GTK_ENTRY( ModemConfEntry[ ScanLine++ ] )), MODEM_STRING_LGT );
@@ -1515,7 +1515,7 @@ void GetModemConfigSettings( void )
 	Preferences.ModemForMasterMonitor.StrConfigSequence[ MODEM_STRING_LGT-1 ] = '\0';
 	strncpy( Preferences.ModemForMasterMonitor.StrCallSequence, gtk_entry_get_text(GTK_ENTRY( ModemConfEntry[ ScanLine++ ] )), MODEM_STRING_LGT );
 	Preferences.ModemForMasterMonitor.StrCallSequence[ MODEM_STRING_LGT-1 ] = '\0';
-	strncpy( Preferences.ModemForMasterMonitor.StrCodePIN, gtk_entry_get_text(GTK_ENTRY( ModemConfEntry[ ScanLine++ ] )), MODEM_STRING_LGT );
+	strncpy( Preferences.ModemForMasterMonitor.StrCodePIN, gtk_entry_get_text(GTK_ENTRY( ModemConfEntry[ ScanLine++ ] )), TELEPHONE_NUMBER_LGT );
 	Preferences.ModemForMasterMonitor.StrCodePIN[ TELEPHONE_NUMBER_LGT-1 ] = '\0';
 }
 
