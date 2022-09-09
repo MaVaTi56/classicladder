@@ -477,6 +477,10 @@ void RememberManagerWindowPrefs( void )
 	if ( WindowIsOpened )
 		RememberWindowPosiPrefs( "Manager", ManagerWindow, FALSE/*SaveWindowSize*/ );
 }
+void CloseManagerWindowForEnd( void )
+{
+	gtk_widget_hide( ManagerWindow );
+}
 void OpenManagerWindowFromPopup( void )
 {
 	SetToggleMenuForSectionsManagerWindow( TRUE );

@@ -46,6 +46,7 @@ void ButtonOkCurrentRung();
 void ButtonCancelCurrentRung();
 void OpenEditWindow( GtkAction * ActionOpen, gboolean OpenIt );
 void RememberEditWindowPrefs( void );
+void CloseEditWindowForEnd( void );
 char ConvertNumElementInToolbarPosisXY( int NumToolbar, int NumElementWanted, int *FoundX, int *FoundY );
 void SelectAnElementInToolBar( int iNumToolbar, int iNumElementSelectedWithPopup );
 void EditorInitGtk();

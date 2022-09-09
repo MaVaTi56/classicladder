@@ -73,15 +73,15 @@ OWN_LIBS += -lz
 #----------------------------------
 #===For GTK2 Version===
 ifdef GTK_INTERFACE
-OWN_CFLAGS += -Wall `pkg-config gtk+-2.0 --cflags` `pkg-config pango --cflags` `pkg-config gthread-2.0 --cflags` -DGTK_INTERFACE
-OWN_LIBS += `pkg-config gtk+-2.0 --cflags --libs` `pkg-config pango --cflags --libs` `pkg-config gthread-2.0 --cflags --libs`
+#OWN_CFLAGS += -Wall `pkg-config gtk+-2.0 --cflags` `pkg-config pango --cflags` `pkg-config gthread-2.0 --cflags` -DGTK_INTERFACE
+#OWN_LIBS += `pkg-config gtk+-2.0 --cflags --libs` `pkg-config pango --cflags --libs` `pkg-config gthread-2.0 --cflags --libs`
 ###Flags that can added to see warnings for future GTK3...
 ###OWN_CFLAGS += -DGSEAL_ENABLE
 endif
 #===For GTK3 Version===
 ifdef GTK_INTERFACE
-#OWN_CFLAGS += -Wall `pkg-config gtk+-3.0 --cflags` `pkg-config pango --cflags` -DGTK_INTERFACE
-#OWN_LIBS += `pkg-config gtk+-3.0 --cflags --libs` `pkg-config pango --cflags --libs`
+OWN_CFLAGS += -Wall `pkg-config gtk+-3.0 --cflags` `pkg-config pango --cflags` -DGTK_INTERFACE
+OWN_LIBS += `pkg-config gtk+-3.0 --cflags --libs` `pkg-config pango --cflags --libs`
 endif
 
 #Windows

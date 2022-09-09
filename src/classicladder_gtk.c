@@ -198,8 +198,12 @@ void GetTheSizesForRung( void )
 #endif
 
 	// size of the page or block changed ?
-	if ( InfosGene->PageHeight!=PageHeightBak || InfosGene->BlockHeight!=BlockHeightBak )
+//Strange recently 1 pixel diff per moment...	if ( InfosGene->PageHeight!=PageHeightBak || InfosGene->BlockHeight!=BlockHeightBak )
+	if ( abs( InfosGene->PageHeight-PageHeightBak )>5 || InfosGene->BlockHeight!=BlockHeightBak )
+	{
+		printf("*** In %s(), size changed (page=%d/%d blockH=%d/%d)!\n", __FUNCTION__, InfosGene->PageHeight, PageHeightBak, InfosGene->BlockHeight, BlockHeightBak);
 		UpdateVScrollBar( TRUE/*AutoSelectCurrentRung*/ );
+	}
 	PageHeightBak = InfosGene->PageHeight;
 	BlockHeightBak = InfosGene->BlockHeight;
 }
@@ -367,35 +371,50 @@ static gint HScrollBar_value_changed_event( GtkAdjustment * ScrollBar, void * no
 	return TRUE;
 }
 
+void IncrementScrollBar( GtkAdjustment * TheAdjustScrollBar, int IncrementValue, int MaxiValue )
+{
+	gtk_adjustment_set_value( TheAdjustScrollBar, gtk_adjustment_get_value(TheAdjustScrollBar)+IncrementValue );
+	if ( IncrementValue>0 )
+	{
+		if ( gtk_adjustment_get_value(TheAdjustScrollBar) > (gtk_adjustment_get_upper(TheAdjustScrollBar)-MaxiValue) )
+			gtk_adjustment_set_value( TheAdjustScrollBar, gtk_adjustment_get_upper(TheAdjustScrollBar)-MaxiValue );
+	}
+	else
+	{
+		if ( gtk_adjustment_get_value(TheAdjustScrollBar) < gtk_adjustment_get_lower(TheAdjustScrollBar) )
+			gtk_adjustment_set_value( TheAdjustScrollBar, gtk_adjustment_get_lower(TheAdjustScrollBar) );
+	}
+}
 // function called for keys up/down and mouse scroll with increment height (positive or negative)...
 // if increment=0, just update display with new value modified before.
 static void IncrementVScrollBar( int IncrementValue )
 {
-//printf("%s(): inc=%d\n", __FUNCTION__, IncrementValue );
+printf("%s(): incV=%d\n", __FUNCTION__, IncrementValue );
 	if ( IncrementValue!=0 )
 	{
-		gtk_adjustment_set_value( AdjustVScrollBar, gtk_adjustment_get_value(AdjustVScrollBar)+IncrementValue );
-		if ( IncrementValue>0 )
-		{
-			if ( gtk_adjustment_get_value(AdjustVScrollBar) > (gtk_adjustment_get_upper(AdjustVScrollBar)-InfosGene->PageHeight) )
-				gtk_adjustment_set_value( AdjustVScrollBar, gtk_adjustment_get_upper(AdjustVScrollBar)-InfosGene->PageHeight );
-		}
-		else
-		{
-			if ( gtk_adjustment_get_value(AdjustVScrollBar) < gtk_adjustment_get_lower(AdjustVScrollBar) )
-				gtk_adjustment_set_value( AdjustVScrollBar, gtk_adjustment_get_lower(AdjustVScrollBar) );
-		}
+		IncrementScrollBar( AdjustVScrollBar, IncrementValue, InfosGene->PageHeight );
 	}
 	gtk_adjustment_changed( AdjustVScrollBar );
 	InfosGene->OffsetHiddenTopRungDisplayed	= gtk_adjustment_get_value(AdjustVScrollBar);
 	VScrollBar_value_changed_event( AdjustVScrollBar, 0 );
 }
+static void IncrementHScrollBar( int IncrementValue )
+{
+printf("%s(): incH=%d\n", __FUNCTION__, IncrementValue );
+	if ( IncrementValue!=0 )
+	{
+		IncrementScrollBar( AdjustHScrollBar, IncrementValue, InfosGene->PageWidth );
+	}
+	gtk_adjustment_changed( AdjustHScrollBar );
+	HScrollBar_value_changed_event( AdjustHScrollBar, 0 );
+}
 
 static gboolean mouse_scroll_event( GtkWidget *widget, GdkEventScroll *event )
 {
 	int iCurrentLanguage = SectionArray[ InfosGene->CurrentSection ].Language;
-	if ( iCurrentLanguage==SECTION_IN_LADDER )
+	if( gtk_widget_get_sensitive( VScrollBar ) )
 	{
+//printf("Mouse scroll vertical\n");
 		if (event->direction == GDK_SCROLL_DOWN)
 			IncrementVScrollBar( gtk_adjustment_get_step_increment(AdjustVScrollBar) );
 		else  if (event->direction == GDK_SCROLL_UP )
@@ -408,10 +427,10 @@ static gboolean key_press_event( GtkWidget *widget, GdkEventKey *event )
 	GtkWindow *window = GTK_WINDOW (widget);
 	gboolean handled = FALSE;
 
-	int iCurrentLanguage = SectionArray[ InfosGene->CurrentSection ].Language;
-	if ( iCurrentLanguage==SECTION_IN_LADDER )
+	if( gtk_widget_get_sensitive( VScrollBar ) )
 	{
 		int Increment = gtk_adjustment_get_page_increment(AdjustVScrollBar);
+//printf("TEST KEY PRESS MAIN %x %d for VScroll\n", event->keyval, handled); 
 		switch (event->keyval)
 		{
 			case GDK_KEY_Down:
@@ -434,16 +453,53 @@ static gboolean key_press_event( GtkWidget *widget, GdkEventKey *event )
 				IncrementVScrollBar( 0 );
 			return TRUE;
 		}
-		// beware that keys choosed must not be used in "edit" cells...
-		if (EditDatas.ModeEdit)
+	}
+	if( gtk_widget_get_visible( HScrollBar ) && gtk_widget_get_sensitive( HScrollBar ) )
+	{
+		int Increment = gtk_adjustment_get_step_increment(AdjustHScrollBar);
+//printf("TEST KEY PRESS MAIN %x %d for HScroll\n", event->keyval, handled); 
+		switch (event->keyval)
 		{
-			// 'Alt'-xx not used, and when focus on Properties window and 'Alt' pressed, give focus back to main window for here!
-			if (event->state & GDK_MOD1_MASK) //ALT+key
+			case GDK_KEY_Right:
+				IncrementHScrollBar( Increment );
+			return TRUE;
+			case GDK_KEY_Left:
+				Increment = Increment *-1;
+				IncrementHScrollBar( Increment );
+			return TRUE;
+		}
+	}
+
+	int iCurrentLanguage = SectionArray[ InfosGene->CurrentSection ].Language;
+	// beware that keys choosed must not be used in "edit" cells...
+	if (EditDatas.ModeEdit)
+	{
+		// 'Alt'-xx not used, and when focus on Properties window and 'Alt' pressed, give focus back to main window for here!
+		if (event->state & GDK_MOD1_MASK) //ALT+key
+		{
+			// commons shortcuts rungs/sequential
+			switch (event->keyval)
+			{
+				case GDK_KEY_c:
+					ButtonCancelCurrentRung( );
+				return TRUE;
+				case GDK_KEY_x:
+					SelectToolEraser( );
+				return TRUE;
+				case GDK_KEY_Return:
+					ButtonOkCurrentRung( );
+				return TRUE;
+				case GDK_KEY_p:
+					SelectToolPointer( );
+				return TRUE;
+			}
+			// shortcuts only for rungs
+			if ( iCurrentLanguage==SECTION_IN_LADDER )
 			{
 				switch (event->keyval)
 				{
 					case GDK_KEY_i:  // Input, contact
-							SelectToolOpenContact( );
+						SelectToolOpenContact( );
 					return TRUE;
 					case GDK_KEY_o:  // Output, coil
 						SelectToolCoil( );
@@ -457,30 +513,26 @@ static gboolean key_press_event( GtkWidget *widget, GdkEventKey *event )
 					case GDK_KEY_v:
 						SelectToolConnectVLine( );
 					return TRUE;
-					case GDK_KEY_c:
-						ButtonCancelCurrentRung( );
-					return TRUE;
-					case GDK_KEY_x:
-						SelectToolEraser( );
-					return TRUE;
-					case GDK_KEY_Return:
-						ButtonOkCurrentRung( );
-					return TRUE;
-					case GDK_KEY_p:
-						SelectToolPointer( );
-					return TRUE;
 				}
 			}
 		}
-		else
+	}
+	else
+	{
+		if (event->state & GDK_MOD1_MASK) //ALT+key
 		{
-			if (event->state & GDK_MOD1_MASK) //ALT+key
+			// commons shortcuts rungs/sequential
+			switch (event->keyval)
+			{
+				case GDK_KEY_m:
+					ButtonModifyCurrentRung( );
+				return TRUE;
+			}
+			// shortcuts only for rungs
+			if ( iCurrentLanguage==SECTION_IN_LADDER )
 			{
 				switch (event->keyval)
 				{
-					case GDK_KEY_m:
-						ButtonModifyCurrentRung( );
-					return TRUE;
 					case GDK_KEY_a:
 						ButtonAddRung( );
 					return TRUE;
@@ -494,6 +546,7 @@ static gboolean key_press_event( GtkWidget *widget, GdkEventKey *event )
 			}
 		}
 	}
+
 	/* handle mnemonics and accelerators */
 	if (!handled) handled = gtk_window_activate_key (window, event);
 	/* handle focus widget key events */
@@ -644,23 +697,26 @@ void SaveLabelCommentEntriesEdited()
 }
 void AdjustLabelCommentEntriesToSection( int SectionLanguage )
 {
-printf("===>AdjustLabelCommentEntriesToSection %d\n", SectionLanguage);
 	if (SectionLanguage==-1)
 	{
+printf("===>%s(): NotInEdit\n", __FUNCTION__);
+		// case if currently not in edit.
 		gtk_widget_set_sensitive(VScrollBar, TRUE);
 		gtk_widget_set_sensitive(entrylabel, FALSE);
 		gtk_widget_set_sensitive(entrycomment, FALSE);
 	}
 	else
 	{
-		gtk_widget_set_sensitive(VScrollBar, FALSE);
+printf("===>%s(): SectionEdited=%d\n", __FUNCTION__, SectionLanguage);
+		gtk_widget_set_sensitive(VScrollBar, SectionLanguage==SECTION_IN_SEQUENTIAL);
 		gtk_widget_set_sensitive(entrylabel, SectionLanguage!=SECTION_IN_SEQUENTIAL);
-		if( SectionLanguage!=SECTION_IN_SEQUENTIAL )
-			gtk_widget_show( entrylabel );
-		else
-			gtk_widget_hide( entrylabel );
+		// replaced if gtk_widget_show() else gtk_widget_hide() !
+		gtk_widget_set_visible( entrylabel, SectionLanguage!=SECTION_IN_SEQUENTIAL );
 		gtk_widget_set_sensitive(entrycomment, TRUE);
 	}
+	gtk_widget_set_sensitive( WidgetComboCurrentSection, SectionLanguage==-1 );
+	// disabled during edit, to avoid "auto select rung"...
+// not usable, make window back to default size...	gtk_window_set_resizable( GTK_WINDOW(MainSectionWindow), SectionLanguage==-1);
 }
 
 void CheckDispSymbols_toggled( )
@@ -1173,8 +1229,8 @@ void QuitAppliGtk()
 	RememberManagerWindowPrefs( );
 	RememberEditWindowPrefs( );
 	RememberSymbolsWindowPrefs( );
-	RememberBoolVarsWindowPrefs( );
-	RememberFreeVarsWindowPrefs( );
+	RememberSpyBoolVarsWindowPrefs( );
+	RememberSpyFreeVarsWindowPrefs( );
 	RememberLogBookWindowPrefs( );
 	for( NumFramesLogWindow=0; NumFramesLogWindow<NBR_FRAMES_LOG_WINDOWS; NumFramesLogWindow++ )
 	{
@@ -1183,6 +1239,17 @@ void QuitAppliGtk()
 		RememberMonitorWindowPrefs( NumFramesLogWindow );
 	}
 	
+	//added to accelerate impression of ending for user (because some threads waiting later...)
+	CloseManagerWindowForEnd( );
+	CloseEditWindowForEnd( );
+	CloseSymbolsWindowForEnd( );
+	CloseSpyBoolVarsWindowForEnd();
+	CloseSpyFreeVarsWindowForEnd();
+	CloseLogBookWindowForEnd( );
+	//treat GTK pending events immediately, required to see effect of windows hiden immediately here !
+	while( gtk_events_pending() )
+		gtk_main_iteration( );
+
 	SaveSetsVarsList( );
 	SaveLogEventsData( );
 	
@@ -1780,6 +1847,7 @@ SetGtkMenuStateForConnectDisconnectSwitch( FALSE );
 
 gboolean UpdateAllGtkWindows( void )
 {
+printf("%s() called!\n", __FUNCTION__);
 	ManagerDisplaySections( TRUE/*ForgetSectionSelected*/, TRUE/*RefreshComboSectionLists*/ );
 //	DrawCurrentSection( );
 	RedrawSignalDrawingArea( );

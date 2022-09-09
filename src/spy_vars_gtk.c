@@ -349,13 +349,17 @@ void OpenSpyBoolVarsWindow( GtkAction * ActionOpen, gboolean OpenIt )
 		gtk_widget_hide( SpyBoolVarsWindow );
 	}
 }
-void RememberBoolVarsWindowPrefs( void )
+void RememberSpyBoolVarsWindowPrefs( void )
 {
 //ForGTK3	char WindowIsOpened = GTK_WIDGET_VISIBLE( GTK_WINDOW(SpyBoolVarsWindow) );
 	char WindowIsOpened = MY_GTK_WIDGET_VISIBLE( SpyBoolVarsWindow );
 		RememberWindowOpenPrefs( "BoolVars", WindowIsOpened );
 	if ( WindowIsOpened )
 		RememberWindowPosiPrefs( "BoolVars", SpyBoolVarsWindow, FALSE/*SaveWindowSize*/ );
+}
+void CloseSpyBoolVarsWindowForEnd( void )
+{
+	gtk_widget_hide( SpyBoolVarsWindow );
 }
 
 void BoolVarsWindowInitGtk()
@@ -802,13 +806,18 @@ void OpenSpyFreeVarsWindow( GtkAction * ActionOpen, gboolean OpenIt )
 		gtk_widget_hide( SpyFreeVarsWindow );
 	}
 }
-void RememberFreeVarsWindowPrefs( void )
+void RememberSpyFreeVarsWindowPrefs( void )
 {
 //ForGTK3	char WindowIsOpened = GTK_WIDGET_VISIBLE( GTK_WINDOW(SpyFreeVarsWindow) );
 	char WindowIsOpened = MY_GTK_WIDGET_VISIBLE( SpyFreeVarsWindow );
 	RememberWindowOpenPrefs( "FreeVars", WindowIsOpened );
 	if ( WindowIsOpened )
 		RememberWindowPosiPrefs( "FreeVars", SpyFreeVarsWindow, FALSE/*SaveWindowSize*/ );
+}
+
+void CloseSpyFreeVarsWindowForEnd( void )
+{
+	gtk_widget_hide( SpyFreeVarsWindow );
 }
 
 void AddDisplayFormatItems( MyGtkComboBox * pComboBox )

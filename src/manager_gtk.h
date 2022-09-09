@@ -8,6 +8,7 @@ void SelectPreviousSectionInManager(void);
 void OpenManagerWindow( GtkAction * ActionOpen, gboolean OpenIt );
 #endif
 void RememberManagerWindowPrefs( void );
+void CloseManagerWindowForEnd( void );
 void OpenManagerWindowFromPopup( void );
 void ManagerEnableActionsSectionsList( char cState );
 void ManagerInitGtk();

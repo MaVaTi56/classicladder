@@ -257,6 +257,10 @@ void RememberLogBookWindowPrefs( void )
 	if ( WindowIsOpened )
 		RememberWindowPosiPrefs( "LogBook", LogBookWindow, TRUE/*SaveWindowSize*/ );
 }
+void CloseLogBookWindowForEnd( void )
+{
+	gtk_widget_hide( LogBookWindow );
+}
 
 void FunctionRefreshLog( void )
 {

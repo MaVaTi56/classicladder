@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* May 2001 */
@@ -548,6 +548,10 @@ void RememberEditWindowPrefs( void )
 	RememberWindowOpenPrefs( "Edit", WindowIsOpened );
 	if ( WindowIsOpened )
 		RememberWindowPosiPrefs( "Edit", EditWindow, FALSE/*SaveWindowSize*/ );
+}
+void CloseEditWindowForEnd( void )
+{
+	gtk_widget_hide( EditWindow );
 }
 
 char ConvertNumElementInToolbarPosisXY( int NumToolbar, int NumElementWanted, int *FoundX, int *FoundY )

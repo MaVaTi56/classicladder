@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2022 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* October 2006 */
@@ -197,6 +197,10 @@ void RememberSymbolsWindowPrefs( void )
 	RememberWindowOpenPrefs( "Symbols", WindowIsOpened );
 	if ( WindowIsOpened )
 		RememberWindowPosiPrefs( "Symbols", SymbolsWindow, TRUE/*SaveWindowSize*/ );
+}
+void CloseSymbolsWindowForEnd( void )
+{
+	gtk_widget_hide( SymbolsWindow );
 }
 
 void SymbolsInitGtk()
