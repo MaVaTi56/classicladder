@@ -11,6 +11,8 @@ FUTURE / TODO LIST...
 => 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), ...
 
 - Update french language translation (some missing strings).
+
+- Error messages "!!!Abnormal current type=xxxxxx in rung..." if copying/moving rung part without any selection done before !
   
 - Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
 
