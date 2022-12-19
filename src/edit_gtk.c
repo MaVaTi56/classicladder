@@ -612,12 +612,22 @@ void ButtonToolbarSignal( GtkWidget * widget, gpointer data )
 		EditDatas.NumElementSelectedInToolBar = GPOINTER_TO_INT( data );
 		EditDatas.GhostZonePosiX = -1;
 		EditDatas.GhostZonePosiY = -1;
-		if ( EditDatas.NumElementSelectedInToolBar==EDIT_MOVE )
-			CleanUpSrcWhenStartMoving( );
+		// done below if no part...
+//		if ( EditDatas.NumElementSelectedInToolBar==EDIT_MOVE )
+//			CleanUpSrcWhenStartMoving( );
 		if ( EditDatas.NumElementSelectedInToolBar<EDIT_CNX_WITH_TOP || EditDatas.NumElementSelectedInToolBar==EDIT_COPY || EditDatas.NumElementSelectedInToolBar==EDIT_MOVE )
 		{
 			GetSizesOfAnElement( EditDatas.NumElementSelectedInToolBar, &EditDatas.GhostZoneSizeX, &EditDatas.GhostZoneSizeY );
-printf( "Ghost Size %d,%d for type=%d\n", EditDatas.GhostZoneSizeX, EditDatas.GhostZoneSizeY, EditDatas.NumElementSelectedInToolBar );
+//printf( "In %s(), Ghost Size %d,%d for type=%d\n", __FUNCTION__, EditDatas.GhostZoneSizeX, EditDatas.GhostZoneSizeY, EditDatas.NumElementSelectedInToolBar );
+			if( ( EditDatas.NumElementSelectedInToolBar==EDIT_COPY || EditDatas.NumElementSelectedInToolBar==EDIT_MOVE ) && (EditDatas.GhostZoneSizeX<=0 || EditDatas.GhostZoneSizeY<=0 ) )
+			{
+				ShowMessageBoxError( _("No rung part previously selected before copying or moving it...") );
+				// select pointer in rung toolbar
+				SelectAnElementInToolBar( NUM_TOOLBAR_FOR_LADDER, EDIT_POINTER );
+				return;
+			}
+			if ( EditDatas.NumElementSelectedInToolBar==EDIT_MOVE )
+				CleanUpSrcWhenStartMoving( );
 		}
 #ifdef SEQUENTIAL_SUPPORT
 		if ( CurrentLanguage==SECTION_IN_SEQUENTIAL )

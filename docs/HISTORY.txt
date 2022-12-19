@@ -1083,7 +1083,7 @@ v0.9.113 (4 January 2020)
    - If editor window closed, and "modifying" from popup menu, was opening editor window without checking menu "View / Editor window". fixed.
      + now also open editor window when adding or inserting a rung.
 
-v0.9.114 (.. September 2022)
+v0.9.114 (.. December 2022)
    - When opening the variables browser, if already a var is present in the edit widget, display the corresponding combo type
      and select it per default in the list.
      + can double-click on a var in the list to validate variable selected (instead of clicking "OK" button, faster!).
@@ -1099,11 +1099,12 @@ v0.9.114 (.. September 2022)
      + move "sections" button toolbar righter and add before a separator.
    - Section manager window not opened per-default now. To have another window at less at startup (not really useful when editing
      just one ladder section for example, and also after defined all sections wanted) !
-   - Many havardAasen (git) modifications pulls (requests dialogs code simplifications, gtk warkings, Clang warnings, typos, ...).
+   - Many havardAasen (git) modifications pulls (requests dialogs code simplifications, Gtk warkings, Clang warnings, typos, ...).
    - On 'quit', hide immediately all windows opened, before waiting pause added (to wait end of threads). Better impression for user.
    - Fixed bugs with keys / mouse scroll for vertical scroll bar not blocked when editing rung section (reported by havardAasen)
      + can use left/right keys shortcut for sequential horizontal scroll and vertical not blocked during sequential edit and scroll mouse
      usable for sequential also!
    - Edits shortcuts also usable for sequential sections.
-
+   - Possible error messages "!!!Abnormal current type=xxxxxx in rung..." if copying/moving rung part without any selection done before !
+     Now displaying an error message if no rung part selected before copying/moving.
 

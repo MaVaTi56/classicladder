@@ -8,12 +8,11 @@ FUTURE / TODO LIST...
 ---------------------
 
 - Application compilation on GTK+ version 3 to continue by removing warnings with some old functions used. But KEEP GTK+ version 2 compatibility for now!!!
+=> many gtk_hbox_new() & gtk_vbox_new()
 => 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), ...
 
 - Update french language translation (some missing strings).
 
-- Error messages "!!!Abnormal current type=xxxxxx in rung..." if copying/moving rung part without any selection done before !
-  
 - Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
 
 - Tests with 'valgrind' to be done... + CppCheck static analyse results to see...

@@ -17,7 +17,7 @@ GTK_INTERFACE = 1
 #WINDOWS = 1
 
 # Uncomment if you want to debug a 'segmentation fault' with gdb or KDbg for example... ;-)
-DEBUG = 1
+# DEBUG = 1
 
 # To add extra features like events log, monitor protocol (perhaps not required when only rung/grafcet motor engine used)
 COMPLETE_PLC = 1

@@ -77,7 +77,9 @@ char *cl_fgets(char *s, int size, FILE *stream)
 
 	if ( strlen( S_LINE )>0 && strlen(s)>strlen( S_LINE )+strlen( E_LINE ) )
 	{
-		strcpy( s, s+strlen( S_LINE ) );
+		int startlen = strlen( S_LINE );
+		if( startlen>0 )
+			strcpy( s, s+startlen );
 		s[ strlen(s)-strlen(E_LINE) ] = '\0';
 	}
 	return res;
@@ -562,7 +564,7 @@ char * ConvRawLineOfStringsOrNumbers(char * RawLine,int NbrParams,char ** Params
 				if ( ParamsIntFnd[ Num ]!=NULL )
 				{
 					IsAnIntForStrLgth = TRUE;
-					if ( strlen( StartOfValue )<(int)ParamsIntFnd[ Num ] )
+					if ( strlen( StartOfValue )<(size_t)ParamsIntFnd[ Num ] )
 						strcpy( ParamsStringsFnd[Num], StartOfValue );
 				}
 			}
@@ -2235,40 +2237,44 @@ void CleanTmpLadderDirectory( char DestroyDir )
 {
 	DIR *pDir;
 	struct dirent *pEnt;
-	char Buff[400];
-
-	if (TmpDirectoryProject[0]!='\0')
+	char * pBuff = malloc( LGT_FOR_PATH_AND_FILE+256 );
+	if( pBuff )
 	{
-		pDir = opendir(TmpDirectoryProject);
-		if (pDir)
+
+		if (TmpDirectoryProject[0]!='\0')
 		{
-			while ((pEnt = readdir(pDir)) != NULL)
+			pDir = opendir(TmpDirectoryProject);
+			if (pDir)
 			{
-				if ( strcmp(pEnt->d_name,".") && strcmp(pEnt->d_name,"..") )
+				while ((pEnt = readdir(pDir)) != NULL)
 				{
-					char cRemoveIt = TRUE;
-					// if a file prefix defined, only remove the classicladder files...
-					if ( strlen(FILE_PREFIX)>0 )
+					if ( strcmp(pEnt->d_name,".") && strcmp(pEnt->d_name,"..") )
 					{
-						if ( strncmp( pEnt->d_name, FILE_PREFIX, strlen(FILE_PREFIX) )!=0 )
-							cRemoveIt = FALSE;
-					}
-					if ( cRemoveIt )
-					{
-						sprintf(Buff, "%s/%s", TmpDirectoryProject,pEnt->d_name);
-						remove(Buff);
+						char cRemoveIt = TRUE;
+						// if a file prefix defined, only remove the classicladder files...
+						if ( strlen(FILE_PREFIX)>0 )
+						{
+							if ( strncmp( pEnt->d_name, FILE_PREFIX, strlen(FILE_PREFIX) )!=0 )
+								cRemoveIt = FALSE;
+						}
+						if ( cRemoveIt )
+						{
+							sprintf(pBuff, "%s/%s", TmpDirectoryProject,pEnt->d_name);
+							remove(pBuff);
+						}
 					}
 				}
 			}
-		}
-		closedir(pDir);
-		/* delete the temp directory if wanted */
+			closedir(pDir);
+			/* delete the temp directory if wanted */
 //#ifndef __WIN32__
-		if ( DestroyDir )
-			rmdir(TmpDirectoryProject);
+			if ( DestroyDir )
+				rmdir(TmpDirectoryProject);
 //#else
-//		if ( DestroyDir )
-//			_rmdir(TmpDirectoryProject);
+//			if ( DestroyDir )
+//				_rmdir(TmpDirectoryProject);
 //#endif
+		}
+		free( pBuff );
 	}
 }
