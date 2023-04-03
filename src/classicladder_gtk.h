@@ -29,6 +29,16 @@
 #define MyGtkComboBox GtkComboBox
 #define MY_GTK_COMBO_BOX GTK_COMBO_BOX
 #endif
+#if GTK_MAJOR_VERSION>=3
+#define MY_GTK_ORIENTATION_VERTICAL GTK_ORIENTATION_VERTICAL
+#define MY_GTK_ORIENTATION_HORIZONTAL GTK_ORIENTATION_HORIZONTAL
+#define MY_GTK_NEW_BOX(o,s) gtk_box_new(o,s)
+#else
+#define MY_GTK_ORIENTATION_VERTICAL 0
+#define MY_GTK_ORIENTATION_HORIZONTAL 1
+GtkWidget * MyGtk2NewBox( char OrientationWanted, gint SpacingWanted );
+#define MY_GTK_NEW_BOX(o,s) MyGtk2NewBox(o,s)
+#endif
 
 
 #include "monitor_transfer.h"

@@ -1,5 +1,5 @@
 CLASSIC LADDER PROJECT
-Copyright (C) 2001-2022 Marc Le Douarain
+Copyright (C) 2001-2023 Marc Le Douarain
 marc . le - douarain /AT\ laposte \DOT/ net
 http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder
@@ -7,15 +7,18 @@ http://sites.google.com/site/classicladder
 FUTURE / TODO LIST...
 ---------------------
 
-- Application compilation on GTK+ version 3 to continue by removing warnings with some old functions used. But KEEP GTK+ version 2 compatibility for now!!!
-=> many gtk_hbox_new() & gtk_vbox_new()
-=> 'gdk_pixbuf_new_from_inline' deprecated (use GResources instead), ...
-
-- Update french language translation (some missing strings).
+- Application compilation on Gtk+ version 3 to continue by removing warnings with some old functions used.
+  But KEEP Gtk+ version 2 compatibility for now!!! (use only new fonctions also available on latests Gtk+2 version, or conditional compilation)
+=> replace 'gtk_table' per 'gtk_grid'...
+=> 'gdk_pixbuf_new_from_inline' already deprecated in Gtk+2 (use GResources instead), ...
 
 - Also use gtk_entry_set_width_chars() on some entries in config window for smaller widths.
 
 - Tests with 'valgrind' to be done... + CppCheck static analyse results to see...
+
+- Adjust drawing height of label/comment rung header, to size of the font selected.
+
+- Optimize CPU usage: no periodic refresh if not running (in edit, send "update signal" redraw only when something done or if needed)
 
 - Perhaps to have new targets in Makefile, to directly allow "make embedded_plc_x86", "make embedded_plc_arietta", "make_embedded_raspi" to avoid manual
   editing of Makefile before compilation for an embedded target. possible use of "undefine VAR"
@@ -31,8 +34,6 @@ FUTURE / TODO LIST...
 
 - Bug "auto rung selected" (because of VScrollBar reset) if resizing window during edit... can't just use gtk_window_set_resizable() with back to default size...
 
-- Adjust drawing height of label/comment rung header, to size of the font selected.
-
 - Directly in rungs for contacts to be able to "extract a bit of a word" & also in coils "set a bit of a word" with var format "v[i]:Xz".
   Example "%W20:X4" => bit 4 of %W20 ; "%W10[%W30]:X9" => bit 9 of %W10[%W30].
   => will require new rung file format VER4.0 (if used in project) with var "t/o[ti/oi]" => "t/o[ti/oi]:Xb"
@@ -47,7 +48,7 @@ FUTURE / TODO LIST...
 - Registers: add a time/date for each value stored, that can be viewed later for content of each value.
 
 - To do a .deb package (for Debian/Ubuntu).
-- Do an easy Windows installer ? (just 'one' archive now including gtk files library to extract...)
+- Do an easy Windows installer ? (well just 'one' archive now including gtk files library to extract, so quite easy...)
 
 - Review all variables names to be in conformity with IEC61131, especially %Bxxx => %Mxxx ; %Wxxx => %MWxxx
 
@@ -67,6 +68,8 @@ FUTURE / TODO LIST...
   (close current opened serial port before in a CloseHardware() function before loading another project).
 - Modbus master can (define?) use the 16550 realtime driver on Xenomai (do new file serial_rt_xeno + functions SerialOpen_rt, Serial_Send_rt, ...).
 
+- Modbus slave (called server in IP) should accept many clients at the same time (on the same listen port). one thread per client,
+  or specifc Lunux fd use ?
 - Modbus slave (called server in IP) could also run in serial if a serial port string parametred for it in config_gtk (with RTS possible).
 - In Modbus slave/server can have offsets to get directly access to %I and %IW variables (for example if address > 20000...?!)
 
@@ -85,7 +88,6 @@ FUTURE / TODO LIST...
 
 - Passwords. for monitor access? future SMS commands? differents access levels?
 
-- Optimize CPU usage: no periodic refresh if not running (in edit, send "update signal" redraw when something done)
 - Vertical display optimization (nbr blocks no more fixed) depending of the elements present on the rung (recent NbrLinesUsed in StrRung)
   (but during edit, always displaying current edit with nbr of lines maxi).
 - 'Undo' available during edit...

@@ -1046,11 +1046,11 @@ printf("SaveRegisterContent: %s", Buff );
 					NbrValues--;
 				}
 			}
+			if ( Compressed )
+				gzclose( pLogFileGz );
+			else
+				fclose( pLogFile );
 		}
-		if ( Compressed )
-			gzclose( pLogFileGz );
-		else
-			fclose( pLogFile );
 		return ( pLogFileGz!=NULL || pLogFile!=NULL );
 	}
 	else

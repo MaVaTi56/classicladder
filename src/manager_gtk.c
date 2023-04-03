@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* August 2002 */
@@ -87,7 +87,7 @@ printf("%s(): init...\n",__FUNCTION__);
 	gtk_list_store_clear( ListStore );
 	// for combo in main window
 	if( RefreshComboSectionLists )
-		gtk_list_store_clear (GTK_LIST_STORE (gtk_combo_box_get_model (WidgetComboCurrentSection)));
+		gtk_list_store_clear( GTK_LIST_STORE (gtk_combo_box_get_model( GTK_COMBO_BOX(WidgetComboCurrentSection) )) );
 	for ( NumSec=0; NumSec<NBR_SECTIONS; NumSec++ )
 	{
 		pSection = &SectionArray[ NumSec ];
@@ -383,7 +383,7 @@ void ButtonDelClickSignal( )
 		{
 			if ( NbrSectionsDefined( )>1 )
 			{
-				ShowConfirmationBox( _("New"), _("Do you really want to delete the section ?"), DeleteCurrentSection);	
+				ShowConfirmationBox( _("Delete"), _("Do you really want to delete the section ?"), DeleteCurrentSection);	
 			}
 			else
 			{
@@ -517,14 +517,14 @@ void AddSectionWindowInit( )
 
 	AddSectionWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (AddSectionWindow), vbox);
 	gtk_widget_show (vbox);
 
 	for ( Line = 0; Line<3; Line++ )
 	{
 		char * text;
-		hbox[ Line ] = gtk_hbox_new (FALSE, 0);
+		hbox[ Line ] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_container_add (GTK_CONTAINER (vbox), hbox[ Line ]);
 		gtk_widget_show (hbox[ Line ]);
 
@@ -622,7 +622,7 @@ void ManagerInitGtk()
 	ManagerWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title ( (GtkWindow *)ManagerWindow, _("Sections Manager") );
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (ManagerWindow), vbox);
 	gtk_widget_show (vbox);
 

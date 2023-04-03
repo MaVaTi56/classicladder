@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2016 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* January 2014 */
@@ -70,7 +70,7 @@ char OpenMonitorSerialConfigDialog( void )
 	DialogContentArea = gtk_dialog_get_content_area(GTK_DIALOG(pDialogBox));
 	for( ScanLine=0; ScanLine<NBR_MON_SER_PARAMS; ScanLine++ )
 	{
-		hbox[ScanLine] = gtk_hbox_new (FALSE, 0);
+		hbox[ScanLine] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //ForGTK3		gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[ScanLine]);
 		gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[ScanLine]);
 		pLabel = gtk_label_new( gettext(NameParams[ScanLine]) );

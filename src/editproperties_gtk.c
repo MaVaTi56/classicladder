@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* May 2001 */
@@ -298,13 +298,13 @@ void PropertiesInitGtk()
 	PropertiesWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title ( (GtkWindow *)PropertiesWindow, _("Properties") );
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (PropertiesWindow), vbox);
 	gtk_widget_show (vbox);
 
 	for (NumParam = 0 ; NumParam<NBR_PARAMS_PER_OBJ ; NumParam++)
 	{
-		hbox[NumParam] = gtk_hbox_new (FALSE, 0);
+		hbox[NumParam] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_container_add (GTK_CONTAINER (vbox), hbox[NumParam]);
 		gtk_widget_show (hbox[NumParam]);
 
@@ -359,7 +359,7 @@ void PropertiesInitGtk()
 	}
 
 	/* for apply button... */
-	hbox[NumParam] = gtk_hbox_new (FALSE, 0);
+	hbox[NumParam] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_container_add (GTK_CONTAINER (vbox), hbox[NumParam]);
 	gtk_widget_show (hbox[NumParam]);
 

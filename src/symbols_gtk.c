@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* October 2006 */
@@ -215,7 +215,7 @@ void SymbolsInitGtk()
 	gtk_signal_connect( GTK_OBJECT( SymbolsWindow ), "delete_event",
 		GTK_SIGNAL_FUNC(SymbolsWindowDeleteEvent), 0 );
 
-	vbox = gtk_vbox_new(FALSE,0);
+	vbox = MY_GTK_NEW_BOX(MY_GTK_ORIENTATION_VERTICAL,0);
 
 	/* Create a list-model and the view. */
 	ListStore = gtk_list_store_new( NBR_INFOS, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING );

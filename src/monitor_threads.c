@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2021 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2011 */
@@ -536,7 +536,7 @@ MonitorWindowAddText( FRAMES_LOG_MONITOR_MASTER, DebugMsgMaster );
 		if ( ( InfosGUI->TargetMonitor.RemoteConnected || InfosGUI->TargetMonitor.RemoteFileTransfer ) && !ErrorToConnect )
 		{
 			int ReplyTimeOutValueInMs = InfosGUI->TargetMonitor.TimeOutWaitReply; //300; //250;
-			char * RequestToSend = RequestToSend = MonitorMasterSchedulerRequestToAsk( &ReplyTimeOutValueInMs );
+			char * RequestToSend = MonitorMasterSchedulerRequestToAsk( &ReplyTimeOutValueInMs );
 //MonitorWindowAddText( "monmaster: target to ask.\n" );
 			if ( RequestToSend!=NULL )
 			{

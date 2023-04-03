@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2017 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* May 2013 */
@@ -71,7 +71,7 @@ char OpenNetworkConfigDialog( void )
 	for( ScanLine=0; ScanLine<NBR_NET_PARAMS; ScanLine++ )
 	{
 		GtkWidget * pLabel;
-		hbox[ScanLine] = gtk_hbox_new (FALSE, 0);
+		hbox[ScanLine] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //ForGTK3		gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[ScanLine]);
 		gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[ScanLine]);
 		pLabel = gtk_label_new( gettext(NameParams[ScanLine]) );

@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* July 2009 */
@@ -331,7 +331,7 @@ void LogBookInitGtk()
 	gtk_signal_connect( GTK_OBJECT( LogBookWindow ), "delete_event",
 		GTK_SIGNAL_FUNC(LogBookWindowDeleteEvent), 0 );
 
-	vbox = gtk_vbox_new(FALSE,0);
+	vbox = MY_GTK_NEW_BOX(MY_GTK_ORIENTATION_VERTICAL,0);
 
 	/* Create a list-model and the view. */
 	ListStore = gtk_list_store_new( NBR_INFOS, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_INT );
@@ -362,7 +362,7 @@ void LogBookInitGtk()
 
 gtk_window_set_default_size (GTK_WINDOW (LogBookWindow), -1, 250);
 
-	hbox = gtk_hbox_new(FALSE,0);
+	hbox = MY_GTK_NEW_BOX(MY_GTK_ORIENTATION_HORIZONTAL,0);
 	gtk_box_pack_start(GTK_BOX (vbox), hbox, FALSE, FALSE, 0);
 
 	ButtonRefresh = gtk_button_new_with_label( _("Refresh") );

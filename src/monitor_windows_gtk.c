@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2017 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* October 2011 */
@@ -108,7 +108,7 @@ char OpenDialogMonitorConnect( void )
 	//ForGTK3
 	DialogContentArea = gtk_dialog_get_content_area(GTK_DIALOG(pDialogBox));
 
-	hbox[0] = gtk_hbox_new (FALSE, 0);
+	hbox[0] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //ForGTK3	gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[0]);
 	gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[0]);
 	pRadioModeChoice[0] = gtk_radio_button_new_with_label( NULL, _("IP network") );
@@ -124,7 +124,7 @@ char OpenDialogMonitorConnect( void )
 					GTK_SIGNAL_FUNC(RadioModeChoiceToggledClick), (void*)NULL);
 	gtk_box_pack_start(GTK_BOX(hbox[0]), pRadioModeChoice[2], TRUE, TRUE, 0);
 
-	hbox[1] = gtk_hbox_new (FALSE, 0);
+	hbox[1] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //ForGTK3	gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[1]);
 	gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[1]);
 	pLabel = gtk_label_new( _("IP address or hostname") );
@@ -135,7 +135,7 @@ char OpenDialogMonitorConnect( void )
 	gtk_signal_connect(GTK_OBJECT(pEntryIP), "activate",
 				GTK_SIGNAL_FUNC(DialogConnectDoResponseOk), 0);
 
-	hbox[2] = gtk_hbox_new (FALSE, 0);
+	hbox[2] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //ForGTK3	gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[2]);
 	gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[2]);
 	pLabel = gtk_label_new( _("Serial port") );
@@ -154,7 +154,7 @@ char OpenDialogMonitorConnect( void )
 	gtk_signal_connect(GTK_OBJECT(pEntrySerialSpeed), "activate",
 				GTK_SIGNAL_FUNC(DialogConnectDoResponseOk), 0);
 
-	hbox[3] = gtk_hbox_new (FALSE, 0);
+	hbox[3] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //ForGTK3	gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[3]);
 	gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[3]);
 	pLabel = gtk_label_new( _("Telephone number") );
@@ -163,7 +163,7 @@ char OpenDialogMonitorConnect( void )
 	gtk_entry_set_text( GTK_ENTRY(pEntryTelephoneNumber), InfosGUI->TargetMonitor.RemoteTelephoneNumber );
 	gtk_box_pack_start(GTK_BOX(hbox[3]), pEntryTelephoneNumber, FALSE, FALSE, 0);
 
-	hbox[4] = gtk_hbox_new (FALSE, 0);
+	hbox[4] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //ForGTK3	gtk_container_add (GTK_CONTAINER(GTK_DIALOG(pDialogBox)->vbox), hbox[4]);
 	gtk_container_add (GTK_CONTAINER(DialogContentArea), hbox[4]);
 	pLabel = gtk_label_new( _("Reply timeout (ms)") );
@@ -415,7 +415,7 @@ void MonitorWindowInitGtk( int NumFramesLogWindow )
 		gtk_signal_connect( GTK_OBJECT( pFramesLogWindow->MonitorWindow ), "delete_event",
 			GTK_SIGNAL_FUNC(MonitorWindowDeleteEvent), GINT_TO_POINTER(NumFramesLogWindow) );
 
-		vbox = gtk_vbox_new (FALSE, 0);
+		vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0/*spacing*/);
 		gtk_container_add(GTK_CONTAINER(pFramesLogWindow->MonitorWindow),vbox);
 		gtk_widget_show (vbox);
 
@@ -430,7 +430,7 @@ void MonitorWindowInitGtk( int NumFramesLogWindow )
 		gtk_widget_set_sensitive( pFramesLogWindow->MonitorFramesView, FALSE );
 		gtk_widget_show( pFramesLogWindow->MonitorFramesView );
 
-		hbox = gtk_hbox_new (FALSE, 0);
+		hbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_box_pack_start (GTK_BOX(vbox), hbox, FALSE, FALSE, 0);
 		gtk_widget_show (hbox);
 
@@ -470,7 +470,7 @@ void MonitorWindowInitGtk( int NumFramesLogWindow )
 			// some statistics... to debug my AVR I/O module !
 //////			char BuffValue[ 100 ];
 			GtkWidget *hboxStats,*LabelStats;
-			hboxStats =  gtk_hbox_new (FALSE/*homogeneous*/, 0/*spacing*/);
+			hboxStats =  MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0/*spacing*/);
 			gtk_container_add (GTK_CONTAINER (vbox), hboxStats);
 //added to avoid that with the combobox too height of the hbox...
 gtk_box_set_child_packing(GTK_BOX(vbox), hboxStats,

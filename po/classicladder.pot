@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-06 21:32+0100\n"
+"POT-Creation-Date: 2023-03-30 10:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,110 +41,117 @@ msgstr ""
 msgid "Reset logic data done."
 msgstr ""
 
-#: classicladder.c:744
+#: classicladder.c:745
 msgid "Project loaded and running"
 msgstr ""
 
-#: classicladder.c:744 classicladder_gtk.c:692
+#: classicladder.c:745 classicladder_gtk.c:757
 msgid "Project failed to load..."
 msgstr ""
 
-#: edit.c:164 edit.c:256 edit_sequential.c:136 symbols_gtk.c:200
+#: edit.c:163 edit.c:255 edit_sequential.c:136 editproperties_gtk.c:132
+#: symbols_gtk.c:211 vars_browser_gtk.c:161
 msgid "Variable"
 msgstr ""
 
-#: edit.c:167
+#: edit.c:166
 msgid "JumpToLabel"
 msgstr ""
 
-#: edit.c:171 edit.c:262
+#: edit.c:170 edit.c:261
 msgid "Sub-Routine"
 msgstr ""
 
-#: edit.c:177 edit.c:203
+#: edit.c:176 edit.c:202
 msgid "TimerNbr"
 msgstr ""
 
-#: edit.c:179 edit.c:188 edit.c:205 edit.c:267 edit.c:271 edit.c:280
-#: editproperties_gtk.c:78 editproperties_gtk.c:148
+#: edit.c:178 edit.c:187 edit.c:204 edit.c:266 edit.c:270 edit.c:279
+#: editproperties_gtk.c:81 editproperties_gtk.c:170
 msgid "Base"
 msgstr ""
 
-#: edit.c:181 edit.c:190 edit.c:198 edit.c:207 edit.c:267 edit.c:271 edit.c:276
-#: edit.c:280
+#: edit.c:180 edit.c:189 edit.c:197 edit.c:206 edit.c:266 edit.c:270 edit.c:275
+#: edit.c:279
 msgid "Preset"
 msgstr ""
 
-#: edit.c:186
+#: edit.c:185
 msgid "MonostNbr"
 msgstr ""
 
-#: edit.c:196
+#: edit.c:195
 msgid "CounterNbr"
 msgstr ""
 
-#: edit.c:210 editproperties_gtk.c:89 editproperties_gtk.c:155
+#: edit.c:209 editproperties_gtk.c:92 editproperties_gtk.c:177
 msgid "TimerMode"
 msgstr ""
 
-#: edit.c:215
+#: edit.c:214
 msgid "RegisterNbr"
 msgstr ""
 
-#: edit.c:217 editproperties_gtk.c:100 editproperties_gtk.c:162
+#: edit.c:216 editproperties_gtk.c:103 editproperties_gtk.c:184
 msgid "RegisterMode"
 msgstr ""
 
-#: edit.c:222 edit.c:290
+#: edit.c:221 edit.c:289 editproperties_gtk.c:132 editproperties_gtk.c:135
 msgid "Expression"
 msgstr ""
 
-#: edit.c:259
+#: edit.c:258
 msgid "Label"
 msgstr ""
 
-#: edit.c:280 edit.c:284
+#: edit.c:279 edit.c:283
 msgid "Mode"
 msgstr ""
 
-#: edit.c:385
+#: edit.c:384
 msgid "Incompatible type of variable (must be an integer!)"
 msgstr ""
 
-#: edit.c:425
+#: edit.c:424
 msgid "Expression too long"
 msgstr ""
 
-#: edit.c:506
+#: edit.c:441 manager_gtk.c:578 print_gtk.c:319 menu_and_toolbar_gtk.c:596
+#: edit_gtk.c:782 classicladder_gtk.c:753 classicladder_gtk.c:786
+#: classicladder_gtk.c:1148 classicladder_gtk.c:1710 log_events_gtk.c:296
+msgid "Ok"
+msgstr ""
+
+#: edit.c:505
 msgid "Incompatible type of variable for index (must be an integer!)"
 msgstr ""
 
-#: edit.c:512
+#: edit.c:511
 msgid "Parser error for indexed variable !"
 msgstr ""
 
-#: edit.c:518
+#: edit.c:517
 msgid "You must select a boolean variable !"
 msgstr ""
 
-#: edit.c:527
+#: edit.c:526
 msgid "You must select a read/write variable for a coil!"
 msgstr ""
 
-#: edit.c:543 edit_sequential.c:180 symbols_gtk.c:135 spy_vars_gtk.c:662
-#: search.c:441
+#: edit.c:542 edit_sequential.c:180 symbols_gtk.c:140 spy_vars_gtk.c:655
+#: search.c:439
 msgid "Unknown variable..."
 msgstr ""
 
-#: edit.c:1303
+#: edit.c:1300
 msgid "No more free function block of this type available..."
 msgstr ""
 
-#: edit.c:1315
+#: edit.c:1312
 msgid "No more free arithmetic expression for this type available..."
 msgstr ""
 
-#: edit.c:1517
+#: edit.c:1514
 msgid "You clicked outside of the current rung actually selected..."
 msgstr ""
 
@@ -180,8 +187,8 @@ msgstr ""
 msgid "OrTransisEnd"
 msgstr ""
 
-#: edit_sequential.c:148 symbols_gtk.c:200 menu_and_toolbar_gtk.c:162
-#: edit_gtk.c:138
+#: edit_sequential.c:148 symbols_gtk.c:211 menu_and_toolbar_gtk.c:162
+#: edit_gtk.c:138 vars_browser_gtk.c:161
 msgid "Comment"
 msgstr ""
 
@@ -277,152 +284,150 @@ msgstr ""
 msgid "Not enough room on the right here..."
 msgstr ""
 
-#: editproperties_gtk.c:277 manager_gtk.c:535
+#: editproperties_gtk.c:299 manager_gtk.c:596
 msgid "Properties"
 msgstr ""
 
-#: editproperties_gtk.c:335 spy_vars_gtk.c:1090
+#: editproperties_gtk.c:354 spy_vars_gtk.c:888 vars_browser_gtk.c:171
+msgid "Variables browser"
+msgstr ""
+
+#: editproperties_gtk.c:366 spy_vars_gtk.c:1110
 msgid "Apply"
 msgstr ""
 
-#: manager_gtk.c:92 manager_gtk.c:505
+#: manager_gtk.c:101 manager_gtk.c:566
 msgid "Main"
 msgstr ""
 
-#: manager_gtk.c:106 manager_gtk.c:495
+#: manager_gtk.c:115 manager_gtk.c:556
 msgid "Sequential"
 msgstr ""
 
-#: manager_gtk.c:106 manager_gtk.c:493
+#: manager_gtk.c:115 manager_gtk.c:554
 msgid "Ladder"
 msgstr ""
 
-#: manager_gtk.c:181
+#: manager_gtk.c:239
 msgid "This section name already exists or is incorrect !!!"
 msgstr ""
 
-#: manager_gtk.c:210
+#: manager_gtk.c:268
 msgid "This sub-routine number for calls is already defined !!!"
 msgstr ""
 
-#: manager_gtk.c:218
+#: manager_gtk.c:276
 msgid "Failed to add a new section. Full?"
 msgstr ""
 
-#: manager_gtk.c:234 manager_gtk.c:258 manager_gtk.c:315 manager_gtk.c:342
-#: manager_gtk.c:367 config_gtk.c:1669 spy_vars_gtk.c:1036 edit_gtk.c:379
-#: edit_gtk.c:394 edit_gtk.c:409 classicladder_gtk.c:866
-#: classicladder_gtk.c:878
+#: manager_gtk.c:292 manager_gtk.c:316 manager_gtk.c:373 manager_gtk.c:400
+#: manager_gtk.c:425 config_gtk.c:1717 spy_vars_gtk.c:1056 edit_gtk.c:379
+#: edit_gtk.c:400 edit_gtk.c:421 classicladder_gtk.c:942
+#: classicladder_gtk.c:954
 msgid "Not possible when connected to a remote target..."
 msgstr ""
 
-#: manager_gtk.c:238 manager_gtk.c:319 manager_gtk.c:346 manager_gtk.c:371
+#: manager_gtk.c:296 manager_gtk.c:377 manager_gtk.c:404 manager_gtk.c:429
 msgid "Not possible when program running..."
 msgstr ""
 
-#: manager_gtk.c:249
+#: manager_gtk.c:307
 msgid "Add a new section..."
 msgstr ""
 
-#: manager_gtk.c:286
+#: manager_gtk.c:344
 msgid "Modify current section"
 msgstr ""
 
-#: manager_gtk.c:328 menu_and_toolbar_gtk.c:55 classicladder_gtk.c:868
+#: manager_gtk.c:386 menu_and_toolbar_gtk.c:55 classicladder_gtk.c:944
 msgid "New"
 msgstr ""
 
-#: manager_gtk.c:328
+#: manager_gtk.c:386
 msgid "Do you really want to delete the section ?"
 msgstr ""
 
-#: manager_gtk.c:332
+#: manager_gtk.c:390
 msgid "You can not delete the last section..."
 msgstr ""
 
-#: manager_gtk.c:358
+#: manager_gtk.c:416
 msgid "This section is already executed the first !"
 msgstr ""
 
-#: manager_gtk.c:383
+#: manager_gtk.c:441
 msgid "This section is already executed the latest !"
 msgstr ""
 
-#: manager_gtk.c:472 manager_gtk.c:557
+#: manager_gtk.c:533 manager_gtk.c:618
 msgid "Language"
 msgstr ""
 
-#: manager_gtk.c:473
+#: manager_gtk.c:534
 msgid "Main/Sub-Routine"
 msgstr ""
 
-#: manager_gtk.c:474 config_gtk.c:1487
+#: manager_gtk.c:535 config_gtk.c:1533
 msgid "Name"
 msgstr ""
 
-#: manager_gtk.c:517 print_gtk.c:319 menu_and_toolbar_gtk.c:577 edit_gtk.c:755
-#: classicladder_gtk.c:688 classicladder_gtk.c:722 classicladder_gtk.c:1073
-#: classicladder_gtk.c:1095 classicladder_gtk.c:1618 log_events_gtk.c:293
-msgid "Ok"
-msgstr ""
-
-#: manager_gtk.c:531
+#: manager_gtk.c:592
 msgid "Add section"
 msgstr ""
 
-#: manager_gtk.c:531
+#: manager_gtk.c:592
 msgid "Add New Section"
 msgstr ""
 
-#: manager_gtk.c:532
+#: manager_gtk.c:593
 msgid "Delete section"
 msgstr ""
 
-#: manager_gtk.c:532
+#: manager_gtk.c:593
 msgid "Delete Section"
 msgstr ""
 
-#: manager_gtk.c:533
+#: manager_gtk.c:594
 msgid "Move up"
 msgstr ""
 
-#: manager_gtk.c:533
+#: manager_gtk.c:594
 msgid "Priority order Move up"
 msgstr ""
 
-#: manager_gtk.c:534
+#: manager_gtk.c:595
 msgid "Move down"
 msgstr ""
 
-#: manager_gtk.c:534
+#: manager_gtk.c:595
 msgid "Priority order Move down"
 msgstr ""
 
-#: manager_gtk.c:535
+#: manager_gtk.c:596
 msgid "Section Properties"
 msgstr ""
 
-#: manager_gtk.c:557
+#: manager_gtk.c:618
 msgid "Nbr"
 msgstr ""
 
-#: manager_gtk.c:557
+#: manager_gtk.c:618
 msgid "Section Name"
 msgstr ""
 
-#: manager_gtk.c:557 config_gtk.c:361 config_gtk.c:1487
+#: manager_gtk.c:618 config_gtk.c:396 config_gtk.c:1533
 msgid "Type"
 msgstr ""
 
-#: manager_gtk.c:557
+#: manager_gtk.c:618
 msgid "debug"
 msgstr ""
 
-#: manager_gtk.c:562 menu_and_toolbar_gtk.c:106
+#: manager_gtk.c:623 menu_and_toolbar_gtk.c:106
 msgid "Sections Manager"
 msgstr ""
 
-#: config_gtk.c:50 config_gtk.c:635 config_gtk.c:1488
+#: config_gtk.c:50 config_gtk.c:670 config_gtk.c:1534
 msgid "None"
 msgstr ""
 
@@ -474,477 +479,494 @@ msgstr ""
 msgid "Diagnostic (from %IW/to %QW - 1stEle=sub-code used)"
 msgstr ""
 
-#: config_gtk.c:128
+#: config_gtk.c:108
+msgid "Select font used to draw"
+msgstr ""
+
+#: config_gtk.c:126
+msgid "Available only on newer major version of Gtk+..."
+msgstr ""
+
+#: config_gtk.c:152
 #, c-format
 msgid "Periodic Refresh Rate 'inputs scan' (milliseconds)"
 msgstr ""
 
-#: config_gtk.c:132
+#: config_gtk.c:156
 #, c-format
 msgid "Periodic Refresh Rate 'logic' (milliseconds)"
 msgstr ""
 
-#: config_gtk.c:137
+#: config_gtk.c:161
 msgid "Nbr.rungs"
 msgstr ""
 
-#: config_gtk.c:137 config_gtk.c:187
+#: config_gtk.c:161 config_gtk.c:211
 msgid "used"
 msgstr ""
 
-#: config_gtk.c:137 config_gtk.c:141 config_gtk.c:145 config_gtk.c:149
-#: config_gtk.c:153 config_gtk.c:157 config_gtk.c:161 config_gtk.c:166
-#: config_gtk.c:170 config_gtk.c:174 config_gtk.c:178 config_gtk.c:182
-#: config_gtk.c:187 config_gtk.c:191 config_gtk.c:196 config_gtk.c:200
+#: config_gtk.c:161 config_gtk.c:165 config_gtk.c:169 config_gtk.c:173
+#: config_gtk.c:177 config_gtk.c:181 config_gtk.c:185 config_gtk.c:190
+#: config_gtk.c:194 config_gtk.c:198 config_gtk.c:202 config_gtk.c:206
+#: config_gtk.c:211 config_gtk.c:215 config_gtk.c:220 config_gtk.c:224
 msgid "current alloc"
 msgstr ""
 
-#: config_gtk.c:137 config_gtk.c:149 config_gtk.c:153 config_gtk.c:157
-#: config_gtk.c:161 config_gtk.c:182 config_gtk.c:187 config_gtk.c:196
-#: config_gtk.c:200
+#: config_gtk.c:161 config_gtk.c:173 config_gtk.c:177 config_gtk.c:181
+#: config_gtk.c:185 config_gtk.c:206 config_gtk.c:211 config_gtk.c:220
+#: config_gtk.c:224
 msgid "size"
 msgstr ""
 
-#: config_gtk.c:137 config_gtk.c:149 config_gtk.c:153 config_gtk.c:157
-#: config_gtk.c:161 config_gtk.c:182 config_gtk.c:187 config_gtk.c:196
-#: config_gtk.c:200
+#: config_gtk.c:161 config_gtk.c:173 config_gtk.c:177 config_gtk.c:181
+#: config_gtk.c:185 config_gtk.c:206 config_gtk.c:211 config_gtk.c:220
+#: config_gtk.c:224
 msgid "bytes"
 msgstr ""
 
-#: config_gtk.c:141
+#: config_gtk.c:165
 msgid "Nbr.Bits"
 msgstr ""
 
-#: config_gtk.c:145
+#: config_gtk.c:169
 msgid "Nbr.Words"
 msgstr ""
 
-#: config_gtk.c:149
+#: config_gtk.c:173
 msgid "Nbr.Counters"
 msgstr ""
 
-#: config_gtk.c:153
+#: config_gtk.c:177
 msgid "Nbr.Timers IEC"
 msgstr ""
 
-#: config_gtk.c:157
+#: config_gtk.c:181
 msgid "Nbr.Registers"
 msgstr ""
 
-#: config_gtk.c:161
+#: config_gtk.c:185
 msgid "Register list size"
 msgstr ""
 
-#: config_gtk.c:166
+#: config_gtk.c:190
 msgid "Nbr.Phys.Inputs"
 msgstr ""
 
-#: config_gtk.c:170
+#: config_gtk.c:194
 msgid "Nbr.Phys.Outputs"
 msgstr ""
 
-#: config_gtk.c:174
+#: config_gtk.c:198
 msgid "Nbr.Phys.Words.Inputs"
 msgstr ""
 
-#: config_gtk.c:178
+#: config_gtk.c:202
 msgid "Nbr.Phys.Words.Outputs"
 msgstr ""
 
-#: config_gtk.c:182
+#: config_gtk.c:206
 msgid "Nbr.Arithm.Expr."
 msgstr ""
 
-#: config_gtk.c:187
+#: config_gtk.c:211
 msgid "Nbr.Sections"
 msgstr ""
 
-#: config_gtk.c:191
+#: config_gtk.c:215
 msgid "Nbr.Symbols"
 msgstr ""
 
-#: config_gtk.c:196
+#: config_gtk.c:220
 msgid "Nbr.Timers"
 msgstr ""
 
-#: config_gtk.c:200
+#: config_gtk.c:224
 msgid "Nbr.Monostables"
 msgstr ""
 
-#: config_gtk.c:205
+#: config_gtk.c:229
 #, c-format
 msgid "Current file project"
 msgstr ""
 
-#: config_gtk.c:209
+#: config_gtk.c:233
 #, c-format
 msgid "Default startup project"
 msgstr ""
 
-#: config_gtk.c:220
+#: config_gtk.c:237
+#, c-format
+msgid "Font description used to draw"
+msgstr ""
+
+#: config_gtk.c:248
 msgid ""
 "Use real physical & serial modbus inputs/outputs only on the embedded target "
 "(not for GTK simul interface)"
 msgstr ""
 
-#: config_gtk.c:267
+#: config_gtk.c:295
 msgid "Use as default project"
 msgstr ""
 
-#: config_gtk.c:274
+#: config_gtk.c:302
 msgid "No default project"
 msgstr ""
 
-#: config_gtk.c:361
+#: config_gtk.c:309
+msgid "Font select"
+msgstr ""
+
+#: config_gtk.c:396
 msgid "First %"
 msgstr ""
 
-#: config_gtk.c:361
+#: config_gtk.c:396
 msgid "PortAdr(0x)/SubDev"
 msgstr ""
 
-#: config_gtk.c:361
+#: config_gtk.c:396
 msgid "1stChannel/GPIO"
 msgstr ""
 
-#: config_gtk.c:361
+#: config_gtk.c:396
 msgid "NbrChannels/GPIOs"
 msgstr ""
 
-#: config_gtk.c:361 config_gtk.c:688
+#: config_gtk.c:396 config_gtk.c:723
 msgid "Logic"
 msgstr ""
 
-#: config_gtk.c:361
+#: config_gtk.c:396
 msgid "ConfigData"
 msgstr ""
 
-#: config_gtk.c:406
+#: config_gtk.c:441
 msgid "1st %I mapped"
 msgstr ""
 
-#: config_gtk.c:406
+#: config_gtk.c:441
 msgid "1st %Q mapped"
 msgstr ""
 
-#: config_gtk.c:463 config_gtk.c:764
+#: config_gtk.c:498 config_gtk.c:799
 msgid "Inverted"
 msgstr ""
 
-#: config_gtk.c:652
+#: config_gtk.c:687
 msgid "not defined"
 msgstr ""
 
-#: config_gtk.c:688 config_gtk.c:873
+#: config_gtk.c:723 config_gtk.c:908
 msgid "Slave No"
 msgstr ""
 
-#: config_gtk.c:688
+#: config_gtk.c:723
 msgid "Request Type"
 msgstr ""
 
-#: config_gtk.c:688
+#: config_gtk.c:723
 msgid "1st Modbus Ele."
 msgstr ""
 
-#: config_gtk.c:688
+#: config_gtk.c:723
 msgid "Nbr of Ele"
 msgstr ""
 
-#: config_gtk.c:688
+#: config_gtk.c:723
 msgid "1st I/Q/IW/QW mapped"
 msgstr ""
 
-#: config_gtk.c:863
+#: config_gtk.c:898
 msgid "Overflow error for I,Q,B,IQ,WQ or W mapping detected..."
 msgstr ""
 
-#: config_gtk.c:873
+#: config_gtk.c:908
 msgid "Slave Address"
 msgstr ""
 
-#: config_gtk.c:873
+#: config_gtk.c:908
 msgid "TCP/UDP mode"
 msgstr ""
 
-#: config_gtk.c:873
+#: config_gtk.c:908
 msgid "Module Information"
 msgstr ""
 
-#: config_gtk.c:922
+#: config_gtk.c:957
 msgid "UDP instead of TCP"
 msgstr ""
 
-#: config_gtk.c:958
+#: config_gtk.c:993
 msgid "SerialAdr -or- AdrIP -or- AdrIP:Port"
 msgstr ""
 
-#: config_gtk.c:1060
+#: config_gtk.c:1101
 #, c-format
 msgid "Modbus master Serial port (blank = IP mode)"
 msgstr ""
 
-#: config_gtk.c:1064
+#: config_gtk.c:1105
 #, c-format
 msgid "Serial baud rate"
 msgstr ""
 
-#: config_gtk.c:1068
+#: config_gtk.c:1109
 #, c-format
 msgid "Serial nbr. data bits"
 msgstr ""
 
-#: config_gtk.c:1072
+#: config_gtk.c:1113
 #, c-format
 msgid "Serial parity"
 msgstr ""
 
-#: config_gtk.c:1076
+#: config_gtk.c:1117
 #, c-format
 msgid "Serial nbr. stops bits"
 msgstr ""
 
-#: config_gtk.c:1080
+#: config_gtk.c:1121
 #, c-format
 msgid "After transmit pause - milliseconds"
 msgstr ""
 
-#: config_gtk.c:1084
+#: config_gtk.c:1125
 #, c-format
 msgid "After receive pause - milliseconds"
 msgstr ""
 
-#: config_gtk.c:1088
+#: config_gtk.c:1129
 #, c-format
 msgid "Request Timeout length - milliseconds"
 msgstr ""
 
-#: config_gtk.c:1092
+#: config_gtk.c:1133
 #, c-format
 msgid "Use RTS signal to send"
 msgstr ""
 
-#: config_gtk.c:1096
+#: config_gtk.c:1137
 #, c-format
 msgid "Modbus element offset"
 msgstr ""
 
-#: config_gtk.c:1100
+#: config_gtk.c:1141
 #, c-format
 msgid "Debug level"
 msgstr ""
 
-#: config_gtk.c:1101
+#: config_gtk.c:1142
 msgid "QUIET"
 msgstr ""
 
-#: config_gtk.c:1101
+#: config_gtk.c:1142
 msgid "LEVEL"
 msgstr ""
 
-#: config_gtk.c:1101
+#: config_gtk.c:1142
 msgid "VERBOSE"
 msgstr ""
 
-#: config_gtk.c:1104
+#: config_gtk.c:1145
 #, c-format
 msgid "Read inputs map to"
 msgstr ""
 
-#: config_gtk.c:1108
+#: config_gtk.c:1149
 #, c-format
 msgid "Read coils map to"
 msgstr ""
 
-#: config_gtk.c:1112
+#: config_gtk.c:1153
 #, c-format
 msgid "Write coils map from"
 msgstr ""
 
-#: config_gtk.c:1116
+#: config_gtk.c:1157
 #, c-format
 msgid "Read input registers map to"
 msgstr ""
 
-#: config_gtk.c:1120
+#: config_gtk.c:1161
 #, c-format
 msgid "Read hold registers map to"
 msgstr ""
 
-#: config_gtk.c:1124
+#: config_gtk.c:1165
 #, c-format
 msgid "Write hold registers map from"
 msgstr ""
 
-#: config_gtk.c:1214
+#: config_gtk.c:1260
 msgid "1st %Bxxxx"
 msgstr ""
 
-#: config_gtk.c:1214
+#: config_gtk.c:1260
 msgid "Nbr Of %B"
 msgstr ""
 
-#: config_gtk.c:1214 log_events_gtk.c:324
+#: config_gtk.c:1260 log_events_gtk.c:327
 msgid "Symbol"
 msgstr ""
 
-#: config_gtk.c:1214
+#: config_gtk.c:1260
 msgid "Text event"
 msgstr ""
 
-#: config_gtk.c:1214
+#: config_gtk.c:1260
 msgid "Level(>0=Def)"
 msgstr ""
 
-#: config_gtk.c:1214
+#: config_gtk.c:1260
 msgid "Forward Remote Alarms Slots"
 msgstr ""
 
-#: config_gtk.c:1377
+#: config_gtk.c:1423
 msgid "Overflow error for first/nbrs detected..."
 msgstr ""
 
-#: config_gtk.c:1393
+#: config_gtk.c:1439
 msgid "Modem on slave monitor"
 msgstr ""
 
-#: config_gtk.c:1393
+#: config_gtk.c:1439
 msgid "AT init sequence"
 msgstr ""
 
-#: config_gtk.c:1393
+#: config_gtk.c:1439
 msgid "AT config sequence"
 msgstr ""
 
-#: config_gtk.c:1393
+#: config_gtk.c:1439
 msgid "AT call sequence"
 msgstr ""
 
-#: config_gtk.c:1393
+#: config_gtk.c:1439
 msgid "Optional PIN Code"
 msgstr ""
 
-#: config_gtk.c:1402
+#: config_gtk.c:1448
 msgid "Automatically adjust summer/winter time."
 msgstr ""
 
-#: config_gtk.c:1414
+#: config_gtk.c:1460
 msgid "Use"
 msgstr ""
 
-#: config_gtk.c:1443
+#: config_gtk.c:1489
 msgid "--- Monitor Master modem AT sequences ---"
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Global remote alarms enable"
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Slot Alarms"
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '0': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '1': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '2': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '3': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '4': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '5': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '6': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Remote Slot '7': "
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Center SMS Server"
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Smtp Server For Emails"
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Smtp Server User Name"
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Smtp Server Password"
 msgstr ""
 
-#: config_gtk.c:1486
+#: config_gtk.c:1532
 msgid "Email Sender Address"
 msgstr ""
 
-#: config_gtk.c:1487
+#: config_gtk.c:1533
 msgid "Telephone (SMS)"
 msgstr ""
 
-#: config_gtk.c:1487 config_gtk.c:1488
+#: config_gtk.c:1533 config_gtk.c:1534
 msgid "Email"
 msgstr ""
 
-#: config_gtk.c:1488
+#: config_gtk.c:1534
 msgid "SMS"
 msgstr ""
 
-#: config_gtk.c:1682
+#: config_gtk.c:1730
 msgid "Period/Sizes/Info"
 msgstr ""
 
-#: config_gtk.c:1685
+#: config_gtk.c:1733
 msgid "Events Config"
 msgstr ""
 
-#: config_gtk.c:1689
+#: config_gtk.c:1737
 msgid "Physical Inputs %I"
 msgstr ""
 
-#: config_gtk.c:1691
+#: config_gtk.c:1739
 msgid "Physical Outputs %Q"
 msgstr ""
 
-#: config_gtk.c:1692
+#: config_gtk.c:1740
 msgid "Physical Inputs/Outputs"
 msgstr ""
 
-#: config_gtk.c:1695
+#: config_gtk.c:1743
 msgid "Modbus communication"
 msgstr ""
 
-#: config_gtk.c:1697
+#: config_gtk.c:1745
 msgid "Modbus slaves"
 msgstr ""
 
-#: config_gtk.c:1699
+#: config_gtk.c:1747
 msgid "Modbus I/O"
 msgstr ""
 
-#: config_gtk.c:1702
+#: config_gtk.c:1750
 msgid "Remote Alarms"
 msgstr ""
 
-#: config_gtk.c:1704
+#: config_gtk.c:1752
 msgid "Misc/Modem"
 msgstr ""
 
@@ -952,180 +974,180 @@ msgstr ""
 msgid "Unknown variable (number value out of bound)"
 msgstr ""
 
-#: symbols_gtk.c:116
+#: symbols_gtk.c:120
 #, c-format
 msgid "A variable name always start with '%' character !"
 msgstr ""
 
-#: symbols_gtk.c:200
+#: symbols_gtk.c:211 vars_browser_gtk.c:161
 msgid "Symbol name"
 msgstr ""
 
-#: symbols_gtk.c:203
+#: symbols_gtk.c:214
 msgid "Symbols names"
 msgstr ""
 
-#: spy_vars_gtk.c:134
-msgid "Set to 1"
-msgstr ""
-
-#: spy_vars_gtk.c:135
-msgid "Set to 0"
-msgstr ""
-
-#: spy_vars_gtk.c:136
-msgid "UnSet"
-msgstr ""
-
-#: spy_vars_gtk.c:157
+#: spy_vars_gtk.c:128
 msgid "Set/UnSet variable"
 msgstr ""
 
-#: spy_vars_gtk.c:390
+#: spy_vars_gtk.c:131
+msgid "Set to 1"
+msgstr ""
+
+#: spy_vars_gtk.c:132
+msgid "Set to 0"
+msgstr ""
+
+#: spy_vars_gtk.c:133
+msgid "UnSet"
+msgstr ""
+
+#: spy_vars_gtk.c:380
 msgid "Spy bools vars"
 msgstr ""
 
-#: spy_vars_gtk.c:398 classicladder_gtk.c:1428
+#: spy_vars_gtk.c:388 classicladder_gtk.c:1518
 msgid "Display symbols"
 msgstr ""
 
-#: spy_vars_gtk.c:421
+#: spy_vars_gtk.c:411
 msgid "Offset for vars displayed below (press return to apply)"
 msgstr ""
 
-#: spy_vars_gtk.c:441
+#: spy_vars_gtk.c:434
 msgid "Set/Unset output"
 msgstr ""
 
-#: spy_vars_gtk.c:441
+#: spy_vars_gtk.c:434
 msgid "Set/Unset input"
 msgstr ""
 
-#: spy_vars_gtk.c:726
+#: spy_vars_gtk.c:727
 msgid "Sunday"
 msgstr ""
 
-#: spy_vars_gtk.c:726
+#: spy_vars_gtk.c:727
 msgid "Monday"
 msgstr ""
 
-#: spy_vars_gtk.c:726
+#: spy_vars_gtk.c:727
 msgid "Tuesday"
 msgstr ""
 
-#: spy_vars_gtk.c:726
+#: spy_vars_gtk.c:727
 msgid "Wednesday"
 msgstr ""
 
-#: spy_vars_gtk.c:726
+#: spy_vars_gtk.c:727
 msgid "Thursday"
 msgstr ""
 
-#: spy_vars_gtk.c:726
+#: spy_vars_gtk.c:727
 msgid "Friday"
 msgstr ""
 
-#: spy_vars_gtk.c:726
+#: spy_vars_gtk.c:727
 msgid "Saturday"
 msgstr ""
 
-#: spy_vars_gtk.c:818
+#: spy_vars_gtk.c:826
 msgid "Dec +/-"
 msgstr ""
 
-#: spy_vars_gtk.c:819
+#: spy_vars_gtk.c:827
 msgid "Dec +"
 msgstr ""
 
-#: spy_vars_gtk.c:820
+#: spy_vars_gtk.c:828
 msgid "Hex"
 msgstr ""
 
-#: spy_vars_gtk.c:821
+#: spy_vars_gtk.c:829
 msgid "Bin"
 msgstr ""
 
-#: spy_vars_gtk.c:852
+#: spy_vars_gtk.c:860
 msgid "Modify Value :"
 msgstr ""
 
-#: spy_vars_gtk.c:936
+#: spy_vars_gtk.c:956
 msgid "Not connected"
 msgstr ""
 
-#: spy_vars_gtk.c:957
+#: spy_vars_gtk.c:977
 msgid "Used"
 msgstr ""
 
-#: spy_vars_gtk.c:958
+#: spy_vars_gtk.c:978
 msgid "Free"
 msgstr ""
 
-#: spy_vars_gtk.c:959
+#: spy_vars_gtk.c:979
 msgid "Size"
 msgstr ""
 
-#: spy_vars_gtk.c:1003
+#: spy_vars_gtk.c:1022
 msgid "ClassicLadder Soft.Version"
 msgstr ""
 
-#: spy_vars_gtk.c:1003
+#: spy_vars_gtk.c:1022
 msgid "Kernel Version"
 msgstr ""
 
-#: spy_vars_gtk.c:1003
+#: spy_vars_gtk.c:1022
 msgid "Xenomai version"
 msgstr ""
 
-#: spy_vars_gtk.c:1003
+#: spy_vars_gtk.c:1022
 msgid "Linux Distribution"
 msgstr ""
 
-#: spy_vars_gtk.c:1003
+#: spy_vars_gtk.c:1022
 msgid "Disk statistics"
 msgstr ""
 
-#: spy_vars_gtk.c:1064
+#: spy_vars_gtk.c:1084
 msgid "Project Name"
 msgstr ""
 
-#: spy_vars_gtk.c:1064
+#: spy_vars_gtk.c:1084
 msgid "Project Site"
 msgstr ""
 
-#: spy_vars_gtk.c:1064
+#: spy_vars_gtk.c:1084
 msgid "Author"
 msgstr ""
 
-#: spy_vars_gtk.c:1064
+#: spy_vars_gtk.c:1084
 msgid "Company"
 msgstr ""
 
-#: spy_vars_gtk.c:1064
+#: spy_vars_gtk.c:1084
 msgid "Param.Version"
 msgstr ""
 
-#: spy_vars_gtk.c:1064
+#: spy_vars_gtk.c:1084
 msgid "Creation Date"
 msgstr ""
 
-#: spy_vars_gtk.c:1064
+#: spy_vars_gtk.c:1084
 msgid "Modify Date"
 msgstr ""
 
-#: spy_vars_gtk.c:1103
+#: spy_vars_gtk.c:1123
 msgid "Spy free vars"
 msgstr ""
 
-#: spy_vars_gtk.c:1107
+#: spy_vars_gtk.c:1127
 msgid "Vars & Time"
 msgstr ""
 
-#: spy_vars_gtk.c:1109
+#: spy_vars_gtk.c:1129
 msgid "Project properties"
 msgstr ""
 
-#: spy_vars_gtk.c:1111
+#: spy_vars_gtk.c:1131
 msgid "Target infos"
 msgstr ""
 
@@ -1169,7 +1191,7 @@ msgstr ""
 msgid "Failed to print..."
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:54 classicladder_gtk.c:1326
+#: menu_and_toolbar_gtk.c:54 classicladder_gtk.c:1387
 msgid "File"
 msgstr ""
 
@@ -1289,8 +1311,8 @@ msgstr ""
 msgid "PLC"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:86 menu_and_toolbar_gtk.c:462
-#: menu_and_toolbar_gtk.c:469
+#: menu_and_toolbar_gtk.c:86 menu_and_toolbar_gtk.c:478
+#: menu_and_toolbar_gtk.c:485
 msgid "Run logic"
 msgstr ""
 
@@ -1418,7 +1440,7 @@ msgstr ""
 msgid "Modify (alt-m)"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:111 edit_gtk.c:750
+#: menu_and_toolbar_gtk.c:111 edit_gtk.c:777
 msgid "Modify"
 msgstr ""
 
@@ -1586,7 +1608,7 @@ msgstr ""
 msgid "Cancel (alt-c)"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:150 edit_gtk.c:759
+#: menu_and_toolbar_gtk.c:150 edit_gtk.c:786
 msgid "Cancel"
 msgstr ""
 
@@ -1678,57 +1700,57 @@ msgstr ""
 msgid "Modbus slave frames"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:462 menu_and_toolbar_gtk.c:469
+#: menu_and_toolbar_gtk.c:478 menu_and_toolbar_gtk.c:485
 msgid "Stop logic"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:464
+#: menu_and_toolbar_gtk.c:480
 msgid "Freeze logic"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:464
+#: menu_and_toolbar_gtk.c:480
 msgid "Run logic one cycle"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:468
+#: menu_and_toolbar_gtk.c:484
 msgid "Stop"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:468
+#: menu_and_toolbar_gtk.c:484
 msgid "Run"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:477
+#: menu_and_toolbar_gtk.c:493
 msgid "Disconnect"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:477
+#: menu_and_toolbar_gtk.c:493
 msgid "Connect"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:486 menu_and_toolbar_gtk.c:496
-#: menu_and_toolbar_gtk.c:503 network_config_window_gtk.c:57
+#: menu_and_toolbar_gtk.c:502 menu_and_toolbar_gtk.c:512
+#: menu_and_toolbar_gtk.c:519 network_config_window_gtk.c:56
 #: monitor_serial_config_window_gtk.c:57
 msgid "You are not currently connected to a remote target..."
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:529
+#: menu_and_toolbar_gtk.c:545
 msgid "Please select the update soft archive to send"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:548
+#: menu_and_toolbar_gtk.c:563
 msgid "Register content"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:548
+#: menu_and_toolbar_gtk.c:563
 msgid "Select register number to view"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:577
+#: menu_and_toolbar_gtk.c:596
 msgid "Register selection error"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:577
+#: menu_and_toolbar_gtk.c:596
 msgid "This register is not defined..."
 msgstr ""
 
@@ -1801,7 +1823,7 @@ msgstr ""
 msgid "Monitor master frames with target (live)"
 msgstr ""
 
-#: monitor_windows_gtk.c:439 log_events_gtk.c:365
+#: monitor_windows_gtk.c:439 log_events_gtk.c:368
 msgid "Refresh"
 msgstr ""
 
@@ -1837,7 +1859,7 @@ msgstr ""
 msgid "Blocks"
 msgstr ""
 
-#: search.c:400
+#: search.c:398
 msgid "### NOT FOUND ###"
 msgstr ""
 
@@ -1865,7 +1887,7 @@ msgstr ""
 msgid "HostName"
 msgstr ""
 
-#: network_config_window_gtk.c:62
+#: network_config_window_gtk.c:61
 msgid "Network config"
 msgstr ""
 
@@ -2045,118 +2067,122 @@ msgstr ""
 msgid "Edit mode..."
 msgstr ""
 
-#: edit_gtk.c:387
+#: edit_gtk.c:392
 msgid "Failed to add a new rung. Full?"
 msgstr ""
 
-#: edit_gtk.c:402
+#: edit_gtk.c:413
 msgid "Failed to insert a new rung. Full?"
 msgstr ""
 
-#: edit_gtk.c:413 edit_gtk.c:745
+#: edit_gtk.c:425 edit_gtk.c:772
 msgid "Delete"
 msgstr ""
 
-#: edit_gtk.c:413
+#: edit_gtk.c:425
 msgid "Do you really want to delete the current rung ?"
 msgstr ""
 
-#: edit_gtk.c:420
+#: edit_gtk.c:432
 msgid "Actually, not possible on a connected remote target..."
 msgstr ""
 
-#: edit_gtk.c:470 classicladder_gtk.c:880 log_events_gtk.c:314
+#: edit_gtk.c:483 classicladder_gtk.c:956 log_events_gtk.c:317
 msgid "Sure?"
 msgstr ""
 
-#: edit_gtk.c:470
+#: edit_gtk.c:483
 msgid ""
 "Do you really want to cancel ?\n"
 "(all current modifications will be lost...)"
 msgstr ""
 
-#: edit_gtk.c:729
+#: edit_gtk.c:624
+msgid "No rung part previously selected before copying or moving it..."
+msgstr ""
+
+#: edit_gtk.c:756
 msgid "Editor"
 msgstr ""
 
-#: edit_gtk.c:735
+#: edit_gtk.c:762
 msgid "Add"
 msgstr ""
 
-#: edit_gtk.c:740
+#: edit_gtk.c:767
 msgid "Insert"
 msgstr ""
 
-#: classicladder_gtk.c:688
+#: classicladder_gtk.c:753
 msgid "Load Error"
 msgstr ""
 
-#: classicladder_gtk.c:688
+#: classicladder_gtk.c:753
 msgid "Failed to load the project file..."
 msgstr ""
 
-#: classicladder_gtk.c:692
+#: classicladder_gtk.c:757
 msgid "Project loaded (stopped)."
 msgstr ""
 
-#: classicladder_gtk.c:722 log_events_gtk.c:293
+#: classicladder_gtk.c:786 log_events_gtk.c:296
 msgid "Save Error"
 msgstr ""
 
-#: classicladder_gtk.c:722
+#: classicladder_gtk.c:786
 msgid "Failed to save the project file..."
 msgstr ""
 
-#: classicladder_gtk.c:734 classicladder_gtk.c:893 classicladder_gtk.c:1211
-#: classicladder_gtk.c:1213 classicladder_gtk.c:1215
+#: classicladder_gtk.c:798 classicladder_gtk.c:969 classicladder_gtk.c:1272
+#: classicladder_gtk.c:1274 classicladder_gtk.c:1276
 msgid "Warning!"
 msgstr ""
 
-#: classicladder_gtk.c:734
+#: classicladder_gtk.c:798
 msgid ""
 "You are currently under edit.\n"
 "You should apply current modifications before...\n"
 "Do you really want to save now ?\n"
 msgstr ""
 
-#: classicladder_gtk.c:802
+#: classicladder_gtk.c:878
 msgid "ClassicLadder softs archives"
 msgstr ""
 
-#: classicladder_gtk.c:810
+#: classicladder_gtk.c:886
 msgid "Old directories projects"
 msgstr ""
 
-#: classicladder_gtk.c:814
+#: classicladder_gtk.c:890
 msgid "ClassicLadder projects"
 msgstr ""
 
-#: classicladder_gtk.c:868
+#: classicladder_gtk.c:944
 msgid "Do you really want to clear all datas ?"
 msgstr ""
 
-#: classicladder_gtk.c:872
+#: classicladder_gtk.c:948
 msgid "Please select the project to load"
 msgstr ""
 
-#: classicladder_gtk.c:880
+#: classicladder_gtk.c:956
 msgid ""
 "Do you really want to load another project ?\n"
 "If not saved, all modifications on the current project will be lost  \n"
 msgstr ""
 
-#: classicladder_gtk.c:887
+#: classicladder_gtk.c:963
 msgid "Please select the project to save"
 msgstr ""
 
-#: classicladder_gtk.c:893
+#: classicladder_gtk.c:969
 msgid ""
 "Resetting a running program\n"
 "can cause unexpected behavior\n"
 " Do you really want to reset?"
 msgstr ""
 
-#: classicladder_gtk.c:925
+#: classicladder_gtk.c:1001
 msgid ""
 "Released under the terms of the\n"
 "GNU Lesser General Public License v3\n"
@@ -2168,105 +2194,101 @@ msgid ""
 "Latest software version available at:\n"
 msgstr ""
 
-#: classicladder_gtk.c:943
+#: classicladder_gtk.c:1019
 msgid "About ClassicLadder"
 msgstr ""
 
-#: classicladder_gtk.c:1000
+#: classicladder_gtk.c:1076
 msgid "Save SVG File"
 msgstr ""
 
-#: classicladder_gtk.c:1000
+#: classicladder_gtk.c:1076
 msgid "Save PNG File"
 msgstr ""
 
-#: classicladder_gtk.c:1073
+#: classicladder_gtk.c:1148
 msgid "Error"
 msgstr ""
 
-#: classicladder_gtk.c:1090
-msgid "Yes"
-msgstr ""
-
-#: classicladder_gtk.c:1091
-msgid "No"
-msgstr ""
-
-#: classicladder_gtk.c:1211
+#: classicladder_gtk.c:1272
 msgid ""
 "If not saved, all modifications will be lost.\n"
 "Do you really want to quit ?\n"
 msgstr ""
 
-#: classicladder_gtk.c:1213
+#: classicladder_gtk.c:1274
 msgid ""
 "You are currently under edit.\n"
 "Do you really want to quit ?\n"
 msgstr ""
 
-#: classicladder_gtk.c:1215
+#: classicladder_gtk.c:1276
 msgid ""
 "You are currently connected to a target.\n"
 "Do you really want to quit ?\n"
 msgstr ""
 
-#: classicladder_gtk.c:1257
+#: classicladder_gtk.c:1318
 msgid "Search..."
 msgstr ""
 
-#: classicladder_gtk.c:1257
+#: classicladder_gtk.c:1318
 msgid "Not available during edit..."
 msgstr ""
 
-#: classicladder_gtk.c:1288
+#: classicladder_gtk.c:1349
 msgid "Variable to search or block number"
 msgstr ""
 
-#: classicladder_gtk.c:1387 classicladder_gtk.c:1776
+#: classicladder_gtk.c:1459 classicladder_gtk.c:1874
 msgid "ClassicLadder Section Display"
 msgstr ""
 
-#: classicladder_gtk.c:1416
+#: classicladder_gtk.c:1482
+msgid "Current section selected"
+msgstr ""
+
+#: classicladder_gtk.c:1506
 msgid "Label of the current selected rung"
 msgstr ""
 
-#: classicladder_gtk.c:1425
+#: classicladder_gtk.c:1515
 msgid "Comment of the current selected ladder rung or sequential page"
 msgstr ""
 
-#: classicladder_gtk.c:1584
+#: classicladder_gtk.c:1675
 msgid "DEFAULTS"
 msgstr ""
 
-#: classicladder_gtk.c:1586
+#: classicladder_gtk.c:1677
 msgid "DEFAULT"
 msgstr ""
 
-#: classicladder_gtk.c:1605
+#: classicladder_gtk.c:1696
 msgid "No default."
 msgstr ""
 
-#: classicladder_gtk.c:1618
+#: classicladder_gtk.c:1710
 msgid "An error occurred!"
 msgstr ""
 
-#: classicladder_gtk.c:1651
+#: classicladder_gtk.c:1743
 msgid "us"
 msgstr ""
 
-#: classicladder_gtk.c:1651
+#: classicladder_gtk.c:1743
 msgid "max"
 msgstr ""
 
-#: classicladder_gtk.c:1658
+#: classicladder_gtk.c:1750
 msgid "missed"
 msgstr ""
 
-#: classicladder_gtk.c:1779
+#: classicladder_gtk.c:1877
 msgid "No project"
 msgstr ""
 
-#: classicladder_gtk.c:1783 classicladder_gtk.c:1798
+#: classicladder_gtk.c:1881 classicladder_gtk.c:1896
 msgid "CONNECTED"
 msgstr ""
 
@@ -2282,41 +2304,41 @@ msgstr ""
 msgid "Failed to call telephone number..."
 msgstr ""
 
-#: monitor_threads.c:620
+#: monitor_threads.c:619
 msgid "Too much timeouts errors with remote target..."
 msgstr ""
 
-#: monitor_threads.c:673
+#: monitor_threads.c:672
 msgid "Target disconnected."
 msgstr ""
 
-#: monitor_threads.c:706
+#: monitor_threads.c:705
 msgid "Target connected"
 msgstr ""
 
-#: monitor_protocol.c:991
+#: monitor_protocol.c:996
 msgid ""
 "Mismatch detected between local parameters and target parameters...\n"
 "Perhaps you should disconnect!"
 msgstr ""
 
-#: monitor_protocol.c:1277
+#: monitor_protocol.c:1282
 msgid "Failed to send network config on target!"
 msgstr ""
 
-#: monitor_protocol.c:1279 monitor_protocol.c:1384
+#: monitor_protocol.c:1284 monitor_protocol.c:1389
 msgid "Info target"
 msgstr ""
 
-#: monitor_protocol.c:1279
+#: monitor_protocol.c:1284
 msgid "Network config successfully send to target."
 msgstr ""
 
-#: monitor_protocol.c:1382
+#: monitor_protocol.c:1387
 msgid "Failed to send monitor serial config on target!"
 msgstr ""
 
-#: monitor_protocol.c:1384
+#: monitor_protocol.c:1389
 msgid "Monitor serial config successfully send to target."
 msgstr ""
 
@@ -2328,11 +2350,11 @@ msgstr ""
 msgid "Failed to load project transferred from target..."
 msgstr ""
 
-#: monitor_transfer.c:554
+#: monitor_transfer.c:553
 msgid "Transfer send completed!"
 msgstr ""
 
-#: monitor_transfer.c:602
+#: monitor_transfer.c:601
 msgid "Too much transfer errors in response with remote target..."
 msgstr ""
 
@@ -2348,54 +2370,74 @@ msgstr ""
 msgid "No file to load..."
 msgstr ""
 
-#: log_events_gtk.c:269
+#: log_events_gtk.c:272
 msgid "Save CSV File"
 msgstr ""
 
-#: log_events_gtk.c:293
+#: log_events_gtk.c:296
 msgid "Failed to save the csv log file..."
 msgstr ""
 
-#: log_events_gtk.c:314
+#: log_events_gtk.c:317
 msgid "Do you really want to delete all events in the log?"
 msgstr ""
 
-#: log_events_gtk.c:324
+#: log_events_gtk.c:327
 msgid "Id"
 msgstr ""
 
-#: log_events_gtk.c:324
+#: log_events_gtk.c:327
 msgid "Start Time"
 msgstr ""
 
-#: log_events_gtk.c:324
+#: log_events_gtk.c:327
 msgid "End Time"
 msgstr ""
 
-#: log_events_gtk.c:324
+#: log_events_gtk.c:327
 msgid "Value"
 msgstr ""
 
-#: log_events_gtk.c:324
+#: log_events_gtk.c:327
 msgid "Description"
 msgstr ""
 
-#: log_events_gtk.c:324
+#: log_events_gtk.c:327
 msgid "Level"
 msgstr ""
 
-#: log_events_gtk.c:327
+#: log_events_gtk.c:330
 msgid "Events Log"
 msgstr ""
 
-#: log_events_gtk.c:368
+#: log_events_gtk.c:371
 msgid "Export log to csv"
 msgstr ""
 
-#: log_events_gtk.c:371
+#: log_events_gtk.c:374
 msgid "Clear All"
 msgstr ""
 
-#: log_events_gtk.c:374
+#: log_events_gtk.c:377
 msgid "Display only active events"
+msgstr ""
+
+#: vars_browser_gtk.c:181
+msgid "Vars type selection :"
+msgstr ""
+
+#: vars_browser_gtk.c:204
+msgid "Bool"
+msgstr ""
+
+#: vars_browser_gtk.c:204
+msgid "Integer"
+msgstr ""
+
+#: vars_browser_gtk.c:205
+msgid "R/W"
+msgstr ""
+
+#: vars_browser_gtk.c:205
+msgid "R"
 msgstr ""

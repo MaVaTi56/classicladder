@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -395,11 +395,11 @@ void BoolVarsWindowInitGtk()
 //	hboxvars = gtk_hbox_new (FALSE, 0);
 //	gtk_container_add (GTK_CONTAINER (vboxmain), hboxvars);
 
-/*	for( ColumnVar=0; ColumnVar<NBR_TYPE_BOOLS_SPY; ColumnVar++ )
-	{
-		vboxboolvars[ ColumnVar ] = gtk_vbox_new (FALSE, 0);
-		gtk_container_add (GTK_CONTAINER (hboxvars), vboxboolvars[ ColumnVar ]);
-	}*/
+//	for( ColumnVar=0; ColumnVar<NBR_TYPE_BOOLS_SPY; ColumnVar++ )
+//	{
+//		vboxboolvars[ ColumnVar ] = gtk_vbox_new (FALSE, 0);
+//		gtk_container_add (GTK_CONTAINER (hboxvars), vboxboolvars[ ColumnVar ]);
+//	}
 
 	NumCheckWidget = 0;
 	for(ColumnVar=0; ColumnVar<NBR_TYPE_BOOLS_SPY; ColumnVar++)
@@ -426,7 +426,7 @@ gtk_entry_set_width_chars( GTK_ENTRY(offsetboolvar[ ColumnVar ]), 4 );
 			if ( ColumnVar>=1 )
 			{
 				OptimVarSettedMemory[ ColumnVar-1 ][ OffVar ] = -1;
-				hboxinpoutvars[ ColumnVar-1 ][ OffVar ] = gtk_hbox_new (FALSE, 0);
+				hboxinpoutvars[ ColumnVar-1 ][ OffVar ] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //				gtk_container_add (GTK_CONTAINER (vboxboolvars[ ColumnVar ]), hboxinpoutvars[ ColumnVar-1 ][ OffVar ]);
 
 				ButSetBoolVar[ ColumnVar-1 ][ OffVar ] = gtk_button_new();
@@ -538,7 +538,7 @@ void ModifyVarWindowInitGtk( )
 	GtkWidget *ButtonOk,*ButtonCancel;
 	ModifyVarValueWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title ((GtkWindow *)ModifyVarValueWindow, "Modify variable value");
-	vboxMain = gtk_vbox_new (FALSE, 0);
+	vboxMain = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (ModifyVarValueWindow), vboxMain);
 	gtk_widget_show (vboxMain);
 
@@ -555,7 +555,7 @@ void ModifyVarWindowInitGtk( )
 	gtk_signal_connect( GTK_OBJECT(ModifyVariableValueEdit), "activate",
                                         GTK_SIGNAL_FUNC(ApplyModifiedVar), (void *)NULL );
 
-	hboxOkCancel = gtk_hbox_new (FALSE, 0);
+	hboxOkCancel = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 	gtk_container_add (GTK_CONTAINER (vboxMain), hboxOkCancel);
 	gtk_widget_show (hboxOkCancel);
 
@@ -841,10 +841,10 @@ GtkWidget * CreateFreeVarsPage( )
 //	DisplayFormatItems = g_list_append(DisplayFormatItems,"Hex");
 //	DisplayFormatItems = g_list_append(DisplayFormatItems,"Bin");
 	
-	vboxMain = gtk_vbox_new (FALSE, 0);
+	vboxMain = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	for(NumLine=0; NumLine<1+NBR_FREE_VAR_SPY; NumLine++)
 	{
-		hboxfreevars[ NumLine ] = gtk_hbox_new (FALSE, 0);
+		hboxfreevars[ NumLine ] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_container_add (GTK_CONTAINER (vboxMain), hboxfreevars[ NumLine ]);
 //////printf("traduc ligne:%d\n", NumLine );
 //		gtk_widget_show (hboxfreevars[ NumLine ]);
@@ -1020,11 +1020,11 @@ GtkWidget * CreateTargetInfosPage( )
 	GtkWidget * hbox[ NBR_TARGET_INFOS ], *vboxMain;
 	int NumLine;
 	char * Text[ NBR_TARGET_INFOS ] = { N_("ClassicLadder Soft.Version"), N_("Kernel Version"), N_("Xenomai version"), N_("Linux Distribution"), N_("Disk statistics") };
-	vboxMain = gtk_vbox_new (FALSE, 0);
+	vboxMain = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	for(NumLine=0; NumLine<NBR_TARGET_INFOS; NumLine++)
 	{
 		GtkWidget * pLabel;
-		hbox[ NumLine ] = gtk_hbox_new (FALSE, 0);
+		hbox[ NumLine ] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_container_add (GTK_CONTAINER (vboxMain), hbox[ NumLine ]);
 
 		pLabel = gtk_label_new( gettext(Text[NumLine]) );
@@ -1082,10 +1082,10 @@ GtkWidget * CreateProjectPropertiesPage( )
 	GtkWidget * pLabel;
 	GtkWidget * pApplyButton;
 	char * Text[ NBR_PROJECT_INFOS-1 ] = { N_("Project Name"), N_("Project Site"), N_("Author"), N_("Company"), N_("Param.Version"), N_("Creation Date"), N_("Modify Date") };
-	vboxMain = gtk_vbox_new (FALSE, 0);
+	vboxMain = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	for(NumLine=0; NumLine<NBR_PROJECT_INFOS+1; NumLine++)
 	{
-		hbox[ NumLine ] = gtk_hbox_new (FALSE, 0);
+		hbox[ NumLine ] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_container_add (GTK_CONTAINER (vboxMain), hbox[ NumLine ]);
 
 		if ( NumLine<NBR_PROJECT_INFOS-1 )

@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2020 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* August 2008 */
@@ -270,7 +270,7 @@ static void end_print(GtkPrintOperation *operation, GtkPrintContext   *context, 
 static GObject * create_custom_widget_cb( GtkPrintOperation *operation, gpointer user_data )
 {
 	GtkWidget *vbox;
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	CustomOptionPrintSection = gtk_check_button_new_with_label( _("Print section") );
 	gtk_box_pack_start( GTK_BOX (vbox), CustomOptionPrintSection, FALSE, FALSE, 0 );
 	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON( CustomOptionPrintSection ), TRUE );

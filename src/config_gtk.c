@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* July 2003 */
@@ -136,7 +136,7 @@ GtkWidget * CreateGeneralParametersPage( void )
 	int NumObj,ScanSub;
 	int CurrentSub = 0;
 
-	vbox_main = gtk_vbox_new (FALSE, 0);
+	vbox_main = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 
 	for (NumObj=0; NumObj<NBR_OBJECTS_GENERAL; NumObj++)
 	{
@@ -144,7 +144,7 @@ GtkWidget * CreateGeneralParametersPage( void )
 		char BuffValue[ LGT_FOR_PATH_AND_FILE ];
                 
 		int InfoUsed = 0;
-		hbox[NumObj] = gtk_hbox_new (FALSE, 0);
+		hbox[NumObj] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 
 		switch( NumObj )
 		{
@@ -252,11 +252,11 @@ GtkWidget * CreateGeneralParametersPage( void )
 
 			gtk_container_add (GTK_CONTAINER(vbox_main), hbox[NumObj]);
 
-			hbox_for_subs = gtk_hbox_new (FALSE, 0);
+			hbox_for_subs = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 			gtk_container_add (GTK_CONTAINER(vbox_main), hbox_for_subs);
 			for( ScanSub=0; ScanSub<NBR_SUBS_VBOX; ScanSub++ )
 			{
-				vbox_sub[ ScanSub ] = gtk_vbox_new (FALSE, 0);
+				vbox_sub[ ScanSub ] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 				if ( ScanSub==1 )
 				{
 					GtkWidget * VertSep = gtk_vseparator_new( );
@@ -1086,7 +1086,7 @@ GtkWidget * CreateModbusComParametersPage( void )
 	char BuffValue[ 100 ];
 
 //	vbox = gtk_vbox_new (FALSE/*homogeneous*/, 0);
-	hbox = gtk_hbox_new (FALSE/*homogeneous*/, 0);
+	hbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 //	gtk_widget_show (vbox);
 	table = gtk_table_new( MODBUS_COM_PARAMS_SIZE_X_TABLE, NBR_COM_PARAMS, FALSE );
 	gtk_box_pack_start (GTK_BOX(hbox), table, TRUE/*expand*/, FALSE/*fill*/, 0);
@@ -1443,7 +1443,7 @@ GtkWidget * CreateModemConfigPage( void )
 	int ScanParam;
 	int IndexNameParam = 0;
 	int ScanLine = 0;
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 
 	AutoAdjustTime = gtk_check_button_new_with_label( _("Automatically adjust summer/winter time.") );
 	gtk_toggle_button_set_active( GTK_TOGGLE_BUTTON( AutoAdjustTime ), GeneralParamsMirror.AutomaticallyAdjustSummerWinterTime );
@@ -1451,7 +1451,7 @@ GtkWidget * CreateModemConfigPage( void )
 
 	for( ScanParam=0; ScanParam<NBR_MODEM_CONF; ScanParam++ )
 	{
-		hbox[ScanLine] = gtk_hbox_new (FALSE, 0);
+		hbox[ScanLine] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_container_add (GTK_CONTAINER (vbox), hbox[ScanLine]);
 		pLabel = gtk_label_new( gettext(NameParams[IndexNameParam]) );
 		gtk_box_pack_start(GTK_BOX(hbox[ScanLine]), pLabel, FALSE, FALSE, 0);
@@ -1484,7 +1484,7 @@ GtkWidget * CreateModemConfigPage( void )
 		IndexNameParam++;
 		if ( ScanParam==4 )
 		{
-			hbox[ScanLine] = gtk_hbox_new (FALSE, 0);
+			hbox[ScanLine] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 			gtk_container_add (GTK_CONTAINER (vbox), hbox[ScanLine]);
 			pLabel = gtk_label_new( _("--- Monitor Master modem AT sequences ---") );
 			gtk_box_pack_start(GTK_BOX(hbox[ScanLine]), pLabel, FALSE, FALSE, 0);
@@ -1539,11 +1539,11 @@ GtkWidget * CreateRemoteAlarmsConfigPage( void )
 	int ScanLine;
 	int ScanCol;
 	StrRemoteAlarms * pAlarms = &RemoteAlarmsConfig;
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 
 	for( ScanLine=0; ScanLine<NBR_LINES_REMOTE_ALARMS; ScanLine++ )
 	{
-		hbox[ScanLine] = gtk_hbox_new (FALSE, 0);
+		hbox[ScanLine] = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL, 0);
 		gtk_container_add (GTK_CONTAINER (vbox), hbox[ScanLine]);
 		pLabel = gtk_label_new( gettext(NameParams[ScanLine]) );
 		gtk_box_pack_start(GTK_BOX(hbox[ScanLine]), pLabel, FALSE, FALSE, 0);

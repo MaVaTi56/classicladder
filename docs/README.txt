@@ -1,12 +1,12 @@
 CLASSIC LADDER PROJECT
-Copyright (C) 2001-2022 Marc Le Douarain
+Copyright (C) 2001-2023 Marc Le Douarain
 marc . le - douarain /AT\ laposte \DOT/ net
 http://www.sourceforge.net/projects/classicladder
 http://sites.google.com/site/classicladder
 February 2001
 
-Version 0.9.113+ (xx September 2022)
-------------------------------------
+Version 0.9.113+ (xx March 2023)
+--------------------------------
 
 A project to have a free ladder language in C.
 Generally, you find this type of language on PLC to make the programs.
@@ -140,12 +140,8 @@ To compile a GTK+3 version, ensure you've the package "libgtk-3-dev" installed b
 Choice between GTK2 and GTK3 is done by modifying the Makefile: comment lines after "#===For GTK2 Version==="
 and uncomment lines after "#===For GTK3 Version===", or inversely.
 
-If you obtain an error: ‘GDK_KEY_Alt_L’ undeclared (first use in this function)
-that means that you have old includes, you can copy files from "gdk_includes_update/"
-to your "/usr/include/gtk-2.0/gdk/" or better: update your distribution...
-
-To compile on PowerPC processor, in the Makefile, add the caracter '#' to comment
-the line MAKE_IO_ACCESS.
+To compile on PowerPC processor (in fact not x86 processors generally), in the Makefile, add the caracter '#' to
+comment the line MAKE_IO_ACCESS.
 
 
 MODBUS SERVER INCLUDED (SLAVE TO CONNECT TO A SCADA)...

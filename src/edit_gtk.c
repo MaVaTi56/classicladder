@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* May 2001 */
@@ -755,7 +755,7 @@ void EditorInitGtk()
 	EditWindow = gtk_window_new (GTK_WINDOW_TOPLEVEL);
 	gtk_window_set_title ( GTK_WINDOW( EditWindow ), _("Editor") );
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (EditWindow), vbox);
 	gtk_widget_show (vbox);
 

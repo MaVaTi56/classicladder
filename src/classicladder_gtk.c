@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -107,6 +107,19 @@ GtkWidget *FileTransferAbortButton;
 #include "network_config_window_gtk.h"
 
 extern GtkUIManager * uiManager;	 // in menu_and_toolbar_gtk.c
+
+// to replace Gtk+2 gtk_vbox_new() & gtk_hbox_new() deprecated on Gtk+3
+// (we keep still compatibility with both Gtk+2/3 versions for now...)
+// see macros MY_GTK_NEW_BOX() in classicladder_gtk.h
+#if GTK_MAJOR_VERSION<=2
+GtkWidget * MyGtk2NewBox( char OrientationWanted, gint SpacingWanted )
+{
+	if( OrientationWanted==MY_GTK_ORIENTATION_VERTICAL )
+		return gtk_vbox_new( FALSE/*homogeneous*/, SpacingWanted/*spacing*/ );
+	else
+		return gtk_hbox_new( FALSE/*homogeneous*/, SpacingWanted/*spacing*/ );
+}
+#endif
 
 void CairoDrawCurrentSectionOnDrawingArea( cairo_t *cr )
 {
@@ -389,7 +402,7 @@ void IncrementScrollBar( GtkAdjustment * TheAdjustScrollBar, int IncrementValue,
 // if increment=0, just update display with new value modified before.
 static void IncrementVScrollBar( int IncrementValue )
 {
-printf("%s(): incV=%d\n", __FUNCTION__, IncrementValue );
+//printf("%s(): incV=%d\n", __FUNCTION__, IncrementValue );
 	if ( IncrementValue!=0 )
 	{
 		IncrementScrollBar( AdjustVScrollBar, IncrementValue, InfosGene->PageHeight );
@@ -400,7 +413,7 @@ printf("%s(): incV=%d\n", __FUNCTION__, IncrementValue );
 }
 static void IncrementHScrollBar( int IncrementValue )
 {
-printf("%s(): incH=%d\n", __FUNCTION__, IncrementValue );
+//printf("%s(): incH=%d\n", __FUNCTION__, IncrementValue );
 	if ( IncrementValue!=0 )
 	{
 		IncrementScrollBar( AdjustHScrollBar, IncrementValue, InfosGene->PageWidth );
@@ -411,7 +424,7 @@ printf("%s(): incH=%d\n", __FUNCTION__, IncrementValue );
 
 static gboolean mouse_scroll_event( GtkWidget *widget, GdkEventScroll *event )
 {
-	int iCurrentLanguage = SectionArray[ InfosGene->CurrentSection ].Language;
+//	int iCurrentLanguage = SectionArray[ InfosGene->CurrentSection ].Language;
 	if( gtk_widget_get_sensitive( VScrollBar ) )
 	{
 //printf("Mouse scroll vertical\n");
@@ -1328,7 +1341,7 @@ void SearchInitGtk(GtkBox *vbox)
 	int Scan;
 //ForGTK3, deprecated...	GtkTooltips * SearchEntryTooltip;
 
-	hBoxSearch = gtk_hbox_new (FALSE,0);
+	hBoxSearch = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL,0);
 	gtk_container_add (GTK_CONTAINER (vbox), hBoxSearch);
 	gtk_box_set_child_packing(GTK_BOX(vbox), hBoxSearch,
 		/*expand*/ FALSE, /*fill*/ FALSE, /*pad*/ 0, GTK_PACK_START);
@@ -1411,7 +1424,7 @@ printf("ask to hide progress bar...\n");
 }
 void FileTransferInitGtk(GtkBox *vbox)
 {
-	hBoxFileTransfer = gtk_hbox_new (FALSE,0);
+	hBoxFileTransfer = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL,0);
 	gtk_container_add (GTK_CONTAINER (vbox), hBoxFileTransfer);
 	gtk_box_set_child_packing(GTK_BOX(vbox), hBoxFileTransfer,
 		/*expand*/ FALSE, /*fill*/ FALSE, /*pad*/ 0, GTK_PACK_START);
@@ -1459,7 +1472,7 @@ void MainSectionWindowInitGtk()
 	gtk_window_set_title ( GTK_WINDOW(MainSectionWindow), _("ClassicLadder Section Display"));
 RestoreWindowPosiPrefs( "Main", MainSectionWindow );
 
-	vbox = gtk_vbox_new (FALSE, 0);
+	vbox = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_VERTICAL, 0);
 	gtk_container_add (GTK_CONTAINER (MainSectionWindow), vbox);
 	gtk_widget_show (vbox);
 
@@ -1488,7 +1501,7 @@ RestoreWindowPosiPrefs( "Main", MainSectionWindow );
 //	gtk_box_pack_start( GTK_BOX (hboxToolBarAndCombo), WidgetRightSpacerLabel, FALSE, FALSE, 0 );
 //	gtk_widget_show( WidgetRightSpacerLabel );
 
-	hboxtop = gtk_hbox_new (FALSE,0);
+	hboxtop = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL,0);
 	gtk_container_add (GTK_CONTAINER (vbox), hboxtop);
 	gtk_widget_show(hboxtop);
 	gtk_box_set_child_packing(GTK_BOX(vbox), hboxtop,
@@ -1532,7 +1545,7 @@ RestoreWindowPosiPrefs( "Main", MainSectionWindow );
 	gtk_widget_set_sensitive(WidgetDurationOfLastScan, FALSE);
 
 
-	hboxmiddle = gtk_hbox_new (FALSE,0);
+	hboxmiddle = MY_GTK_NEW_BOX (MY_GTK_ORIENTATION_HORIZONTAL,0);
 	gtk_container_add (GTK_CONTAINER (vbox), hboxmiddle);
 	gtk_widget_show(hboxmiddle);
 	gtk_box_set_child_packing(GTK_BOX(vbox), hboxmiddle,
@@ -1628,6 +1641,7 @@ void MainSectionWindowTakeFocus( )
 
 void RedrawSignalDrawingArea( void )
 {
+//printf("signal REDRAW called !\n");
 #if GTK_MAJOR_VERSION>=3
 	gtk_widget_queue_draw( drawing_area );
 #else

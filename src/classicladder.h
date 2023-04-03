@@ -1,5 +1,5 @@
 /* Classic Ladder Project */
-/* Copyright (C) 2001-2022 Marc Le Douarain */
+/* Copyright (C) 2001-2023 Marc Le Douarain */
 /* http://www.sourceforge.net/projects/classicladder */
 /* http://sites.google.com/site/classicladder */
 /* February 2001 */
@@ -28,8 +28,8 @@
 
 #define CL_PRODUCT_NAME "ClassicLadder"
 #define CL_RELEASE_VER_STRING "0.9.113+"
-#define CL_RELEASE_DATE_STRING "18 December 2022"
-#define CL_RELEASE_COPYRIGHT_YEARS "2001-2022"
+#define CL_RELEASE_DATE_STRING "31 March 2023"
+#define CL_RELEASE_COPYRIGHT_YEARS "2001-2023"
 
 
 //to debug "monitor": useful if PLC running... and connecting to itself (same executable) only for tests purposes at the start, and after also!

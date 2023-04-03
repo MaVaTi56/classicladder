@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-26 10:23+0200\n"
+"POT-Creation-Date: 2018-02-06 21:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,11 +41,11 @@ msgstr ""
 msgid "Reset logic data done."
 msgstr ""
 
-#: classicladder.c:741
+#: classicladder.c:744
 msgid "Project loaded and running"
 msgstr ""
 
-#: classicladder.c:741 classicladder_gtk.c:692
+#: classicladder.c:744 classicladder_gtk.c:692
 msgid "Project failed to load..."
 msgstr ""
 
@@ -70,8 +70,8 @@ msgstr ""
 msgid "Base"
 msgstr ""
 
-#: edit.c:181 edit.c:190 edit.c:198 edit.c:207 edit.c:267 edit.c:271
-#: edit.c:276 edit.c:280
+#: edit.c:181 edit.c:190 edit.c:198 edit.c:207 edit.c:267 edit.c:271 edit.c:276
+#: edit.c:280
 msgid "Preset"
 msgstr ""
 
@@ -131,7 +131,7 @@ msgstr ""
 msgid "You must select a read/write variable for a coil!"
 msgstr ""
 
-#: edit.c:543 edit_sequential.c:180 symbols_gtk.c:135 spy_vars_gtk.c:664
+#: edit.c:543 edit_sequential.c:180 symbols_gtk.c:135 spy_vars_gtk.c:662
 #: search.c:441
 msgid "Unknown variable..."
 msgstr ""
@@ -144,7 +144,7 @@ msgstr ""
 msgid "No more free arithmetic expression for this type available..."
 msgstr ""
 
-#: edit.c:1507
+#: edit.c:1517
 msgid "You clicked outside of the current rung actually selected..."
 msgstr ""
 
@@ -185,95 +185,95 @@ msgstr ""
 msgid "Comment"
 msgstr ""
 
-#: edit_sequential.c:575
+#: edit_sequential.c:579
 msgid ""
-"There is already a step to desactivate for this transition (clicked on top "
+"There is already a step to deactivate for this transition (clicked on top "
 "part)..."
 msgstr ""
 
-#: edit_sequential.c:582
+#: edit_sequential.c:591
 msgid ""
 "There is already a step to activate for this transition (clicked on bottom "
 "part)..."
 msgstr ""
 
-#: edit_sequential.c:597
+#: edit_sequential.c:607
 msgid "Not selected first and last transitions to be joined !!??"
 msgstr ""
 
-#: edit_sequential.c:614
+#: edit_sequential.c:624
 msgid "Unknown element type for Ele1"
 msgstr ""
 
-#: edit_sequential.c:628
+#: edit_sequential.c:638
 msgid "First and last steps selected are not on the same line !!??"
 msgstr ""
 
-#: edit_sequential.c:645
+#: edit_sequential.c:655
 msgid "First and last transitions selected are not on the same line !!??"
 msgstr ""
 
-#: edit_sequential.c:652
+#: edit_sequential.c:662
 msgid "Unknown element type for Ele2"
 msgstr ""
 
-#: edit_sequential.c:701 edit_sequential.c:746
+#: edit_sequential.c:711 edit_sequential.c:756
 msgid "Error in selection or not possible..."
 msgstr ""
 
-#: edit_sequential.c:816
+#: edit_sequential.c:826
 msgid "Not found at least 2 transitions linked..."
 msgstr ""
 
-#: edit_sequential.c:940
+#: edit_sequential.c:952
 msgid "Sequential memory full for steps"
 msgstr ""
 
-#: edit_sequential.c:945 edit_sequential.c:985
+#: edit_sequential.c:957 edit_sequential.c:999
 msgid "There is already an element!"
 msgstr ""
 
-#: edit_sequential.c:952
+#: edit_sequential.c:964
 msgid "A step can't be placed on even lines"
 msgstr ""
 
-#: edit_sequential.c:980
+#: edit_sequential.c:994
 msgid "Sequential memory full for transition"
 msgstr ""
 
-#: edit_sequential.c:992
+#: edit_sequential.c:1006
 msgid "A transition can't be placed on odd lines"
 msgstr ""
 
-#: edit_sequential.c:1006
+#: edit_sequential.c:1020
 msgid "Now select the transition."
 msgstr ""
 
-#: edit_sequential.c:1008
-msgid "Now select the step that will be desactivate by this transition."
+#: edit_sequential.c:1022
+msgid "Now select the step that will be deactivated by this transition."
 msgstr ""
 
-#: edit_sequential.c:1008
-msgid "Now select the step that will be activate by this transition."
+#: edit_sequential.c:1022
+msgid "Now select the step that will be activated by this transition."
 msgstr ""
 
-#: edit_sequential.c:1010
+#: edit_sequential.c:1024
 msgid "You haven't selected a step or a transition to link!!!"
 msgstr ""
 
-#: edit_sequential.c:1020
+#: edit_sequential.c:1040
 msgid "You haven't selected a transition and then the step to link!!!"
 msgstr ""
 
-#: edit_sequential.c:1055
+#: edit_sequential.c:1077
 msgid "Sequential memory full for comments"
 msgstr ""
 
-#: edit_sequential.c:1060
+#: edit_sequential.c:1082
 msgid "There is already an element on 4 horizontal blocks required!"
 msgstr ""
 
-#: edit_sequential.c:1065
+#: edit_sequential.c:1087
 msgid "Not enough room on the right here..."
 msgstr ""
 
@@ -281,7 +281,7 @@ msgstr ""
 msgid "Properties"
 msgstr ""
 
-#: editproperties_gtk.c:335 spy_vars_gtk.c:1092
+#: editproperties_gtk.c:335 spy_vars_gtk.c:1090
 msgid "Apply"
 msgstr ""
 
@@ -310,7 +310,7 @@ msgid "Failed to add a new section. Full?"
 msgstr ""
 
 #: manager_gtk.c:234 manager_gtk.c:258 manager_gtk.c:315 manager_gtk.c:342
-#: manager_gtk.c:367 config_gtk.c:1669 spy_vars_gtk.c:1038 edit_gtk.c:379
+#: manager_gtk.c:367 config_gtk.c:1669 spy_vars_gtk.c:1036 edit_gtk.c:379
 #: edit_gtk.c:394 edit_gtk.c:409 classicladder_gtk.c:866
 #: classicladder_gtk.c:878
 msgid "Not possible when connected to a remote target..."
@@ -360,7 +360,7 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: manager_gtk.c:517 print_gtk.c:319 menu_and_toolbar_gtk.c:577 edit_gtk.c:742
+#: manager_gtk.c:517 print_gtk.c:319 menu_and_toolbar_gtk.c:577 edit_gtk.c:755
 #: classicladder_gtk.c:688 classicladder_gtk.c:722 classicladder_gtk.c:1073
 #: classicladder_gtk.c:1095 classicladder_gtk.c:1618 log_events_gtk.c:293
 msgid "Ok"
@@ -668,7 +668,7 @@ msgid "TCP/UDP mode"
 msgstr ""
 
 #: config_gtk.c:873
-msgid "Module Informations"
+msgid "Module Information"
 msgstr ""
 
 #: config_gtk.c:922
@@ -981,151 +981,151 @@ msgstr ""
 msgid "Set/UnSet variable"
 msgstr ""
 
-#: spy_vars_gtk.c:389 spy_vars_gtk.c:392
+#: spy_vars_gtk.c:390
 msgid "Spy bools vars"
 msgstr ""
 
-#: spy_vars_gtk.c:400 classicladder_gtk.c:1428
+#: spy_vars_gtk.c:398 classicladder_gtk.c:1428
 msgid "Display symbols"
 msgstr ""
 
-#: spy_vars_gtk.c:423
+#: spy_vars_gtk.c:421
 msgid "Offset for vars displayed below (press return to apply)"
 msgstr ""
 
-#: spy_vars_gtk.c:443
+#: spy_vars_gtk.c:441
 msgid "Set/Unset output"
 msgstr ""
 
-#: spy_vars_gtk.c:443
+#: spy_vars_gtk.c:441
 msgid "Set/Unset input"
 msgstr ""
 
-#: spy_vars_gtk.c:728
+#: spy_vars_gtk.c:726
 msgid "Sunday"
 msgstr ""
 
-#: spy_vars_gtk.c:728
+#: spy_vars_gtk.c:726
 msgid "Monday"
 msgstr ""
 
-#: spy_vars_gtk.c:728
+#: spy_vars_gtk.c:726
 msgid "Tuesday"
 msgstr ""
 
-#: spy_vars_gtk.c:728
+#: spy_vars_gtk.c:726
 msgid "Wednesday"
 msgstr ""
 
-#: spy_vars_gtk.c:728
+#: spy_vars_gtk.c:726
 msgid "Thursday"
 msgstr ""
 
-#: spy_vars_gtk.c:728
+#: spy_vars_gtk.c:726
 msgid "Friday"
 msgstr ""
 
-#: spy_vars_gtk.c:728
+#: spy_vars_gtk.c:726
 msgid "Saturday"
 msgstr ""
 
-#: spy_vars_gtk.c:819 spy_vars_gtk.c:820
+#: spy_vars_gtk.c:818
 msgid "Dec +/-"
 msgstr ""
 
-#: spy_vars_gtk.c:821
+#: spy_vars_gtk.c:819
 msgid "Dec +"
 msgstr ""
 
-#: spy_vars_gtk.c:822
+#: spy_vars_gtk.c:820
 msgid "Hex"
 msgstr ""
 
-#: spy_vars_gtk.c:823
+#: spy_vars_gtk.c:821
 msgid "Bin"
 msgstr ""
 
-#: spy_vars_gtk.c:853 spy_vars_gtk.c:854
+#: spy_vars_gtk.c:852
 msgid "Modify Value :"
 msgstr ""
 
-#: spy_vars_gtk.c:938
+#: spy_vars_gtk.c:936
 msgid "Not connected"
 msgstr ""
 
-#: spy_vars_gtk.c:959
+#: spy_vars_gtk.c:957
 msgid "Used"
 msgstr ""
 
-#: spy_vars_gtk.c:960
+#: spy_vars_gtk.c:958
 msgid "Free"
 msgstr ""
 
-#: spy_vars_gtk.c:961
+#: spy_vars_gtk.c:959
 msgid "Size"
 msgstr ""
 
-#: spy_vars_gtk.c:1005
+#: spy_vars_gtk.c:1003
 msgid "ClassicLadder Soft.Version"
 msgstr ""
 
-#: spy_vars_gtk.c:1005
+#: spy_vars_gtk.c:1003
 msgid "Kernel Version"
 msgstr ""
 
-#: spy_vars_gtk.c:1005
+#: spy_vars_gtk.c:1003
 msgid "Xenomai version"
 msgstr ""
 
-#: spy_vars_gtk.c:1005
+#: spy_vars_gtk.c:1003
 msgid "Linux Distribution"
 msgstr ""
 
-#: spy_vars_gtk.c:1005
+#: spy_vars_gtk.c:1003
 msgid "Disk statistics"
 msgstr ""
 
-#: spy_vars_gtk.c:1066
+#: spy_vars_gtk.c:1064
 msgid "Project Name"
 msgstr ""
 
-#: spy_vars_gtk.c:1066
+#: spy_vars_gtk.c:1064
 msgid "Project Site"
 msgstr ""
 
-#: spy_vars_gtk.c:1066
+#: spy_vars_gtk.c:1064
 msgid "Author"
 msgstr ""
 
-#: spy_vars_gtk.c:1066
+#: spy_vars_gtk.c:1064
 msgid "Company"
 msgstr ""
 
-#: spy_vars_gtk.c:1066
+#: spy_vars_gtk.c:1064
 msgid "Param.Version"
 msgstr ""
 
-#: spy_vars_gtk.c:1066
+#: spy_vars_gtk.c:1064
 msgid "Creation Date"
 msgstr ""
 
-#: spy_vars_gtk.c:1066
+#: spy_vars_gtk.c:1064
 msgid "Modify Date"
 msgstr ""
 
-#: spy_vars_gtk.c:1104 spy_vars_gtk.c:1107
+#: spy_vars_gtk.c:1103
 msgid "Spy free vars"
 msgstr ""
 
-#: spy_vars_gtk.c:1111
+#: spy_vars_gtk.c:1107
 msgid "Vars & Time"
 msgstr ""
 
-#: spy_vars_gtk.c:1114
+#: spy_vars_gtk.c:1109
 msgid "Project properties"
 msgstr ""
 
-#: spy_vars_gtk.c:1117
+#: spy_vars_gtk.c:1111
 msgid "Target infos"
 msgstr ""
 
@@ -1418,7 +1418,7 @@ msgstr ""
 msgid "Modify (alt-m)"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:111 edit_gtk.c:737
+#: menu_and_toolbar_gtk.c:111 edit_gtk.c:750
 msgid "Modify"
 msgstr ""
 
@@ -1586,7 +1586,7 @@ msgstr ""
 msgid "Cancel (alt-c)"
 msgstr ""
 
-#: menu_and_toolbar_gtk.c:150 edit_gtk.c:746
+#: menu_and_toolbar_gtk.c:150 edit_gtk.c:759
 msgid "Cancel"
 msgstr ""
 
@@ -2034,7 +2034,7 @@ msgid "Activate many steps (start)"
 msgstr ""
 
 #: edit_gtk.c:136
-msgid "Desactivate many steps (end)"
+msgid "Deactivate many steps (end)"
 msgstr ""
 
 #: edit_gtk.c:320
@@ -2053,7 +2053,7 @@ msgstr ""
 msgid "Failed to insert a new rung. Full?"
 msgstr ""
 
-#: edit_gtk.c:413 edit_gtk.c:732
+#: edit_gtk.c:413 edit_gtk.c:745
 msgid "Delete"
 msgstr ""
 
@@ -2065,15 +2065,25 @@ msgstr ""
 msgid "Actually, not possible on a connected remote target..."
 msgstr ""
 
-#: edit_gtk.c:716
+#: edit_gtk.c:470 classicladder_gtk.c:880 log_events_gtk.c:314
+msgid "Sure?"
+msgstr ""
+
+#: edit_gtk.c:470
+msgid ""
+"Do you really want to cancel ?\n"
+"(all current modifications will be lost...)"
+msgstr ""
+
+#: edit_gtk.c:729
 msgid "Editor"
 msgstr ""
 
-#: edit_gtk.c:722
+#: edit_gtk.c:735
 msgid "Add"
 msgstr ""
 
-#: edit_gtk.c:727
+#: edit_gtk.c:740
 msgid "Insert"
 msgstr ""
 
@@ -2104,7 +2114,7 @@ msgstr ""
 
 #: classicladder_gtk.c:734
 msgid ""
-"You are curently under edit.\n"
+"You are currently under edit.\n"
 "You should apply current modifications before...\n"
 "Do you really want to save now ?\n"
 msgstr ""
@@ -2127,10 +2137,6 @@ msgstr ""
 
 #: classicladder_gtk.c:872
 msgid "Please select the project to load"
-msgstr ""
-
-#: classicladder_gtk.c:880 log_events_gtk.c:314
-msgid "Sure?"
 msgstr ""
 
 #: classicladder_gtk.c:880
@@ -2194,13 +2200,13 @@ msgstr ""
 
 #: classicladder_gtk.c:1213
 msgid ""
-"You are curently under edit.\n"
+"You are currently under edit.\n"
 "Do you really want to quit ?\n"
 msgstr ""
 
 #: classicladder_gtk.c:1215
 msgid ""
-"You are curently connected to a target.\n"
+"You are currently connected to a target.\n"
 "Do you really want to quit ?\n"
 msgstr ""
 
@@ -2216,7 +2222,7 @@ msgstr ""
 msgid "Variable to search or block number"
 msgstr ""
 
-#: classicladder_gtk.c:1387 classicladder_gtk.c:1774
+#: classicladder_gtk.c:1387 classicladder_gtk.c:1776
 msgid "ClassicLadder Section Display"
 msgstr ""
 
@@ -2241,7 +2247,7 @@ msgid "No default."
 msgstr ""
 
 #: classicladder_gtk.c:1618
-msgid "An error occured!"
+msgid "An error occurred!"
 msgstr ""
 
 #: classicladder_gtk.c:1651
@@ -2256,11 +2262,11 @@ msgstr ""
 msgid "missed"
 msgstr ""
 
-#: classicladder_gtk.c:1777
+#: classicladder_gtk.c:1779
 msgid "No project"
 msgstr ""
 
-#: classicladder_gtk.c:1781 classicladder_gtk.c:1796
+#: classicladder_gtk.c:1783 classicladder_gtk.c:1798
 msgid "CONNECTED"
 msgstr ""
 
@@ -2288,38 +2294,38 @@ msgstr ""
 msgid "Target connected"
 msgstr ""
 
-#: monitor_protocol.c:988
+#: monitor_protocol.c:991
 msgid ""
 "Mismatch detected between local parameters and target parameters...\n"
 "Perhaps you should disconnect!"
 msgstr ""
 
-#: monitor_protocol.c:1274
+#: monitor_protocol.c:1277
 msgid "Failed to send network config on target!"
 msgstr ""
 
-#: monitor_protocol.c:1276 monitor_protocol.c:1381
+#: monitor_protocol.c:1279 monitor_protocol.c:1384
 msgid "Info target"
 msgstr ""
 
-#: monitor_protocol.c:1276
+#: monitor_protocol.c:1279
 msgid "Network config successfully send to target."
 msgstr ""
 
-#: monitor_protocol.c:1379
+#: monitor_protocol.c:1382
 msgid "Failed to send monitor serial config on target!"
 msgstr ""
 
-#: monitor_protocol.c:1381
+#: monitor_protocol.c:1384
 msgid "Monitor serial config successfully send to target."
 msgstr ""
 
 #: monitor_transfer.c:175
-msgid "Loaded project transfered from target."
+msgid "Loaded project transferred from target."
 msgstr ""
 
 #: monitor_transfer.c:175
-msgid "Failed to load project transfered from target..."
+msgid "Failed to load project transferred from target..."
 msgstr ""
 
 #: monitor_transfer.c:554

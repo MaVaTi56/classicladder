@@ -1,6 +1,6 @@
 #
 # ClassicLadder project - Makefile
-# Copyright (C) 2001-2022 Marc Le Douarain
+# Copyright (C) 2001-2023 Marc Le Douarain
 # http://www.sourceforge.net/projects/classicladder
 # http://sites.google.com/site/classicladder
 #
@@ -219,7 +219,7 @@ endif
 ########
 # -> xgettext: generate the ".pot" base model (after modifying strings language in the .c sources)
 # -> msginit_XX: FIRST TIME ONLY (!!!!) to create a blank ".po"
-# -> msgmerge_XX : later to complete and update a po translation already done !
+# -> msgmerge_XX : later to complete and update a po translation already done ! verify 'fuzzy' lines for auto translated ones...
 # -> msgfmt : compile 'po' (text) files in 'mo' (binary) 
 xgettext:
 	xgettext --keyword=_ --keyword=N_ -o ../po/classicladder.pot $(XGETTEXT_C_FILE_LIST)
